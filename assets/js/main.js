@@ -200,16 +200,114 @@
       ]
     });
 
-var scene = document.getElementById('js-scene');
-var parallax = new Parallax(scene);
+  var scene = document.getElementById('js-scene');
+  if (scene) {
+    var parallax = new Parallax(scene);
+  }
 
-jQuery(document).ready(() => {
-  jQuery('.js-video-button').modalVideo({
-      channel: 'vimeo'
+  jQuery(document).ready(function ($) {
+    if ($('.js-video-button').length > 0) {
+      $('.js-video-button').modalVideo({
+        channel: 'vimeo'
+      });
+    }
+
+    /* ------------------------------------------------------------------------ */
+    /* AUTO SCROLL FOR LATEST EVENTS & NOTICE BOARD (HOVER PAUSES)
+    /* ------------------------------------------------------------------------ */
+    function initTickerAutoScroll(selector, hoverWrapSelector, speed) {
+      var containers = document.querySelectorAll(selector);
+      if (!containers || containers.length === 0) return;
+
+      containers.forEach(function (container) {
+        if (container.dataset.autoscrollInit === 'true') return;
+        container.dataset.autoscrollInit = 'true';
+
+        var originalItems = Array.from(container.children);
+        if (originalItems.length === 0) return;
+
+        // Clone items for seamless continuous infinite looping
+        originalItems.forEach(function (item) {
+          var clone = item.cloneNode(true);
+          clone.classList.add('en-ticker-clone');
+          container.appendChild(clone);
+        });
+
+        var isPaused = false;
+        var scrollPos = 0;
+        var scrollSpeed = speed || 0.65; // pixels per animation frame
+
+        function getLoopDistance() {
+          var firstClone = container.children[originalItems.length];
+          if (firstClone && originalItems[0]) {
+            var diff = firstClone.offsetTop - originalItems[0].offsetTop;
+            if (diff > 0) return diff;
+          }
+          return container.scrollHeight / 2;
+        }
+
+        var loopDistance = getLoopDistance();
+
+        $(window).on('resize load', function () {
+          loopDistance = getLoopDistance();
+        });
+
+        function tick() {
+          if (!isPaused && !document.hidden) {
+            scrollPos += scrollSpeed;
+            if (loopDistance > 0 && scrollPos >= loopDistance) {
+              scrollPos -= loopDistance;
+            }
+            container.scrollTop = scrollPos;
+          } else {
+            // Keep internal position synced with user scroll/wheel
+            scrollPos = container.scrollTop;
+          }
+          requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+
+        // Pause scrolling when mouse enters the container or its column card
+        var hoverTarget = hoverWrapSelector ? container.closest(hoverWrapSelector) || container : container;
+
+        hoverTarget.addEventListener('mouseenter', function () {
+          isPaused = true;
+        });
+
+        hoverTarget.addEventListener('mouseleave', function () {
+          isPaused = false;
+          scrollPos = container.scrollTop;
+        });
+
+        // User manual wheel scroll sync
+        container.addEventListener('wheel', function () {
+          scrollPos = container.scrollTop;
+        }, { passive: true });
+
+        // Touch support for mobile devices
+        var touchTimeout = null;
+        container.addEventListener('touchstart', function () {
+          isPaused = true;
+          clearTimeout(touchTimeout);
+        }, { passive: true });
+
+        container.addEventListener('touchend', function () {
+          clearTimeout(touchTimeout);
+          touchTimeout = setTimeout(function () {
+            isPaused = false;
+            scrollPos = container.scrollTop;
+          }, 1500);
+        }, { passive: true });
+      });
+    }
+
+    // Initialize auto-scrolling: Latest Events and Notice Board ticker
+    initTickerAutoScroll('.en-events-list', '.en-col-wrap', 0.65);
+    initTickerAutoScroll('.en-notice-list', '.en-notice-board-wrap', 0.55);
   });
-});
 
- })(jQuery);
+})(jQuery);
 
 
 

@@ -154,6 +154,48 @@
     </section>
     <!-- Director Message end -->
 
+    <!-- Campus Updates & Why Choose Us start -->
+    <section class="campus-updates-section">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-title sc-center justify-content-center text-center borderline mb-5 wow fadeInDown">
+          <div class="title-top">
+            <span class="campus-update-tag">Campus Update</span>
+            <h2 class="campus-update-heading">CAMPUS UPDATES & <span class="cl-blue">HAPPENINGS</span></h2>
+          </div>
+        </div>
+
+        <div class="row align-items-center">
+          <!-- Left Column: Photo Collage -->
+          <div class="col-lg-6 col-md-12 mb-4 mb-lg-0 text-center wow fadeInLeft">
+            <div class="campus-collage-wrap">
+              <img src="assets/images/inner/campus-updates-collage.png?v=2" alt="Campus Updates & Happenings" class="campus-collage-img" />
+            </div>
+          </div>
+
+          <!-- Right Column: Why Choose Us Content -->
+          <div class="col-lg-6 col-md-12 wow fadeInRight">
+            <div class="campus-content-wrap">
+              <span class="campus-why-tag">// WHY CHOOSE BIDYABHARATI CLASSES?</span>
+              <h2 class="campus-why-title">WHY CHOOSE BIDYABHARATI CLASSES?</h2>
+              <p class="campus-why-desc">
+                We provide a wide range of academic programs and specialized guidance that empowers students to excel, build deep conceptual clarity, and achieve their career goals with expert faculty mentorship.
+              </p>
+              <h4 class="campus-why-highlight">5000+ Trained Students</h4>
+              <ul class="campus-features-list">
+                <li><i class="fas fa-check"></i> <span>STRUCTURED STUDY PLANS & ASSESSMENTS</span></li>
+                <li><i class="fas fa-check"></i> <span>EXPERT MENTORSHIP & COUNSELING</span></li>
+                <li><i class="fas fa-check"></i> <span>FOCUS ON EXAM TEMPERAMENT</span></li>
+                <li><i class="fas fa-check"></i> <span>PROVEN TOP RESULTS</span></li>
+                <li><i class="fas fa-check"></i> <span>VIBRANT CAMPUS COMMUNITY</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Campus Updates & Why Choose Us end -->
+
     <!-- Events & Notice Board start -->
     <section class="events-notice-section">
       <div class="container">
@@ -350,6 +392,97 @@
       </div>
     </section>
     <!-- Events & Notice Board end -->
+
+    <!-- Gallery Highlights start -->
+    <section class="gallery-highlights-section">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-title sc-center justify-content-center text-center mb-5 wow fadeInDown">
+          <h2 class="gallery-highlights-heading">GALLERY HIGHLIGHTS</h2>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="row">
+          <!-- Card 1 -->
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="gallery-highlight-card">
+              <a href="assets/images/inner/gallery-highlight-1.jpg" data-lightbox="gallery-highlights" data-title="Campus Life & Library" class="gallery-highlight-link">
+                <img src="assets/images/inner/gallery-highlight-1.jpg" alt="Gallery Highlight 1" class="gallery-highlight-img" />
+                <div class="gallery-highlight-overlay">
+                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="gallery-highlight-card">
+              <a href="assets/images/inner/gallery-highlight-2.jpg" data-lightbox="gallery-highlights" data-title="University Campus Pathway" class="gallery-highlight-link">
+                <img src="assets/images/inner/gallery-highlight-2.jpg" alt="Gallery Highlight 2" class="gallery-highlight-img" />
+                <div class="gallery-highlight-overlay">
+                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="gallery-highlight-card">
+              <a href="assets/images/inner/gallery-highlight-3.jpg" data-lightbox="gallery-highlights" data-title="Interactive Learning & Mentorship" class="gallery-highlight-link">
+                <img src="assets/images/inner/gallery-highlight-3.jpg" alt="Gallery Highlight 3" class="gallery-highlight-img" />
+                <div class="gallery-highlight-overlay">
+                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.4s">
+            <div class="gallery-highlight-card">
+              <a href="assets/images/inner/gallery-highlight-4.jpg" data-lightbox="gallery-highlights" data-title="Collaborative Study & Research" class="gallery-highlight-link">
+                <img src="assets/images/inner/gallery-highlight-4.jpg" alt="Gallery Highlight 4" class="gallery-highlight-img" />
+                <div class="gallery-highlight-overlay">
+                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="gallery-highlight-card">
+              <a href="assets/images/inner/gallery-highlight-5.jpg" data-lightbox="gallery-highlights" data-title="Creative Learning Sessions" class="gallery-highlight-link">
+                <img src="assets/images/inner/gallery-highlight-5.jpg" alt="Gallery Highlight 5" class="gallery-highlight-img" />
+                <div class="gallery-highlight-overlay">
+                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.6s">
+            <div class="gallery-highlight-card">
+              <a href="assets/images/inner/gallery-highlight-6.jpg" data-lightbox="gallery-highlights" data-title="Dedicated Student Focus" class="gallery-highlight-link">
+                <img src="assets/images/inner/gallery-highlight-6.jpg" alt="Gallery Highlight 6" class="gallery-highlight-img" />
+                <div class="gallery-highlight-overlay">
+                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- View More Button -->
+        <div class="gallery-btn-wrap wow fadeInUp" data-wow-delay="0.7s">
+          <a href="gallery.php" class="btn-gallery-view-more">View More</a>
+        </div>
+      </div>
+    </section>
+    <!-- Gallery Highlights end -->
 
     <!-- Counter main -->
     <section class="counter">
@@ -862,6 +995,101 @@
       </div>
     </section>
     <!-- News/Events news start -->
+
+    <!-- FAQ Section start -->
+    <section class="faq-section">
+      <div class="container">
+        <!-- Section Header -->
+        <div class="section-title sc-center justify-content-center text-center mb-5 wow fadeInDown">
+          <div class="title-top">
+            <span class="faq-tag">FAQ QUESTIONS</span>
+            <h2 class="faq-heading">FREQUENTLY ASKED QUESTIONS</h2>
+          </div>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="faq-accordion-wrap wow fadeInUp">
+          <div class="accordion" id="homeFaqAccordion">
+            <!-- FAQ 1 -->
+            <div class="faq-item-card">
+              <button
+                class="faq-btn"
+                type="button"
+                data-toggle="collapse"
+                data-target="#faqCollapse1"
+                aria-expanded="true"
+                aria-controls="faqCollapse1"
+              >
+                <h4 class="faq-question">What courses are offered?</h4>
+              </button>
+              <div id="faqCollapse1" class="collapse show" data-parent="#homeFaqAccordion">
+                <div class="faq-body">
+                  We offer a comprehensive range of coaching programs including Foundation batches for Classes 8 to 10, Medical Entrance (NEET-UG), Engineering Entrance (JEE Main & Advanced), Board Exam preparations (CBSE/ICSE/State Board), and specialized Crash Courses with extensive problem-solving drills.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item-card">
+              <button
+                class="faq-btn collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#faqCollapse2"
+                aria-expanded="false"
+                aria-controls="faqCollapse2"
+              >
+                <h4 class="faq-question">How to enroll?</h4>
+              </button>
+              <div id="faqCollapse2" class="collapse" data-parent="#homeFaqAccordion">
+                <div class="faq-body">
+                  Enrolling is straightforward! You can apply directly through our online enrollment form, visit our admissions desk at the campus, or contact our academic counselors. Our team will guide you through batch timings, documentation, and the enrollment process.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item-card">
+              <button
+                class="faq-btn collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#faqCollapse3"
+                aria-expanded="false"
+                aria-controls="faqCollapse3"
+              >
+                <h4 class="faq-question">Fee structure?</h4>
+              </button>
+              <div id="faqCollapse3" class="collapse" data-parent="#homeFaqAccordion">
+                <div class="faq-body">
+                  Our fee structure is transparent, affordable, and tailored to the program duration and grade level. We also offer merit-based scholarship fee waivers up to 100% based on our admission & scholarship test, along with flexible installment payment plans.
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item-card">
+              <button
+                class="faq-btn collapsed"
+                type="button"
+                data-toggle="collapse"
+                data-target="#faqCollapse4"
+                aria-expanded="false"
+                aria-controls="faqCollapse4"
+              >
+                <h4 class="faq-question">What is online coaching course?</h4>
+              </button>
+              <div id="faqCollapse4" class="collapse" data-parent="#homeFaqAccordion">
+                <div class="faq-body">
+                  Our online coaching course combines live interactive virtual lectures with top faculties, recorded class archives for round-the-clock revision, digital study modules, live doubt-clearing sessions, and national-level online mock tests with real-time performance analytics.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Section end -->
 
     <!-- Enrollment CTA Section start -->
     <section class="enrollment-cta-section wow fadeInUp">
