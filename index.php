@@ -169,7 +169,7 @@
           <!-- Left Column: Photo Collage -->
           <div class="col-lg-6 col-md-12 mb-4 mb-lg-0 text-center wow fadeInLeft">
             <div class="campus-collage-wrap">
-              <img src="assets/images/inner/campus-updates-collage.png?v=2" alt="Campus Updates & Happenings" class="campus-collage-img" />
+              <img src="assets/images/inner/campus-animated-learning.svg" alt="Campus Updates & Learning" class="campus-collage-img campus-animated-img" />
             </div>
           </div>
 
@@ -393,6 +393,78 @@
     </section>
     <!-- Events & Notice Board end -->
 
+    <!-- Enrollment CTA Section start -->
+    <section class="enrollment-cta-section wow fadeInUp">
+      <div class="container">
+        <div class="enrollment-banner">
+          <div class="row align-items-center">
+            <!-- Left Hero Content -->
+            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
+              <div class="enroll-hero-content">
+                <h2 class="enroll-hero-title">READY TO START YOUR SUCCESS JOURNEY? ENROL NOW!</h2>
+                <p class="enroll-hero-desc">Fill out our fast and simple enrolment form to begin your path to academic excellence.</p>
+                <a href="#enroll-form" class="btn enroll-hero-btn">ENROLL NOW</a>
+              </div>
+            </div>
+
+            <!-- Right Enrollment Form Card -->
+            <div class="col-lg-6 col-md-12">
+              <div class="enroll-form-card" id="enroll-form">
+                <div class="enroll-form-header">
+                  <h3 class="enroll-header-title">Start Your Enrollment</h3>
+                  <p class="enroll-header-subtitle">Fill out your information to reserve your seat for the next batch</p>
+                </div>
+                <div class="enroll-form-body">
+                  <form action="#" method="POST" onsubmit="alert('Thank you for enrolling! Our admissions team will contact you shortly.'); return false;">
+                    <div class="form-group mb-3">
+                      <input type="text" class="form-control enroll-field" placeholder="Your Name" required />
+                    </div>
+                    <div class="form-group mb-3">
+                      <input type="email" class="form-control enroll-field" placeholder="Email Address" required />
+                    </div>
+                    <div class="form-group mb-3">
+                      <select class="form-control enroll-field enroll-select" required>
+                        <option value="" disabled selected>Choose Course</option>
+                        <option value="engineering">Engineering & Technology</option>
+                        <option value="medical">Medical & Health Sciences</option>
+                        <option value="management">Business & Management</option>
+                        <option value="cs">Computer Science & IT</option>
+                        <option value="arts">Arts & Humanities</option>
+                      </select>
+                    </div>
+                    <div class="form-group mb-4">
+                      <input type="text" class="form-control enroll-field" placeholder="Type Message" />
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between position-relative">
+                      <button type="submit" class="btn enroll-submit-btn">
+                        ENROLL NOW <i class="fas fa-arrow-right ml-2"></i>
+                      </button>
+                      <div class="enroll-card-deco">
+                        <svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="8" y="6" width="38" height="48" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+                          <line x1="14" y1="16" x2="38" y2="16" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+                          <line x1="14" y1="24" x2="38" y2="24" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+                          <line x1="14" y1="32" x2="34" y2="32" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+                          <line x1="14" y1="40" x2="28" y2="40" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+                          <g transform="rotate(-35 44 40)">
+                            <rect x="38" y="10" width="8" height="30" rx="2" fill="#1D4ED8"/>
+                            <rect x="38" y="16" width="8" height="3" fill="#F59E0B"/>
+                            <path d="M38 40L42 49L46 40H38Z" fill="#F59E0B"/>
+                            <path d="M40.5 45L42 49L43.5 45H40.5Z" fill="#0F172A"/>
+                          </g>
+                        </svg>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Enrollment CTA Section end -->
+
     <!-- Gallery Highlights start -->
     <section class="gallery-highlights-section">
       <div class="container">
@@ -557,198 +629,6 @@
       </div>
     </section>
     <!-- Browse end -->
-
-    <!-- Courses start -->
-    <section class="courses">
-      <div class="container">
-        <div class="section-title borderline">
-          <div class="title-top">
-            <h3>ALL COURSES OF EPATHSHALA</h3>
-            <p>Online learning offers a new way to explore subjects youâ€™re passionate about.</p>
-          </div>
-          <a href="#" class="btn">Read More</a>
-        </div>
-        <div class="wrap-customize">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap mb-4 wow fadeInUp">
-              <div class="customize-item">
-                <div class="sv-image">
-                  <img src="assets/images/courses/course-1.jpg" alt="" />
-                </div>
-                <div class="customize-ct">
-                  <h4>
-                    <a href="#">DIGITAL MARKETING | SOCIAL MEDIA MARKETING BUSINESS</a>
-                  </h4>
-                  <div class="review-ct d-flex justify-content-start">
-                    <a href="#">21 Reviews</a>
-                    <ul class="ml-2">
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star-half-alt"></i></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="customize-bottom">
-                  <ul class="d-flex justify-content-between">
-                    <li><i class="far fa-user"></i> 2k+ Students</li>
-                    <li><i class="far fa-clock"></i> 2h 45mins</li>
-                    <li><i class="far fa-star"></i> 4.5 Reviews</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap mb-4 wow fadeInUp">
-              <div class="customize-item">
-                <div class="sv-image">
-                  <img src="assets/images/courses/course-2.jpg" alt="" />
-                </div>
-                <div class="customize-ct">
-                  <h4>
-                    <a href="#">BUILD BRAND INTO MARKETING: TACKLING NEW MARKETING</a>
-                  </h4>
-                  <div class="review-ct d-flex justify-content-start">
-                    <a href="#">21 Reviews</a>
-                    <ul class="ml-2">
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star-half-alt"></i></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="customize-bottom">
-                  <ul class="d-flex justify-content-between">
-                    <li><i class="far fa-user"></i> 2k+ Students</li>
-                    <li><i class="far fa-clock"></i> 2h 45mins</li>
-                    <li><i class="far fa-star"></i> 4.5 Reviews</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap mb-4 wow fadeInUp">
-              <div class="customize-item">
-                <div class="sv-image">
-                  <img src="assets/images/courses/course-3.jpg" alt="" />
-                </div>
-                <div class="customize-ct">
-                  <h4>
-                    <a href="#">CULTURE & STRATEGIES FOR A SUCCESSFUL BUSINESS</a>
-                  </h4>
-                  <div class="review-ct d-flex justify-content-start">
-                    <a href="#">21 Reviews</a>
-                    <ul class="ml-2">
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star-half-alt"></i></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="customize-bottom">
-                  <ul class="d-flex justify-content-between">
-                    <li><i class="far fa-user"></i> 2k+ Students</li>
-                    <li><i class="far fa-clock"></i> 2h 45mins</li>
-                    <li><i class="far fa-star"></i> 4.5 Reviews</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap wow fadeInUp">
-              <div class="customize-item">
-                <div class="sv-image">
-                  <img src="assets/images/courses/course-4.jpg" alt="" />
-                </div>
-                <div class="customize-ct">
-                  <h4>
-                    <a href="#">GROW YOUR BUSINESS BY MASTERED IN SOME TECHNIQUE</a>
-                  </h4>
-                  <div class="review-ct d-flex justify-content-start">
-                    <a href="#">21 Reviews</a>
-                    <ul class="ml-2">
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star-half-alt"></i></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="customize-bottom">
-                  <ul class="d-flex justify-content-between">
-                    <li><i class="far fa-user"></i> 2k+ Students</li>
-                    <li><i class="far fa-clock"></i> 2h 45mins</li>
-                    <li><i class="far fa-star"></i> 4.5 Reviews</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap wow fadeInUp">
-              <div class="customize-item">
-                <div class="sv-image">
-                  <img src="assets/images/courses/course-5.jpg" alt="" />
-                </div>
-                <div class="customize-ct">
-                  <h4>
-                    <a href="#">GROW UP AUDIENCE TO PROGRESS BUSINESS</a>
-                  </h4>
-                  <div class="review-ct d-flex justify-content-start">
-                    <a href="#">21 Reviews</a>
-                    <ul class="ml-2">
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star-half-alt"></i></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="customize-bottom">
-                  <ul class="d-flex justify-content-between">
-                    <li><i class="far fa-user"></i> 2k+ Students</li>
-                    <li><i class="far fa-clock"></i> 2h 45mins</li>
-                    <li><i class="far fa-star"></i> 4.5 Reviews</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap wow fadeInUp">
-              <div class="customize-item">
-                <div class="sv-image">
-                  <img src="assets/images/courses/course-6.jpg" alt="" />
-                </div>
-                <div class="customize-ct">
-                  <h4>
-                    <a href="#">JAVA PROGRAMMING A-Z FULLY CLASSES WITH FULL TASK</a>
-                  </h4>
-                  <div class="review-ct d-flex justify-content-start">
-                    <a href="#">21 Reviews</a>
-                    <ul class="ml-2">
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star-half-alt"></i></li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="customize-bottom">
-                  <ul class="d-flex justify-content-between">
-                    <li><i class="far fa-user"></i> 2k+ Students</li>
-                    <li><i class="far fa-clock"></i> 2h 45mins</li>
-                    <li><i class="far fa-star"></i> 4.5 Reviews</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Courses ends -->
 
     <!-- Instructors start -->
     <section class="instructors p-0">
@@ -1090,78 +970,6 @@
       </div>
     </section>
     <!-- FAQ Section end -->
-
-    <!-- Enrollment CTA Section start -->
-    <section class="enrollment-cta-section wow fadeInUp">
-      <div class="container">
-        <div class="enrollment-banner">
-          <div class="row align-items-center">
-            <!-- Left Hero Content -->
-            <div class="col-lg-6 col-md-12 mb-4 mb-lg-0">
-              <div class="enroll-hero-content">
-                <h2 class="enroll-hero-title">READY TO START YOUR SUCCESS JOURNEY? ENROL NOW!</h2>
-                <p class="enroll-hero-desc">Fill out our fast and simple enrolment form to begin your path to academic excellence.</p>
-                <a href="#enroll-form" class="btn enroll-hero-btn">ENROLL NOW</a>
-              </div>
-            </div>
-
-            <!-- Right Enrollment Form Card -->
-            <div class="col-lg-6 col-md-12">
-              <div class="enroll-form-card" id="enroll-form">
-                <div class="enroll-form-header">
-                  <h3 class="enroll-header-title">Start Your Enrollment</h3>
-                  <p class="enroll-header-subtitle">Fill out your information to reserve your seat for the next batch</p>
-                </div>
-                <div class="enroll-form-body">
-                  <form action="#" method="POST" onsubmit="alert('Thank you for enrolling! Our admissions team will contact you shortly.'); return false;">
-                    <div class="form-group mb-3">
-                      <input type="text" class="form-control enroll-field" placeholder="Your Name" required />
-                    </div>
-                    <div class="form-group mb-3">
-                      <input type="email" class="form-control enroll-field" placeholder="Email Address" required />
-                    </div>
-                    <div class="form-group mb-3">
-                      <select class="form-control enroll-field enroll-select" required>
-                        <option value="" disabled selected>Choose Course</option>
-                        <option value="engineering">Engineering & Technology</option>
-                        <option value="medical">Medical & Health Sciences</option>
-                        <option value="management">Business & Management</option>
-                        <option value="cs">Computer Science & IT</option>
-                        <option value="arts">Arts & Humanities</option>
-                      </select>
-                    </div>
-                    <div class="form-group mb-4">
-                      <input type="text" class="form-control enroll-field" placeholder="Type Message" />
-                    </div>
-                    <div class="d-flex align-items-center justify-content-between position-relative">
-                      <button type="submit" class="btn enroll-submit-btn">
-                        ENROLL NOW <i class="fas fa-arrow-right ml-2"></i>
-                      </button>
-                      <div class="enroll-card-deco">
-                        <svg width="56" height="56" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <rect x="8" y="6" width="38" height="48" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
-                          <line x1="14" y1="16" x2="38" y2="16" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
-                          <line x1="14" y1="24" x2="38" y2="24" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
-                          <line x1="14" y1="32" x2="34" y2="32" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
-                          <line x1="14" y1="40" x2="28" y2="40" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
-                          <g transform="rotate(-35 44 40)">
-                            <rect x="38" y="10" width="8" height="30" rx="2" fill="#1D4ED8"/>
-                            <rect x="38" y="16" width="8" height="3" fill="#F59E0B"/>
-                            <path d="M38 40L42 49L46 40H38Z" fill="#F59E0B"/>
-                            <path d="M40.5 45L42 49L43.5 45H40.5Z" fill="#0F172A"/>
-                          </g>
-                        </svg>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Enrollment CTA Section end -->
 
     <!--  Blog to action start -->
     <section class="home-2 blog-article">

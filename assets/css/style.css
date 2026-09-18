@@ -4134,8 +4134,19 @@ footer .footer-upper .col-md-4 {
   transition: transform 0.4s ease;
 }
 
+.campus-animated-img {
+  filter: drop-shadow(0 14px 30px rgba(19, 154, 156, 0.12));
+  border-radius: 0;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
 .campus-collage-wrap:hover .campus-collage-img {
   transform: scale(1.02);
+}
+
+.campus-collage-wrap:hover .campus-animated-img {
+  transform: translateY(-4px) scale(1.02);
+  filter: drop-shadow(0 20px 38px rgba(19, 154, 156, 0.18));
 }
 
 .campus-badge {
