@@ -465,96 +465,321 @@
     </section>
     <!-- Enrollment CTA Section end -->
 
-    <!-- Gallery Highlights start -->
-    <section class="gallery-highlights-section">
-      <div class="container">
+    <!-- Image Gallery Section start -->
+    <section class="w-full bg-surface-container-lowest py-space-xl" id="image-gallery">
+      <div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin flex flex-col gap-space-lg">
         <!-- Section Header -->
-        <div class="section-title sc-center justify-content-center text-center mb-5 wow fadeInDown">
-          <h2 class="gallery-highlights-heading">GALLERY HIGHLIGHTS</h2>
-        </div>
-
-        <!-- Gallery Grid -->
-        <div class="row">
-          <!-- Card 1 -->
-          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="gallery-highlight-card">
-              <a href="assets/images/inner/gallery-highlight-1.jpg" data-lightbox="gallery-highlights" data-title="Campus Life & Library" class="gallery-highlight-link">
-                <img src="assets/images/inner/gallery-highlight-1.jpg" alt="Gallery Highlight 1" class="gallery-highlight-img" />
-                <div class="gallery-highlight-overlay">
-                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="gallery-highlight-card">
-              <a href="assets/images/inner/gallery-highlight-2.jpg" data-lightbox="gallery-highlights" data-title="University Campus Pathway" class="gallery-highlight-link">
-                <img src="assets/images/inner/gallery-highlight-2.jpg" alt="Gallery Highlight 2" class="gallery-highlight-img" />
-                <div class="gallery-highlight-overlay">
-                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="gallery-highlight-card">
-              <a href="assets/images/inner/gallery-highlight-3.jpg" data-lightbox="gallery-highlights" data-title="Interactive Learning & Mentorship" class="gallery-highlight-link">
-                <img src="assets/images/inner/gallery-highlight-3.jpg" alt="Gallery Highlight 3" class="gallery-highlight-img" />
-                <div class="gallery-highlight-overlay">
-                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.4s">
-            <div class="gallery-highlight-card">
-              <a href="assets/images/inner/gallery-highlight-4.jpg" data-lightbox="gallery-highlights" data-title="Collaborative Study & Research" class="gallery-highlight-link">
-                <img src="assets/images/inner/gallery-highlight-4.jpg" alt="Gallery Highlight 4" class="gallery-highlight-img" />
-                <div class="gallery-highlight-overlay">
-                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="gallery-highlight-card">
-              <a href="assets/images/inner/gallery-highlight-5.jpg" data-lightbox="gallery-highlights" data-title="Creative Learning Sessions" class="gallery-highlight-link">
-                <img src="assets/images/inner/gallery-highlight-5.jpg" alt="Gallery Highlight 5" class="gallery-highlight-img" />
-                <div class="gallery-highlight-overlay">
-                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="col-lg-4 col-md-6 col-sm-12 mb-4 wow fadeInUp" data-wow-delay="0.6s">
-            <div class="gallery-highlight-card">
-              <a href="assets/images/inner/gallery-highlight-6.jpg" data-lightbox="gallery-highlights" data-title="Dedicated Student Focus" class="gallery-highlight-link">
-                <img src="assets/images/inner/gallery-highlight-6.jpg" alt="Gallery Highlight 6" class="gallery-highlight-img" />
-                <div class="gallery-highlight-overlay">
-                  <div class="gallery-highlight-icon"><i class="fas fa-search-plus"></i></div>
-                </div>
-              </a>
-            </div>
+        <div class="section-title sc-center justify-content-center text-center borderline mb-4">
+          <div class="title-top">
+            <span class="campus-update-tag" style="color: #ee8c1c; font-weight: 700; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">OUR GALLERY</span>
+            <h2 class="campus-update-heading" style="font-size: 32px; font-weight: 700; color: #181d38; text-transform: uppercase; margin-top: 5px;">
+              MOMENTS THAT TELL <span style="color: #06bbcc;">OUR STORY</span>
+            </h2>
           </div>
         </div>
 
-        <!-- View More Button -->
-        <div class="gallery-btn-wrap wow fadeInUp" data-wow-delay="0.7s">
-          <a href="gallery.php" class="btn-gallery-view-more">View More</a>
+
+        <!-- Category Filter Pills Bar -->
+        <div class="w-full overflow-x-auto pb-2 scrollbar-none">
+          <div class="inline-flex items-center gap-2" id="image-filter-container">
+            <button class="gallery-filter-btn btn btn-curve transition-all shadow-sm !px-5 !py-2.5 text-sm uppercase font-semibold !bg-[#06bbcc] !text-white" data-cat="all">
+              All
+            </button>
+            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="classroom">
+              Classroom
+            </button>
+            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="events">
+              Events &amp; Celebrations
+            </button>
+            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="student-activities">
+              Student Activities
+            </button>
+            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="achievements">
+              Achievements
+            </button>
+            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="campus">
+              Campus &amp; Infrastructure
+            </button>
+            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="workshops">
+              Workshops &amp; Seminars
+            </button>
+          </div>
+        </div>
+
+        <!-- Responsive 4-Column Image Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md" id="image-grid">
+          <!-- Item 1: Classroom -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="classroom" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High school science coaching classroom in Odisha with an instructor explaining physics wave mechanics diagrams on a board to curious young students." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOG8vxBId6x4T57Qld-iHVEQKtyl0E9cDpIO9GdYPpP2c5_sjEUs1MC5F_fIdFoabNrXhfDlfQDDU3KmNKsiXBcH82bieTcsS1nUKh0iXGBR1agpMqZXZu_8TYvxwZlCOlBBdzmQhET3lK49WyPOUj_wqhoYergYA0GUYuBvj1RmCNq49TmZwNJt7dljLO03lUU68NZlHNUGmp1HJ1nkx4BzVnyAshqYNf0F9frLifoaWY2ZbRSCui7w">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 2: Events & Celebrations -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="events" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Vibrant annual academic celebration stage in Odisha with students performing cultural dance and receiving awards under warm auditorium spotlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeDBnfqOcN2Nik24tB7M5XwGYCGVBg_QmCkE35FUccwNEinBTqzr7sP8XBi9N9zuKFQf6rfGCELcQVNtsxLgXTEAmKcg8rKgzkhOh22DfbLq7SnyT1lfcGighcJi4k2pEizcOmE-X00nu4z2ytRK-Av0WFv-135eMzRwMq0JtkX_5eeNEHcKSRjETacH3n3XtezuHzf7A-FICWzC3KO44liiHrHeJqMVD6BkgY6I_PijAuQ8wb80vdSQ">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 3: Student Activities -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="student-activities" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Indian school students collaborating on a hands-on optics science demonstration with prisms, test tubes, and laser light in a brightly lit learning laboratory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEa0du5XKMUo4PRB7DWvgHbC_TKmQ_54C3vvi5Arf4X8o5jNPfoIfH34MldJCZKPU349MpAwiHGU83M4T4MBimXjNAbt8n1n-xRuDWupHSxvt7rEGqkTdYP3iyIEXwdbAZcslG_bul9qoXVyM_drNasJj_HGno259LpD04_uC-phZceP1TDqj1GCDG61fFkp9Ce0scR526JVb1toQ6V6nuipyjtGOSmocytWI8R-HfN4KlWsyvuKteKg">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 4: Achievements -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="achievements" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Proud young Indian students wearing medals and holding academic merit trophies surrounded by smiling faculty members and proud parents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDco8sWgWn9JLiyxpDCn-HogOuoPobIGblx7Kbc9BQJE_NM36UZnC9tbni4eslDchu3va2cHqtgyqUa0D-piaoY3GE8BcipG00Cd8fBjFNrYwQPDX3hPzbzGBZYmuI3Qw69tUPai53ZvBFJS-dQfWiQdNGO50U8JWnUCZRLLO_gxQonKZHLYYxWIoNcwgJJR737_QsAmlbdFZxeYR2Qn4qMdT0SbZEbM8E2MFxSPnP_dKh3FNKwcnvxew">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 5: Classroom -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="classroom" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Small round table tutorial with a male mathematics mentor explaining coordinate geometry formulas to five attentive high school learners." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP3NvGZcA91JZzi6PRcBu3Nb7dVEZZTKEioerG70ewIGq4DuS0Zfr23t6vZQmU7wl1sKgrTuj8ikXMG5BREI6HHNjxEfyNd0nHZtO6hgNuSdAIT9lsBB3TWQnirKW5bxdRiYcruHSyMeIlnu87tnz8wyG_v5r2t0H9KdqzBqNRFMlhm-wCtDuoi5g1VT0V25gokVyRLmiaM52vI8KUnQmvdikA8Z2FcOGPWxheqiWKZivqppHgv-9dqA">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 6: Campus & Infrastructure -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="campus" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Spacious modern coaching library and self-study reading hall in Baripada with organized educational book stacks and quiet individual study desks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiZ5CobCBfPlnszGaEs-n3097O84SF4tj4TaSxaCWZ8A6bwQZlIuOOrONv1YmgtZTdVsp1wfhvSY_mSSiCPYE3i6gvqmY6OOGrhZO8x_ooqmkVCOctq1trENDlu6wBJ41sylF4kwWzGZiGHvjlK67DCIJc00hdWGA6Ukqcx7u0NJyVsuuM6yC69Cz8fqxmusSqfo2q3glITO34H5S42bA5g63NMpuACEOrHmQVPWKyXLrUBYzxSYMfhA">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 7: Workshops & Seminars -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="workshops" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Guest educator addressing an auditorium packed with high school students and parents projecting board exam timeline and preparation strategies." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf6UPiUEPYLMvzA1cs2By3CVy7PnKsLN0WKGTRzSqSTSGK_Hmc81vJd0Ib-kO6MQzFcova524peVgzc_uTxziDlFONJaW6Tt2lLr-J191Ne_kvwNCo-ibFFGF-g0QbAqCteZsI0gntEmIPwm4_iqHOecaUNq04Ti8YHFF89EN1uarVztKpsV7Rp0Q8026Zs4kJ3NgB15Z9_socszvfWRlS6g-P1tPjpF-RhW8eku-Yb7iil55PsO47-g">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 8: Student Activities -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="student-activities" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Competitive student study circle huddled over mock test question papers enthusiastically solving olympiad mathematical puzzles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADcJwq73SdBWppn8WsWFoDcZ1GLGsZaISzPVBRr5DQqCuapq-7IazAV7JtPI7gERQbfkxbeKtpSB3JTVsBYPsWMr_ESf3Si4M4Rn3uxafJ2drVa9gY4H56PPMGg4u5h4exgkpLN6_wmNRHu8Wi5Zex4Ch8oDv7YSpXYMUrEj46oTwVsSwYKWPXMfWeLTEl33B3E4grOBMvp2iP29HxpvPah2wsZ2lVy9AIK0drIwUp_FmVXXVeHmEgTQ">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 9: Events & Celebrations -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="events" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Traditional Indian Teacher Day celebration in an educational institute with students offering flower garlands and cards to revered faculty members." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMiwUql7JCtq1DHlpQzDufYAApIm2bLjtG45XiNNqUlUp1ZAnBUVnNRt8eAviYn-Y3lBmmiVbXHXZArjIT2G-oSt7s26svhTyz1WyNfUJthn9SDdsGc5cWC8TaQa4ZfibwdFzzRTeTt7KjVik0f55ZK2iOgf-iqA6VBfSS9VWF2zGcmvWfsd2JRHI_HSr2raGfCPh_MhxuF2hTJK63SOTUdTHOiGAlWhI4g7Ge6-YdvdmSre-12RvEaw">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 10: Achievements -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="achievements" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Scholarship award ceremony with meritorious students receiving certificates and educational scholarships from senior academic directors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc3JDkvOLZWOUoz1BEGRy7tkAmomKuwfDQogiJxHyD7Ywa_zIhWG5iJ052pSPdhUqvcOluX3lcp1-fkIpce3BXQziw4fUBljjHE0m8bxnjk3hI_HDaMZ0pdooehDGtcCTy7g9Yaa3QYJjfGtVXxnyN1Wew2rHpuP5yZzDRs7q8-8znjWJl4wGlEHf47BJbS0Y9Vn1l_c2URsMfPDFTwj8k1xZB8RGr4bFzM2Z5gs5l5c2gEnnI84jvvA">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 11: Classroom -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="classroom" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Primary and middle school junior foundation students working with colorful educational geometry blocks and math workbooks guided by an affectionate teacher." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxw1IUeAI6t7WvzCWf8GDT6c_OiH8m18qQRZOSikmC0cONjsEcVJoO1g5PHoMPOjROLnLjlfTBY1fDdsTSYgowcUqkJEjlDxY_n7qkLzD0eQn0Hvo57z9DgLaIuU7Hqs3fKsKgIECegoKqst6DkoovmOObzYn7NPvVrd08pPxq5-ocK7nMIGvgo7hkdz6GyiE5gCYfgvkQIkWin4i6zydm8dKMaCtcIky2rK2Xj7RJ52HBpd67CmRclg">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 12: Workshops & Seminars -->
+          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="workshops" data-gallery-item="">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Parents seated in an academic auditorium conversing with subject faculty during a detailed parent teacher review meeting in Baripada." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEd5XbMDRvJLku-EuPJ36waNX_AmC0NwHmcFtkb5WsLKC3SvNr0OVe09TxDrhOo-GC8T10wFaKVMUrdurF7ayb_XJShNGQbKga1Cuv_vGDeatYOPozJtt-w-96F63Y-YLi1Un4NmOj3pDE7ht-RehZ12VL2RtgRPucir8rLx22ocwrNaALmpdc6dwB1Snl8Ateb7urmC__WOr9j-iH1rPAEUcd5xfx7vby7s7_iweyvWLTrA_co79u5Q">
+            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State Container (Hidden by default) -->
+        <div class="hidden flex-col items-center justify-center text-center py-16 px-4 bg-surface-container-low rounded-2xl" id="gallery-empty-state">
+          <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-outline mb-3">
+            <span class="material-symbols-outlined text-[32px]">photo_library</span>
+          </div>
+          <h4 class="font-headline-sm text-headline-sm text-primary">No Moments in This Category</h4>
+          <p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-1">We are actively compiling fresh media memories for this specific collection. Please select another category.</p>
+          <button class="mt-4 px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md" onclick="resetGalleryFilter()">View All Photos</button>
+        </div>
+
+        <!-- View Full Gallery Action Button -->
+        <div class="flex justify-center pt-space-md">
+          <a href="gallery.php" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-secondary transition-all shadow-md">
+            <span class="material-symbols-outlined text-[18px]">collections</span>
+            <span>View Full Gallery Page</span>
+          </a>
         </div>
       </div>
     </section>
-    <!-- Gallery Highlights end -->
+    <!-- Image Gallery Section end -->
+
+    <!-- Interactive Lightbox Modal -->
+    <div aria-modal="true" class="fixed inset-0 z-50 bg-primary/95 backdrop-blur-md hidden flex-col justify-between p-4 sm:p-8" id="gallery-lightbox" role="dialog">
+      <!-- Lightbox Top Controls -->
+      <div class="w-full max-w-6xl mx-auto flex items-center justify-between text-on-primary py-2">
+        <div class="flex items-center gap-3">
+          <span class="font-label-lg text-label-lg px-3 py-1 rounded-full bg-surface-container-lowest/15 backdrop-blur-sm" id="lightbox-counter">1 / 6</span>
+          <span class="font-label-md text-label-md text-tertiary-fixed-dim uppercase tracking-wider font-semibold" id="lightbox-badge">Classroom</span>
+        </div>
+        <button class="w-10 h-10 rounded-full bg-surface-container-lowest/20 hover:bg-surface-container-lowest/30 flex items-center justify-center transition-all" id="lightbox-close">
+          <span class="material-symbols-outlined text-[24px]">close</span>
+        </button>
+      </div>
+      <!-- Lightbox Center Content with Prev / Next -->
+      <div class="w-full max-w-6xl mx-auto flex-1 flex items-center justify-between gap-4 py-4 relative">
+        <button class="w-12 h-12 rounded-full bg-surface-container-lowest/20 hover:bg-surface-container-lowest/40 text-on-primary flex items-center justify-center transition-all shrink-0" id="lightbox-prev">
+          <span class="material-symbols-outlined text-[28px]">chevron_left</span>
+        </button>
+        <div class="flex-1 flex flex-col items-center justify-center max-h-[70vh] overflow-hidden">
+          <img alt="Expanded View" class="max-h-[62vh] w-auto max-w-full object-contain rounded-xl shadow-2xl transition-all duration-300" id="lightbox-img" src="">
+        </div>
+        <button class="w-12 h-12 rounded-full bg-surface-container-lowest/20 hover:bg-surface-container-lowest/40 text-on-primary flex items-center justify-center transition-all shrink-0" id="lightbox-next">
+          <span class="material-symbols-outlined text-[28px]">chevron_right</span>
+        </button>
+      </div>
+      <!-- Lightbox Bottom Caption -->
+      <div class="w-full max-w-3xl mx-auto text-center text-on-primary pb-2">
+        <h3 class="font-headline-md text-headline-sm sm:text-headline-md text-surface-container-lowest mb-1" id="lightbox-title"></h3>
+        <p class="font-body-sm text-body-sm text-primary-fixed-dim max-w-xl mx-auto" id="lightbox-desc"></p>
+      </div>
+    </div>
+
+    <!-- Gallery Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+        const galleryItems = document.querySelectorAll('[data-gallery-item]');
+        const countPill = document.getElementById('gallery-count-pill');
+        const emptyState = document.getElementById('gallery-empty-state');
+
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const selected = btn.getAttribute('data-cat');
+            filterBtns.forEach(b => {
+              b.classList.remove('!bg-[#06bbcc]', '!text-white');
+              b.classList.add('btn-white', 'text-gray-700');
+            });
+            btn.classList.add('!bg-[#06bbcc]', '!text-white');
+            btn.classList.remove('btn-white', 'text-gray-700');
+
+            let visibleCount = 0;
+            galleryItems.forEach(item => {
+              const cat = item.getAttribute('data-category');
+              if (selected === 'all' || cat === selected) {
+                item.classList.remove('hidden');
+                visibleCount++;
+              } else {
+                item.classList.add('hidden');
+              }
+            });
+
+            if (countPill) countPill.textContent = `Showing ${visibleCount} Photos`;
+
+            if (emptyState) {
+              if (visibleCount === 0) {
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+              } else {
+                emptyState.classList.add('hidden');
+                emptyState.classList.remove('flex');
+              }
+            }
+          });
+        });
+
+        const lightbox = document.getElementById('gallery-lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxDesc = document.getElementById('lightbox-desc');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+        const lightboxBadge = document.getElementById('lightbox-badge');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+
+        let activeIndex = 0;
+        const getActiveItems = () => Array.from(document.querySelectorAll('[data-gallery-item]:not(.hidden)'));
+
+        function openLightbox(index) {
+          const activeList = getActiveItems();
+          if (!activeList.length) return;
+
+          activeIndex = (index + activeList.length) % activeList.length;
+          const currentItem = activeList[activeIndex];
+          const imgEl = currentItem.querySelector('img');
+          const titleEl = currentItem.querySelector('h3');
+          const descEl = currentItem.querySelector('p');
+          const cat = currentItem.getAttribute('data-category');
+
+          lightboxImg.src = imgEl ? imgEl.src : '';
+          lightboxTitle.textContent = titleEl ? titleEl.textContent : 'Bidyabharati Moment';
+          lightboxDesc.textContent = descEl ? descEl.textContent : '';
+          lightboxCounter.textContent = `${activeIndex + 1} / ${activeList.length}`;
+          lightboxBadge.textContent = cat ? cat.replace('-', ' ') : 'Gallery';
+
+          lightbox.classList.remove('hidden');
+          lightbox.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+          lightbox.classList.add('hidden');
+          lightbox.classList.remove('flex');
+          document.body.style.overflow = '';
+        }
+
+        galleryItems.forEach(item => {
+          item.addEventListener('click', () => {
+            const activeList = getActiveItems();
+            const itemIndex = activeList.indexOf(item);
+            if (itemIndex !== -1) openLightbox(itemIndex);
+          });
+        });
+
+        if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+        if (lightboxPrev) lightboxPrev.addEventListener('click', () => openLightbox(activeIndex - 1));
+        if (lightboxNext) lightboxNext.addEventListener('click', () => openLightbox(activeIndex + 1));
+
+        window.addEventListener('keydown', (e) => {
+          if (!lightbox.classList.contains('hidden')) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') openLightbox(activeIndex - 1);
+            if (e.key === 'ArrowRight') openLightbox(activeIndex + 1);
+          }
+        });
+
+        window.resetGalleryFilter = function() {
+          const allBtn = document.querySelector('.gallery-filter-btn[data-cat="all"]');
+          if (allBtn) allBtn.click();
+        };
+      });
+    </script>
 
     <!-- Counter main -->
     <section class="counter">
@@ -583,65 +808,16 @@
     </section>
     <!-- End Counter main -->
 
-    <!-- Browse start -->
-    <section class="browse-main p-0">
-      <div class="container">
-        <div class="section-title sc-center justify-content-center text-center borderline">
-          <div class="title-top">
-            <div class="title-quote">
-              <span>Browse Categories</span>
-            </div>
-            <h3>BROWSE ONLINE COURSE <span class="cl-blue">Categories</span></h3>
-          </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-between">
-          <div class="browse-list">
-            <a href="#">
-              <i class="far fa-chart-bar"></i>
-              <h4>BUSINESS & MANAGEMENT</h4>
-            </a>
-          </div>
-          <div class="browse-list">
-            <a href="#">
-              <i class="fas fa-video"></i>
-              <h4>MOVIE FILM MAKING</h4>
-            </a>
-          </div>
-          <div class="browse-list">
-            <a href="#">
-              <i class="fas fa-tools"></i>
-              <h4>SOFTWARE TRAINING</h4>
-            </a>
-          </div>
-          <div class="browse-list">
-            <a href="#">
-              <i class="fas fa-brush"></i>
-              <h4>GRAPHIC & WEB DESIGN</h4>
-            </a>
-          </div>
-          <div class="browse-list">
-            <a href="#">
-              <i class="far fa-lightbulb"></i>
-              <h4>LOGICAL THINKING</h4>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Browse end -->
-
     <!-- Instructors start -->
-    <section class="instructors p-0">
+    <section class="instructors py-5">
       <div class="container">
-        <div class="section-title sc-center justify-content-center text-center borderline">
+        <div class="section-title sc-center justify-content-center text-center borderline mb-5 wow fadeInDown">
           <div class="title-top">
-            <div class="title-quote">
-              <span>Meet Our Instructors</span>
-            </div>
-            <h3>LEARN FROM EXPERT <span class="cl-blue">INSTRUCTORS</span></h3>
+            <span class="campus-update-tag">Meet Our Instructors</span>
+            <h2 class="campus-update-heading">LEARN FROM EXPERT <span class="cl-blue">INSTRUCTORS</span></h2>
           </div>
         </div>
-        <div class="row instruct-main mb-3 wow fadeInLeft">
+        <div class="row instruct-main wow fadeInLeft">
           <div class="col-lg-3 col-md-6 col-sm-12">
             <div class="ins-main-list">
               <img src="assets/images/team/team-1.jpg" alt="" />
@@ -687,12 +863,10 @@
     <!-- Testimonial feedback -->
     <section class="home-2 testimonial p-0">
       <div class="container">
-        <div class="section-title sc-center justify-content-center text-center borderline">
+        <div class="section-title sc-center justify-content-center text-center borderline mb-5 wow fadeInDown">
           <div class="title-top">
-            <div class="title-quote">
-              <span>Customers reviews</span>
-            </div>
-            <h3>WHAT PEOPLE <span class="cl-blue">SAY</span></h3>
+            <span class="campus-update-tag">Customer Reviews</span>
+            <h2 class="campus-update-heading">WHAT PEOPLE <span class="cl-blue">SAY</span></h2>
           </div>
         </div>
         <div class="row review-slider feedback-main wow fadeInUp">
@@ -800,82 +974,6 @@
     </section>
     <!-- Testimonial ends -->
 
-    <!-- News/Events news start -->
-    <section class="courses news-events">
-      <div class="container">
-        <div class="section-title sc-center justify-content-center text-center borderline">
-          <div class="title-top">
-            <div class="title-quote">
-              <span>Our Events</span>
-            </div>
-            <h3>UPCOMING <span class="cl-blue">EVENTS</span> & <span class="cl-blue">COMPETITIONS</span></h3>
-          </div>
-        </div>
-        <div class="wrap-customize">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap wow fadeInUp">
-              <div class="customize-item">
-                <div class="sv-image">
-                  <img src="assets/images/courses/event-1.jpg" alt="" />
-                </div>
-                <div class="customize-ct">
-                  <h4>
-                    <a href="#">TED TALKS AT UCF COLLEGE OF EDUCATION</a>
-                  </h4>
-                </div>
-                <div class="customize-bottom">
-                  <ul class="d-flex justify-content-start">
-                    <li class="mr-3"><i class="far fa-calendar-alt"></i> 30 July</li>
-                    <li class="mr-3"><i class="far fa-clock"></i> 9AM</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Melbourne</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-12 customize-wrap wow fadeInUp">
-              <div class="customize-item">
-                <div class="sv-image">
-                  <img src="assets/images/courses/event-2.jpg" alt="" />
-                </div>
-                <div class="customize-ct">
-                  <h4>
-                    <a href="#">IMPORTANCES OF RESEARCH SEMINAR 2021</a>
-                  </h4>
-                </div>
-                <div class="customize-bottom">
-                  <ul class="d-flex justify-content-start">
-                    <li class="mr-3"><i class="far fa-calendar-alt"></i> 30 July</li>
-                    <li class="mr-3"><i class="far fa-clock"></i> 9AM</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Melbourne</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-12 customize-wrap wow fadeInUp">
-              <div class="customize-item">
-                <div class="sv-image">
-                  <img src="assets/images/courses/event-3.jpg" alt="" />
-                </div>
-                <div class="customize-ct">
-                  <h4>
-                    <a href="#">NEWLY SUMMER COURSE STARTS FROM JUNE</a>
-                  </h4>
-                </div>
-                <div class="customize-bottom">
-                  <ul class="d-flex justify-content-start">
-                    <li class="mr-3"><i class="far fa-calendar-alt"></i> 30 July</li>
-                    <li class="mr-3"><i class="far fa-clock"></i> 9AM</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Melbourne</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- News/Events news start -->
-
     <!-- FAQ Section start -->
     <section class="faq-section">
       <div class="container">
@@ -970,97 +1068,6 @@
       </div>
     </section>
     <!-- FAQ Section end -->
-
-    <!--  Blog to action start -->
-    <section class="home-2 blog-article">
-      <div class="container">
-        <div class="section-title sc-center justify-content-center text-center borderline wow fadeInLeft">
-          <div class="title-top">
-            <div class="title-quote">
-              <span>Our Blogs</span>
-            </div>
-            <h3>LATEST <span class="cl-blue">BLOG</span> & <span class="cl-blue">EVENTS</span></h3>
-          </div>
-        </div>
-        <div class="blog-wrap">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 wow fadeInRight">
-              <div class="article-list">
-                <div class="at-thumbnail">
-                  <a href="#">
-                    <img src="assets/images/blog/blog-1.jpg" alt="" />
-                  </a>
-                  <span class="blog-tag"> Education </span>
-                </div>
-                <div class="article-content">
-                  <img src="assets/images/team/user-4.jpg" alt="" class="article-avatar" />
-                  <div class="artl-detail">
-                    <a href="#"><h4>NEW CHICAGO SCHOOL BUDGET RELIES ON PENSION</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                    <a href="#" class="bl-link">Read More <i class="fas fa-angle-double-right"></i></a>
-                  </div>
-                  <div class="artl-bottom">
-                    <ul class="d-flex justify-content-start">
-                      <li>June 12, 2021</li>
-                      <li><a href="#">2 Comments</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInRight">
-              <div class="article-list">
-                <div class="at-thumbnail">
-                  <a href="#">
-                    <img src="assets/images/blog/blog-2.jpg" alt="" />
-                  </a>
-                  <span class="blog-tag"> Education </span>
-                </div>
-                <div class="article-content">
-                  <img src="assets/images/team/user-5.jpg" alt="" class="article-avatar" />
-                  <div class="artl-detail">
-                    <a href="#"><h4>NEW CHICAGO SCHOOL BUDGET RELIES ON PENSION</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                    <a href="#" class="bl-link">Read More <i class="fas fa-angle-double-right"></i></a>
-                  </div>
-                  <div class="artl-bottom">
-                    <ul class="d-flex justify-content-start">
-                      <li>June 12, 2021</li>
-                      <li><a href="#">2 Comments</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6 wow fadeInRight">
-              <div class="article-list">
-                <div class="at-thumbnail">
-                  <a href="#">
-                    <img src="assets/images/blog/blog-3.jpg" alt="" />
-                  </a>
-                  <span class="blog-tag"> Education </span>
-                </div>
-                <div class="article-content">
-                  <img src="assets/images/team/user-6.jpg" alt="" class="article-avatar" />
-                  <div class="artl-detail">
-                    <a href="#"><h4>NEW CHICAGO SCHOOL BUDGET RELIES ON PENSION</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                    <a href="#" class="bl-link">Read More <i class="fas fa-angle-double-right"></i></a>
-                  </div>
-                  <div class="artl-bottom">
-                    <ul class="d-flex justify-content-start">
-                      <li>June 12, 2021</li>
-                      <li><a href="#">2 Comments</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--  Blog to action end -->
 
     <!--  Newsletter start -->
     <section class="newsletter pt-0">

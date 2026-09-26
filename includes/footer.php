@@ -1,78 +1,76 @@
     <!-- Footer starts -->
-    <footer class="wow fadeInUp" id="footer">
-      <div class="footer-upper">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="f-maincontent">
-                <img src="assets/images/f-4.png" alt="" />
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                <ul>
-                  <li class="pr-2">
-                    <a href="#" class="bg-linkedin"><i class="fab fa-linkedin-in"></i></a>
-                  </li>
-                  <li class="pr-2">
-                    <a href="#" class="bg-twitter"><i class="fab fa-twitter"></i></a>
-                  </li>
-                  <li class="pr-2">
-                    <a href="#" class="bg-fb"><i class="fab fa-facebook-f"></i></a>
-                  </li>
-                  <li class="pr-2">
-                    <a href="#" class="bg-dribble"><i class="fab fa-dribbble"></i></a>
-                  </li>
-                  <li class="pr-2">
-                    <a href="#" class="bg-youtube"><i class="fab fa-youtube"></i></a>
-                  </li>
-                  <li>
-                    <a href="#" class="bg-pin"><i class="fab fa-pinterest-p"></i></a>
-                  </li>
-                </ul>
+    <footer class="bg-[#0b1829] text-white pt-16 pb-8 border-t border-[#1e293b]" id="footer">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-[#1e293b]">
+          <!-- Brand Description (Col 1) -->
+          <div class="lg:col-span-4 space-y-4">
+            <div class="flex items-center gap-3">
+              <img alt="Bidyabharati Classes Logo" class="h-10 w-auto object-contain" src="assets/images/logo.png"/>
+              <div>
+                <p class="font-poppins font-extrabold text-lg leading-none tracking-tight text-white uppercase">BIDYABHARATI</p>
+                <p class="font-poppins font-bold text-[10px] tracking-widest text-[#ee8c1c] uppercase mt-0.5">CLASSES • BARIPADA</p>
               </div>
             </div>
-            <div class="col-lg-2 col-md-4">
-              <div class="ft-lists">
-                <h4>COMPANY</h4>
-                <ul>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Blog</a></li>
-                  <li><a href="#">Pricing</a></li>
-                  <li><a href="#">Our Gallery</a></li>
-                </ul>
-              </div>
+            <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+              A trusted academic coaching institute located in Baripada, Odisha. Providing student-centric coaching for Class 3 to 12 across CBSE and Odia Medium curriculums.
+            </p>
+            <div class="flex items-center gap-2.5 pt-2">
+              <a aria-label="Facebook" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="#"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+              <a aria-label="Instagram" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="#"><i class="fa-brands fa-instagram text-xs"></i></a>
+              <a aria-label="YouTube" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="#"><i class="fa-brands fa-youtube text-xs"></i></a>
+              <a aria-label="WhatsApp" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="https://wa.me/919437380042" target="_blank"><i class="fa-brands fa-whatsapp text-xs"></i></a>
             </div>
-            <div class="col-lg-2 col-md-4">
-              <div class="ft-lists">
-                <h4>CATEGORY</h4>
-                <ul>
-                  <li><a href="#">All Courses</a></li>
-                  <li><a href="#">Design Courses</a></li>
-                  <li><a href="#">Branding Design</a></li>
-                  <li><a href="#">Business Analytics</a></li>
-                  <li><a href="#">Creative Writing</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-2 col-md-4">
-              <div class="ft-lists">
-                <h4>QUICK LINKS</h4>
-                <ul>
-                  <li><a href="#">Privacy Policy</a></li>
-                  <li><a href="#">Disussion</a></li>
-                  <li><a href="#">Terms & Conditions</a></li>
-                  <li><a href="#">Customer Support</a></li>
-                  <li><a href="#">Course FAQ's</a></li>
-                </ul>
-              </div>
+          </div>
+          <!-- Quick Links (Col 2) -->
+          <div class="lg:col-span-2 space-y-3">
+            <h4 class="font-poppins font-bold text-xs text-[#ee8c1c] uppercase tracking-wider">QUICK LINKS</h4>
+            <ul class="space-y-2.5 text-xs text-[#94a3b8]">
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="index.php">Home</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="about.php">About Us</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="course-1.php">Academic Classes</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="about.php#subjects">Subjects Offered</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="about.php#why-us">Why Choose Us</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="gallery.php">Notice Board</a></li>
+            </ul>
+          </div>
+          <!-- Academic Classes (Col 3) -->
+          <div class="lg:col-span-3 space-y-3">
+            <h4 class="font-poppins font-bold text-xs text-[#ee8c1c] uppercase tracking-wider">CLASSES &amp; BOARDS</h4>
+            <ul class="space-y-2.5 text-xs">
+              <li><span class="text-white font-bold">Class 3 to 5:</span> <span class="text-[#94a3b8]">Primary Foundation</span></li>
+              <li><span class="text-white font-bold">Class 6 to 8:</span> <span class="text-[#94a3b8]">Middle School Concepts</span></li>
+              <li><span class="text-white font-bold">Class 9 &amp; 10:</span> <span class="text-[#94a3b8]">Board Preparation</span></li>
+              <li><span class="text-white font-bold">Class 11 &amp; 12:</span> <span class="text-[#94a3b8]">Senior Secondary Science</span></li>
+              <li class="pt-2 text-[#ee8c1c] font-bold">CBSE &amp; Odia Medium Batches</li>
+            </ul>
+          </div>
+          <!-- Contact Information (Col 4) -->
+          <div class="lg:col-span-3 space-y-3">
+            <h4 class="font-poppins font-bold text-xs text-[#ee8c1c] uppercase tracking-wider">CONTACT INFO</h4>
+            <div class="space-y-2.5 text-xs text-[#94a3b8]">
+              <p class="flex items-start gap-2.5">
+                <i class="fa-solid fa-location-dot text-[#ee8c1c] mt-0.5 text-xs"></i>
+                <span class="text-[#94a3b8]">Baripada, Mayurbhanj, Odisha - 757001</span>
+              </p>
+              <p class="flex items-center gap-2.5">
+                <i class="fa-solid fa-phone text-[#ee8c1c] text-xs"></i>
+                <a class="text-[#94a3b8] hover:text-white transition-colors" href="tel:+919437380042">+91 94373 80042</a>
+              </p>
+              <p class="flex items-center gap-2.5">
+                <i class="fa-solid fa-envelope text-[#ee8c1c] text-xs"></i>
+                <a class="text-[#94a3b8] hover:text-white transition-colors" href="mailto:info@bidyabharaticlasses.com">info@bidyabharaticlasses.com</a>
+              </p>
+              <p class="flex items-center gap-2.5">
+                <i class="fa-solid fa-clock text-[#ee8c1c] text-xs"></i>
+                <span class="text-[#94a3b8]">Mon - Sat: 7:00 AM - 8:00 PM</span>
+              </p>
             </div>
           </div>
         </div>
-        <div class="copyright-main">
-          <div class="container">
-            <div class="copyright-text d-flex justify-content-center">
-              <p class="m-0">&copy; <?= date('Y') ?> <?= defined('SITE_NAME') ? SITE_NAME : 'ePathsala' ?>. All rights reserved</p>
-            </div>
-          </div>
+        <!-- Copyright strip -->
+        <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-[#94a3b8] gap-4">
+          <p class="text-[#94a3b8]">© 2026 Bidyabharati Classes. All Rights Reserved.</p>
+          <p class="text-[#94a3b8]">Designed &amp; Developed by <span class="text-[#94a3b8] font-bold">ThinkersCave Technologies</span></p>
         </div>
       </div>
     </footer>
@@ -102,7 +100,7 @@
 
     <!-- Back to top start -->
     <div id="back-to-top">
-      <a href="#"></a>
+      <a href="#" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
     </div>
     <!-- Back to top ends -->
 

@@ -13,9 +13,119 @@
     <link href="assets/css/style.css?v=<?= filemtime(__DIR__ . '/../assets/css/style.css') ?>" rel="stylesheet" type="text/css" />
     <!--Plugin CSS-->
     <link href="assets/css/plugin.css" rel="stylesheet" type="text/css" />
-    <!--Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Fonts & Icons for Tailwind Theme -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Outfit:wght@500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN & Design System Config -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary": "#342300",
+            "secondary-fixed-dim": "#a4c9ff",
+            "tertiary-container": "#4f3700",
+            "on-secondary-fixed-variant": "#004884",
+            "on-surface-variant": "#43474f",
+            "background": "#f8f9ff",
+            "secondary-fixed": "#d4e3ff",
+            "error-container": "#ffdad6",
+            "surface-container-low": "#eff4ff",
+            "outline": "#737780",
+            "surface-dim": "#cbdbf5",
+            "on-tertiary-fixed-variant": "#5e4200",
+            "on-secondary-container": "#003c70",
+            "surface-bright": "#f8f9ff",
+            "primary-fixed": "#d5e3ff",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-fixed": "#271900",
+            "on-primary-container": "#84a6df",
+            "surface-container-high": "#dce9ff",
+            "on-surface": "#0b1c30",
+            "secondary-container": "#64a8fe",
+            "on-tertiary-container": "#d39c25",
+            "secondary": "#005fac",
+            "inverse-primary": "#a8c8ff",
+            "surface-tint": "#3c5f93",
+            "surface-container-highest": "#d3e4fe",
+            "surface-variant": "#d3e4fe",
+            "on-error-container": "#93000a",
+            "on-error": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#ffdea7",
+            "outline-variant": "#c3c6d0",
+            "on-primary-fixed": "#001b3c",
+            "inverse-on-surface": "#eaf1ff",
+            "on-secondary-fixed": "#001c39",
+            "primary-fixed-dim": "#a8c8ff",
+            "surface-container": "#e5eeff",
+            "error": "#ba1a1a",
+            "on-background": "#0b1c30",
+            "surface": "#f8f9ff",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed-dim": "#f8bd45",
+            "inverse-surface": "#213145",
+            "on-primary-fixed-variant": "#22477a",
+            "primary": "#00254e",
+            "on-primary": "#ffffff",
+            "primary-container": "#123b6d"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "margin": "2rem",
+            "margin-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-mobile": "1rem",
+            "space-lg": "1.5rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem"
+          },
+          fontFamily: {
+            "display-hero-mobile": [ "Outfit", "sans-serif" ],
+            "body-lg": [ "Inter", "sans-serif" ],
+            "display-hero": [ "Outfit", "sans-serif" ],
+            "headline-md": [ "Outfit", "sans-serif" ],
+            "headline-lg-mobile": [ "Outfit", "sans-serif" ],
+            "label-lg": [ "Outfit", "sans-serif" ],
+            "headline-lg": [ "Outfit", "sans-serif" ],
+            "headline-sm": [ "Outfit", "sans-serif" ],
+            "stat-counter": [ "Outfit", "sans-serif" ],
+            "label-md": [ "Outfit", "sans-serif" ],
+            "body-sm": [ "Inter", "sans-serif" ],
+            "body-md": [ "Inter", "sans-serif" ]
+          },
+          fontSize: {
+            "display-hero-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "700" } ],
+            "body-lg": [ "18px", { "lineHeight": "28px", "fontWeight": "400" } ],
+            "display-hero": [ "56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700" } ],
+            "headline-md": [ "28px", { "lineHeight": "36px", "fontWeight": "600" } ],
+            "headline-lg-mobile": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "700" } ],
+            "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600" } ],
+            "headline-lg": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700" } ],
+            "headline-sm": [ "20px", { "lineHeight": "28px", "fontWeight": "600" } ],
+            "stat-counter": [ "48px", { "lineHeight": "52px", "fontWeight": "700" } ],
+            "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" } ],
+            "body-sm": [ "14px", { "lineHeight": "20px", "fontWeight": "400" } ],
+            "body-md": [ "16px", { "lineHeight": "24px", "fontWeight": "400" } ]
+          }
+        }
+      }
+    };
+    </script>
   </head>
   <body class="home-2">
     <!-- Preloader -->
