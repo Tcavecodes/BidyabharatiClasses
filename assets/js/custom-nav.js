@@ -17,30 +17,21 @@ jQuery(document).ready(function () {
 
       // slicknav
     /**
-     * Slicknav - a Mobile Menu
+     * Slicknav - Mobile Menu Initialization
      */
-    var $slicknav_label;
-    $('.responsive-menu').slicknav({
-      duration: 500,
-      easingOpen: 'easeInExpo',
-      easingClose: 'easeOutExpo',
-      closedSymbol: '<i class="fa fa-angle-down"></i>',
-      openedSymbol: '<i class="fa fa-angle-up"></i>',
-      prependTo: '#slicknav-mobile',
-      allowParentLinks: true,
-      label:"" 
-    });
-
-    $('#responsive-menu').slicknav({
-      duration: 350,
-      easingOpen: 'easeInExpo',
-      easingClose: 'easeOutExpo',
-      closedSymbol: '<i class="fa-solid fa-chevron-down"></i>',
-      openedSymbol: '<i class="fa-solid fa-chevron-up"></i>',
-      prependTo: '#slicknav-mobile',
-      allowParentLinks: true,
-      label: '<span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span>'
-    });
+    if ($('#responsive-menu').length) {
+      $('#responsive-menu').slicknav({
+        duration: 300,
+        easingOpen: 'easeInExpo',
+        easingClose: 'easeOutExpo',
+        closedSymbol: '<i class="fa-solid fa-chevron-down"></i>',
+        openedSymbol: '<i class="fa-solid fa-chevron-up"></i>',
+        prependTo: '#slicknav-mobile',
+        allowParentLinks: true,
+        closeOnClick: true,
+        label: ''
+      });
+    }
 
     
     /**

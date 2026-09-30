@@ -4121,7 +4121,7 @@ Change the following styles to modify the appearance of the menu.
   background: rgba(255, 255, 255, 0.05);
 }
 .slicknav_menu .slicknav_icon {
-  display: none;
+  display: block;
 }
 @media (min-width: 1024px) {
   div#slicknav-mobile {
