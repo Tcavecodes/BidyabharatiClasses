@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500">
                             <i class="fa-solid fa-user"></i>
                         </span>
-                        <input type="text" name="username" required placeholder="admin" value="admin"
+                        <input type="text" name="username" required placeholder="Enter username"
                             class="w-full pl-10 pr-4 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm">
                     </div>
                 </div>
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-500">
                             <i class="fa-solid fa-lock"></i>
                         </span>
-                        <input type="password" id="login-password" name="password" required placeholder="••••••••" value="admin123"
+                        <input type="password" id="login-password" name="password" required placeholder="••••••••"
                             class="w-full pl-10 pr-10 py-3 rounded-xl bg-slate-800/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all text-sm">
                         <button type="button" onclick="togglePass('login-password', this)" class="absolute inset-y-0 right-0 flex items-center pr-3.5 text-slate-400 hover:text-slate-200">
                             <i class="fa-solid fa-eye"></i>
@@ -127,10 +127,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     Sign In to Dashboard
                 </button>
             </form>
-
-            <div class="mt-6 pt-6 border-t border-slate-800/60 text-center">
-                <p class="text-xs text-slate-400">Default Demo Credentials: <strong class="text-slate-300">admin / admin123</strong></p>
-            </div>
         </div>
     </div>
 </body>
