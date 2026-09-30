@@ -197,7 +197,7 @@ try {
                 </a>
               </div>
               <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="navbar-collapse1 w-100" id="bs-example-navbar-collapse-1">
+              <div class="navbar-collapse1" id="bs-example-navbar-collapse-1">
                 <?php $currentPage = basename($_SERVER['PHP_SELF']); ?>
                 <ul class="nav navbar-nav" id="responsive-menu">
                   <li class="<?= ($currentPage == 'index.php' || $currentPage == '') ? 'active' : '' ?>">

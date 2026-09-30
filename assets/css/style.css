@@ -4679,9 +4679,15 @@ footer .footer-upper .col-md-4 {
   #bs-example-navbar-collapse-1 {
     display: none !important;
   }
+
+  #slicknav-mobile {
+    display: block !important;
+    position: relative;
+    z-index: 999;
+  }
   
   .slicknav_menu {
-    display: block;
+    display: block !important;
   }
 
   .slicknav_btn {
