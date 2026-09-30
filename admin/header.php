@@ -36,16 +36,21 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <div class="flex h-screen overflow-hidden">
     <!-- Sidebar -->
-    <aside class="w-64 bg-slate-900/90 border-r border-slate-800 flex flex-col shrink-0">
+    <aside id="adminSidebar" class="w-64 bg-slate-900/90 border-r border-slate-800 flex flex-col shrink-0 transition-all duration-300">
         <!-- Logo Header -->
-        <div class="p-5 border-b border-slate-800 flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-white/10 p-1 flex items-center justify-center shrink-0 border border-slate-700/60 shadow-lg">
-                <img src="../assets/images/bclogo.png" alt="Bidyabharati Classes Logo" class="w-full h-full object-contain">
+        <div class="p-5 border-b border-slate-800 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3 overflow-hidden">
+                <div class="w-10 h-10 rounded-xl bg-white/10 p-1 flex items-center justify-center shrink-0 border border-slate-700/60 shadow-lg">
+                    <img src="../assets/images/bclogo.png" alt="Bidyabharati Classes Logo" class="w-full h-full object-contain">
+                </div>
+                <div class="sidebar-text">
+                    <h2 class="font-bold text-base text-white tracking-wide leading-tight">Admin Portal</h2>
+                    <p class="text-xs text-slate-400 font-medium truncate max-w-[140px]"><?= htmlspecialchars($siteSettings['site_name'] ?? 'Bidyabharati') ?></p>
+                </div>
             </div>
-            <div>
-                <h2 class="font-bold text-base text-white tracking-wide leading-tight">Admin Portal</h2>
-                <p class="text-xs text-slate-400 font-medium truncate max-w-[140px]"><?= htmlspecialchars($siteSettings['site_name'] ?? 'Bidyabharati') ?></p>
-            </div>
+            <button onclick="toggleAdminSidebar()" title="Close Sidebar" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
         </div>
 
         <!-- Navigation Menu -->
@@ -54,72 +59,72 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
             <a href="index.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'index.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-chart-pie w-5 text-center"></i>
-                Dashboard
+                <span class="sidebar-text">Dashboard</span>
             </a>
 
             <a href="contact_details.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'contact_details.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-address-card w-5 text-center"></i>
-                Contact Details & Logo
+                <span class="sidebar-text">Contact Details & Logo</span>
             </a>
 
             <a href="hero_sliders.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'hero_sliders.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-sliders w-5 text-center"></i>
-                Hero Banner Sliders
+                <span class="sidebar-text">Hero Banner Sliders</span>
             </a>
 
             <a href="gallery.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'gallery.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-images w-5 text-center"></i>
-                Photo Gallery
+                <span class="sidebar-text">Photo Gallery</span>
             </a>
 
             <a href="video_gallery.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'video_gallery.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-video w-5 text-center"></i>
-                Video Gallery
+                <span class="sidebar-text">Video Gallery</span>
             </a>
 
             <a href="testimonials.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'testimonials.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-quote-right w-5 text-center"></i>
-                Testimonials
+                <span class="sidebar-text">Testimonials</span>
             </a>
 
             <a href="faculties.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'faculties.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-chalkboard-teacher w-5 text-center"></i>
-                Faculties / Instructors
+                <span class="sidebar-text">Faculties / Instructors</span>
             </a>
 
             <a href="achievers.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'achievers.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-trophy w-5 text-center"></i>
-                Achievers & Toppers
+                <span class="sidebar-text">Achievers & Toppers</span>
             </a>
 
             <a href="documents.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'documents.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-file-pdf w-5 text-center"></i>
-                Download Documents
+                <span class="sidebar-text">Download Documents</span>
             </a>
 
             <a href="events.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'events.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-calendar-days w-5 text-center"></i>
-                Campus Events
+                <span class="sidebar-text">Campus Events</span>
             </a>
 
             <a href="notices.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'notices.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-bullhorn w-5 text-center"></i>
-                Notice Board
+                <span class="sidebar-text">Notice Board</span>
             </a>
 
             <a href="enrollments.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'enrollments.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-user-graduate w-5 text-center"></i>
-                Enrollments & Inquiries
+                <span class="sidebar-text">Enrollments & Inquiries</span>
             </a>
         </nav>
 
         <!-- User Profile footer -->
         <div class="p-4 border-t border-slate-800 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center font-bold text-slate-300 text-xs">
+                <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center font-bold text-slate-300 text-xs shrink-0">
                     <?= strtoupper(substr($_SESSION['admin_name'] ?? 'Admin', 0, 2)) ?>
                 </div>
-                <div>
+                <div class="sidebar-text">
                     <p class="text-xs font-semibold text-slate-200 leading-none"><?= htmlspecialchars($_SESSION['admin_name'] ?? 'Administrator') ?></p>
                     <p class="text-[10px] text-slate-400 mt-0.5">Online</p>
                 </div>
@@ -133,8 +138,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- Main Content Area -->
     <main class="flex-1 overflow-y-auto bg-slate-950 flex flex-col">
         <!-- Top Navigation / Header -->
-        <header class="h-16 border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md px-8 flex items-center justify-between sticky top-0 z-30">
+        <header class="h-16 border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-30">
             <div class="flex items-center gap-4">
+                <button onclick="toggleAdminSidebar()" title="Toggle Sidebar" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/80 transition-colors">
+                    <i class="fa-solid fa-bars text-base"></i>
+                </button>
                 <h1 class="text-xl font-bold text-white tracking-tight">
                     <?php
                     switch($current_page) {
@@ -161,6 +169,27 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </a>
             </div>
         </header>
+
+        <script>
+        function toggleAdminSidebar() {
+            const sidebar = document.getElementById('adminSidebar');
+            if (!sidebar) return;
+            const isClosed = sidebar.classList.contains('-ml-64');
+            if (isClosed) {
+                sidebar.classList.remove('-ml-64');
+                localStorage.setItem('admin_sidebar_closed', 'false');
+            } else {
+                sidebar.classList.add('-ml-64');
+                localStorage.setItem('admin_sidebar_closed', 'true');
+            }
+        }
+
+        // Restore sidebar state on page load
+        if (localStorage.getItem('admin_sidebar_closed') === 'true') {
+            const sidebar = document.getElementById('adminSidebar');
+            if (sidebar) sidebar.classList.add('-ml-64');
+        }
+        </script>
 
         <!-- Body Content -->
         <div class="p-8 flex-1">
