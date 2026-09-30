@@ -138,34 +138,35 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- Main Content Area -->
     <main class="flex-1 overflow-y-auto bg-slate-950 flex flex-col">
         <!-- Top Navigation / Header -->
-        <header class="h-16 border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md px-6 flex items-center justify-between sticky top-0 z-30">
-            <div class="flex items-center gap-4">
-                <button onclick="toggleAdminSidebar()" title="Toggle Sidebar" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/80 transition-colors">
-                    <i class="fa-solid fa-bars text-base"></i>
+        <header class="h-16 border-b border-slate-800/80 bg-slate-900/80 backdrop-blur-xl px-6 flex items-center justify-between sticky top-0 z-30 shadow-md">
+            <div class="flex items-center gap-3.5">
+                <button onclick="toggleAdminSidebar()" title="Toggle Sidebar" class="w-9 h-9 rounded-xl bg-slate-800/90 hover:bg-indigo-600/20 text-slate-300 hover:text-indigo-400 border border-slate-700/70 hover:border-indigo-500/50 transition-all duration-200 flex items-center justify-center shadow-sm active:scale-95">
+                    <i class="fa-solid fa-bars text-sm"></i>
                 </button>
-                <h1 class="text-xl font-bold text-white tracking-tight">
+                <div class="h-5 w-px bg-slate-800/80 hidden sm:block"></div>
+                <h1 class="text-base sm:text-lg font-bold text-white tracking-tight font-heading flex items-center gap-2">
                     <?php
                     switch($current_page) {
-                        case 'index.php': echo 'Dashboard Overview'; break;
-                        case 'contact_details.php': echo 'Contact & Branding Settings'; break;
-                        case 'hero_sliders.php': echo 'Hero Banner Sliders'; break;
-                        case 'gallery.php': echo 'Gallery Management'; break;
-                        case 'testimonials.php': echo 'Testimonials Management'; break;
-                        case 'faculties.php': echo 'Faculty & Instructors'; break;
-                        case 'achievers.php': echo 'Achievers & Rankers'; break;
-                        case 'documents.php': echo 'Download Documents'; break;
-                        case 'events.php': echo 'Campus Events Management'; break;
-                        case 'notices.php': echo 'Notice Board & Announcements'; break;
-                        case 'enrollments.php': echo 'Student Enrollment Applications'; break;
-                        case 'contact_messages.php': echo 'Contact Form Messages'; break;
-                        default: echo 'Admin Panel';
+                        case 'index.php': echo '<i class="fa-solid fa-chart-pie text-indigo-400 text-sm"></i> Dashboard Overview'; break;
+                        case 'contact_details.php': echo '<i class="fa-solid fa-address-card text-indigo-400 text-sm"></i> Contact & Branding Settings'; break;
+                        case 'hero_sliders.php': echo '<i class="fa-solid fa-sliders text-indigo-400 text-sm"></i> Hero Banner Sliders'; break;
+                        case 'gallery.php': echo '<i class="fa-solid fa-images text-indigo-400 text-sm"></i> Gallery Management'; break;
+                        case 'testimonials.php': echo '<i class="fa-solid fa-quote-right text-indigo-400 text-sm"></i> Testimonials Management'; break;
+                        case 'faculties.php': echo '<i class="fa-solid fa-chalkboard-teacher text-indigo-400 text-sm"></i> Faculty & Instructors'; break;
+                        case 'achievers.php': echo '<i class="fa-solid fa-trophy text-indigo-400 text-sm"></i> Achievers & Rankers'; break;
+                        case 'documents.php': echo '<i class="fa-solid fa-file-pdf text-indigo-400 text-sm"></i> Download Documents'; break;
+                        case 'events.php': echo '<i class="fa-solid fa-calendar-days text-indigo-400 text-sm"></i> Campus Events Management'; break;
+                        case 'notices.php': echo '<i class="fa-solid fa-bullhorn text-indigo-400 text-sm"></i> Notice Board & Announcements'; break;
+                        case 'enrollments.php': echo '<i class="fa-solid fa-user-graduate text-indigo-400 text-sm"></i> Student Enrollment Applications'; break;
+                        case 'contact_messages.php': echo '<i class="fa-solid fa-envelope text-indigo-400 text-sm"></i> Contact Form Messages'; break;
+                        default: echo '<i class="fa-solid fa-gauge text-indigo-400 text-sm"></i> Admin Panel';
                     }
                     ?>
                 </h1>
             </div>
             <div class="flex items-center gap-3">
-                <a href="../index.php" target="_blank" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 transition-colors border border-slate-700">
-                    <i class="fa-solid fa-globe text-indigo-400"></i> View Live Site
+                <a href="../index.php" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white text-xs font-semibold shadow-lg shadow-indigo-600/25 border border-indigo-400/30 transition-all duration-200 active:scale-95">
+                    <i class="fa-solid fa-globe text-xs"></i> <span>View Live Site</span>
                 </a>
             </div>
         </header>
