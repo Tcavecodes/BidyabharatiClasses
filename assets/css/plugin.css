@@ -3918,11 +3918,13 @@ Change the following styles to modify the appearance of the menu.
 /* background color for responsive button */
 
 .slicknav_btn.slicknav_open:before {
-  font-family: "FontAwesome";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   content: "\f00d";
 }
 .slicknav_btn.slicknav_collapsed:before {
-  font-family: "FontAwesome";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
   content: "\f0c9";
 }
 .slicknav_btn.slicknav_open,
@@ -3935,7 +3937,7 @@ Change the following styles to modify the appearance of the menu.
 .slicknav_btn.slicknav_open:before,
 .slicknav_btn.slicknav_collapsed:before {
   font-size: 21px;
-  color: #444;
+  color: #ee8c1c;
 }
 .slicknav_menutxt {
   line-height: 22px;

@@ -1360,21 +1360,14 @@ nav.navbar.navbar-default.navbar-sticky-in .logo-black {
 }
 
 .slicknav_btn {
-  right: 20px !important;
+  position: relative;
+  float: right;
+  z-index: 999;
 }
 
 .slicknav_btn.slicknav_open:before,
 .slicknav_btn.slicknav_collapsed:before {
-  font-size: 22px !important;
-  color: #06bbcc !important;
-  position: absolute;
-  right: 22px;
-  top: -10px;
-}
-
-.navbar-sticky-in .slicknav_btn.slicknav_open:before,
-.navbar-sticky-in .slicknav_btn.slicknav_collapsed:before {
-  color: #444 !important;
+  display: none !important;
 }
 
 .slicknav_nav {
@@ -4711,6 +4704,7 @@ footer .footer-upper .col-md-4 {
     height: 14px;
     margin: 4px 0 0 6px;
     position: relative;
+    display: block !important;
   }
 
   .slicknav_btn .slicknav_icon-bar {
