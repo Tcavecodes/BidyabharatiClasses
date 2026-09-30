@@ -1,8 +1,8 @@
 <?php
 // includes/db.php
-$db_host = '127.0.0.1';
-$db_user = 'root';
-$db_pass = '';
+$db_host = 'shareddb-g.hosting.stackcp.net';
+$db_user = 'thinkerscave';
+$db_pass = '=^NjZ0J[HR<G';
 $db_name = 'thinkerscave-3731c935';
 
 try {
