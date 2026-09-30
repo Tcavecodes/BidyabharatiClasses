@@ -38,19 +38,14 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- Sidebar -->
     <aside id="adminSidebar" class="w-64 bg-slate-900/90 border-r border-slate-800 flex flex-col shrink-0 transition-all duration-300">
         <!-- Logo Header -->
-        <div class="p-5 border-b border-slate-800 flex items-center justify-between gap-3">
-            <div class="flex items-center gap-3 overflow-hidden">
-                <div class="w-10 h-10 rounded-xl bg-white/10 p-1 flex items-center justify-center shrink-0 border border-slate-700/60 shadow-lg">
-                    <img src="../assets/images/bclogo.png" alt="Bidyabharati Classes Logo" class="w-full h-full object-contain">
-                </div>
-                <div class="sidebar-text">
-                    <h2 class="font-bold text-base text-white tracking-wide leading-tight">Admin Portal</h2>
-                    <p class="text-xs text-slate-400 font-medium truncate max-w-[140px]"><?= htmlspecialchars($siteSettings['site_name'] ?? 'Bidyabharati') ?></p>
-                </div>
+        <div class="p-5 border-b border-slate-800 flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-white/10 p-1 flex items-center justify-center shrink-0 border border-slate-700/60 shadow-lg">
+                <img src="../assets/images/bclogo.png" alt="Bidyabharati Classes Logo" class="w-full h-full object-contain">
             </div>
-            <button onclick="toggleAdminSidebar()" title="Close Sidebar" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition-colors">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
+            <div class="sidebar-text">
+                <h2 class="font-bold text-base text-white tracking-wide leading-tight">Admin Portal</h2>
+                <p class="text-xs text-slate-400 font-medium truncate max-w-[140px]"><?= htmlspecialchars($siteSettings['site_name'] ?? 'Bidyabharati') ?></p>
+            </div>
         </div>
 
         <!-- Navigation Menu -->
