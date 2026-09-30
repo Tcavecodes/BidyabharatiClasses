@@ -230,13 +230,80 @@ try {
                   </li>
                 </ul>
               </div>
-              <!-- /.navbar-collapse -->
-              <div id="slicknav-mobile"></div>
+              <!-- Mobile Hamburger Toggle Button -->
+              <button type="button" id="custom-mobile-toggle" onclick="toggleCustomMobileNav()" class="mobile-nav-toggle-btn" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+              </button>
             </div>
           </div>
-          <!-- /.container-fluid -->
         </nav>
       </div>
+
+      <!-- Mobile Navigation Drawer Overlay & Panel -->
+      <div id="custom-mobile-drawer" class="custom-mobile-drawer">
+        <div class="custom-mobile-drawer-overlay" onclick="toggleCustomMobileNav()"></div>
+        <div class="custom-mobile-drawer-content">
+          <div class="custom-mobile-drawer-header">
+            <div class="d-flex items-center gap-2">
+              <img src="<?= !empty($site_info['logo_path']) ? htmlspecialchars($site_info['logo_path']) : 'assets/images/logo.png' ?>" alt="Logo" style="max-height: 35px;" />
+            </div>
+            <button type="button" onclick="toggleCustomMobileNav()" class="custom-mobile-drawer-close" aria-label="Close Menu">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="custom-mobile-drawer-body">
+            <?php $currentPage = basename($_SERVER['PHP_SELF']); ?>
+            <ul class="custom-mobile-menu">
+              <li class="<?= ($currentPage == 'index.php' || $currentPage == '') ? 'active' : '' ?>">
+                <a href="index.php"><i class="fa-solid fa-house"></i> Home</a>
+              </li>
+              <li class="<?= ($currentPage == 'about.php') ? 'active' : '' ?>">
+                <a href="about.php"><i class="fa-solid fa-circle-info"></i> About</a>
+              </li>
+              <li class="<?= (in_array($currentPage, ['course-1.php', 'course-2.php', 'course-detail.php'])) ? 'active' : '' ?>">
+                <a href="course-1.php"><i class="fa-solid fa-book-open"></i> Programs</a>
+              </li>
+              <li class="<?= ($currentPage == 'gallery.php') ? 'active' : '' ?>">
+                <a href="gallery.php"><i class="fa-solid fa-images"></i> Gallery</a>
+              </li>
+              <li class="<?= (in_array($currentPage, ['event.php', 'event-detail.php'])) ? 'active' : '' ?>">
+                <a href="event.php"><i class="fa-solid fa-calendar-days"></i> Events</a>
+              </li>
+              <li class="custom-mobile-dropdown <?= (in_array($currentPage, ['instructors.php', 'achievers.php', 'download.php'])) ? 'active' : '' ?>">
+                <a href="javascript:void(0)" onclick="toggleMobileSubmenu(this)">
+                  <span><i class="fa-solid fa-graduation-cap"></i> Academics</span>
+                  <i class="fa-solid fa-chevron-down submenu-arrow"></i>
+                </a>
+                <ul class="custom-mobile-submenu">
+                  <li><a href="instructors.php">Faculties</a></li>
+                  <li><a href="achievers.php">Achievers</a></li>
+                  <li><a href="download.php">Downloads</a></li>
+                </ul>
+              </li>
+              <li class="<?= ($currentPage == 'contact.php') ? 'active' : '' ?>">
+                <a href="contact.php"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      function toggleCustomMobileNav() {
+        const drawer = document.getElementById('custom-mobile-drawer');
+        if (drawer) {
+          drawer.classList.toggle('active');
+          document.body.classList.toggle('mobile-nav-open');
+        }
+      }
+
+      function toggleMobileSubmenu(el) {
+        const parent = el.closest('.custom-mobile-dropdown');
+        if (parent) {
+          parent.classList.toggle('open');
+        }
+      }
+      </script>
       <!-- Navigation Bar Ends -->
     </header>
     <!-- header ends -->
