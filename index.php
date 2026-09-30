@@ -688,33 +688,6 @@ if (empty($heroSliders)) {
       });
     </script>
 
-    <!-- Counter main -->
-    <section class="counter">
-      <div class="container">
-        <div class="counter-wrap wow fadeInUp">
-          <div class="content d-flex justify-content-between">
-            <div class="value-pin">
-              <span class="countfect value" data-num="233"></span>
-              <h5>COURSES & VIDEOS</h5>
-            </div>
-            <div class="value-pin">
-              <span class="countfect value" data-num="410"></span>
-              <h5>EXPERT TEACHERS</h5>
-            </div>
-            <div class="value-pin">
-              <span class="countfect value" data-num="2299"></span>
-              <h5>TOTAL STUDENTS</h5>
-            </div>
-            <div class="value-pin">
-              <span class="countfect value" data-num="368"></span>
-              <h5>CLASSES COMPLETE</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Counter main -->
-
 
 
 
