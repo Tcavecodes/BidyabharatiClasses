@@ -1,12 +1,21 @@
+<?php
+require_once __DIR__ . '/db.php';
+try {
+    $stmtSiteSettings = $pdo->query("SELECT * FROM site_settings WHERE id = 1");
+    $site_info = $stmtSiteSettings->fetch() ?: [];
+} catch (Exception $e) {
+    $site_info = [];
+}
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title><?= isset($page_title) ? htmlspecialchars($page_title) : (defined('SITE_NAME') ? SITE_NAME : 'ePathsala') ?></title>
+    <title><?= isset($page_title) ? htmlspecialchars($page_title) : (htmlspecialchars($site_info['site_name'] ?? 'Bidyabharati Classes')) ?></title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-epathsala_favicon-192x192.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?= !empty($site_info['favicon_path']) ? htmlspecialchars($site_info['favicon_path']) : 'assets/images/bidyarthilogo.png' ?>" />
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!--Custom CSS-->
@@ -140,25 +149,37 @@
         <div class="container">
           <div class="top-info d-flex justify-content-between align-items-center">
             <ul class="t-address">
-              <li><i class="fas fa-phone-alt"></i> <?= defined('SITE_PHONE') ? SITE_PHONE : '+974 8845246937' ?></li>
-              <li><i class="far fa-envelope"></i> <a href="mailto:<?= defined('SITE_EMAIL') ? SITE_EMAIL : 'info@epathsala.com' ?>"><?= defined('SITE_EMAIL') ? SITE_EMAIL : 'info@epathsala.com' ?></a></li>
-              <li><i class="fas fa-map-marker-alt"></i> <?= defined('SITE_ADDRESS') ? SITE_ADDRESS : '24th street, California' ?></li>
+              <?php if (!empty($site_info['phone'])): ?>
+                <li><i class="fas fa-phone-alt"></i> <a href="tel:<?= htmlspecialchars($site_info['phone']) ?>" style="color: inherit;"><?= htmlspecialchars($site_info['phone']) ?></a></li>
+              <?php endif; ?>
+              <?php if (!empty($site_info['email'])): ?>
+                <li><i class="far fa-envelope"></i> <a href="mailto:<?= htmlspecialchars($site_info['email']) ?>"><?= htmlspecialchars($site_info['email']) ?></a></li>
+              <?php endif; ?>
+              <?php if (!empty($site_info['address'])): ?>
+                <li><i class="fas fa-map-marker-alt"></i> <?= htmlspecialchars($site_info['address']) ?></li>
+              <?php endif; ?>
             </ul>
             <ul class="t-social">
-              <li>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-              </li>
-              <li>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-              </li>
-              <li>
-                <span class="ct-search-link"
-                  ><a href="#"><i class="fa fa-search"></i></a
-                ></span>
-              </li>
+              <?php if (!empty($site_info['facebook_url'])): ?>
+                <li>
+                  <a href="<?= htmlspecialchars($site_info['facebook_url']) ?>" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </li>
+              <?php endif; ?>
+              <?php if (!empty($site_info['instagram_url'])): ?>
+                <li>
+                  <a href="<?= htmlspecialchars($site_info['instagram_url']) ?>" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </li>
+              <?php endif; ?>
+              <?php if (!empty($site_info['twitter_url'])): ?>
+                <li>
+                  <a href="<?= htmlspecialchars($site_info['twitter_url']) ?>" target="_blank" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                </li>
+              <?php endif; ?>
+              <?php if (!empty($site_info['linkedin_url'])): ?>
+                <li>
+                  <a href="<?= htmlspecialchars($site_info['linkedin_url']) ?>" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+              <?php endif; ?>
             </ul>
           </div>
         </div>
@@ -172,7 +193,7 @@
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
                 <a class="navbar-brand text-center" href="index.php">
-                  <img src="assets/images/logo.png" alt="image" />
+                  <img src="<?= !empty($site_info['logo_path']) ? htmlspecialchars($site_info['logo_path']) : 'assets/images/logo.png' ?>" alt="<?= htmlspecialchars($site_info['site_name'] ?? 'Logo') ?>" style="max-height: 50px;" />
                 </a>
               </div>
               <!-- Collect the nav links, forms, and other content for toggling -->

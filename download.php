@@ -228,445 +228,106 @@ include 'includes/header.php';
           Search, filter, preview, and download official documents published by Bidyabharati Classes.
         </p>
 </div>
-<!-- Search & Filters Toolbar -->
 
-<!-- Tabular Document Repository (Desktop Table) -->
-<div class="hidden lg:block bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden">
-<table class="w-full text-left" id="documents-table">
-<thead>
-<tr class="bg-surface-container text-primary font-label-md text-label-md uppercase tracking-wider">
-<th class="py-4 px-6" scope="col">Document Name &amp; Size</th>
+    <?php
+    $db_docs = [];
+    try {
+        $stmtDocs = $pdo->query("SELECT * FROM documents WHERE status = 'active' ORDER BY id DESC");
+        $db_docs = $stmtDocs->fetchAll() ?: [];
+    } catch (Exception $e) {
+        $db_docs = [];
+    }
+    ?>
 
-<th class="py-4 px-4" scope="col">Class</th>
-<th class="py-4 px-4" scope="col">Medium</th>
-<th class="py-4 px-4" scope="col">Date</th>
-<th class="py-4 px-4" scope="col">Type</th>
-<th class="py-4 px-6 text-right" scope="col">Action</th>
-</tr>
-</thead>
-<tbody class="font-body-sm text-body-sm" id="table-body">
-<!-- Row 1 -->
-<tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-category="Examination" data-class="Class 3 Class 4 Class 5 Class 6 Class 7 Class 8 Class 9 Class 10 Class 11 Class 12" data-medium="General" data-timestamp="20260920" data-title="Annual Examination &amp; Assessment Routine 2026">
-<td class="py-4 px-6">
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold">Annual Examination &amp; Assessment Routine 2026</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded 20 Sep 2026 • 2.4 MB</span>
-</div>
-</td>
+    <!-- Tabular Document Repository (Desktop Table) -->
+    <div class="hidden lg:block bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden border border-slate-200/60">
+    <table class="w-full text-left" id="documents-table">
+    <thead>
+    <tr class="bg-surface-container text-primary font-label-md text-label-md uppercase tracking-wider">
+    <th class="py-4 px-6" scope="col">Document Name &amp; Size</th>
+    <th class="py-4 px-4" scope="col">Class</th>
+    <th class="py-4 px-4" scope="col">Medium</th>
+    <th class="py-4 px-4" scope="col">Date</th>
+    <th class="py-4 px-4" scope="col">Type</th>
+    <th class="py-4 px-6 text-right" scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody class="font-body-sm text-body-sm" id="table-body">
+    <?php if (!empty($db_docs)): ?>
+      <?php foreach ($db_docs as $doc): 
+          $uDate = !empty($doc['created_at']) ? date('d M Y', strtotime($doc['created_at'])) : date('d M Y');
+          $fType = !empty($doc['file_type']) ? strtoupper($doc['file_type']) : 'PDF';
+          $fSize = !empty($doc['file_size']) ? $doc['file_size'] : 'PDF Document';
+          $cName = !empty($doc['class_name']) ? $doc['class_name'] : 'General';
+          $mName = !empty($doc['medium']) ? $doc['medium'] : 'English';
+          $fPath = !empty($doc['file_path']) ? htmlspecialchars($doc['file_path']) : '#';
+      ?>
+      <tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-class="<?= htmlspecialchars($cName) ?>" data-medium="<?= htmlspecialchars($mName) ?>" data-title="<?= htmlspecialchars($doc['title']) ?>">
+        <td class="py-4 px-6">
+          <div class="flex flex-col">
+            <span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold"><?= htmlspecialchars($doc['title']) ?></span>
+            <span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded <?= $uDate ?> • <?= htmlspecialchars($fSize) ?></span>
+          </div>
+        </td>
+        <td class="py-4 px-4 text-on-surface font-medium"><?= htmlspecialchars($cName) ?></td>
+        <td class="py-4 px-4 text-on-surface-variant"><?= htmlspecialchars($mName) ?></td>
+        <td class="py-4 px-4 text-on-surface-variant whitespace-nowrap"><?= $uDate ?></td>
+        <td class="py-4 px-4">
+          <span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800"><?= htmlspecialchars($fType) ?></span>
+        </td>
+        <td class="py-4 px-6 text-right">
+          <div class="flex items-center justify-end gap-2">
+            <a href="<?= $fPath ?>" target="_blank" class="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors inline-flex items-center" title="View Document">
+              <span class="material-symbols-outlined text-[20px]">visibility</span>
+            </a>
+            <a href="<?= $fPath ?>" download class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px]">download</span>
+              <span>Download</span>
+            </a>
+          </div>
+        </td>
+      </tr>
+      <?php endforeach; ?>
+    <?php else: ?>
+      <tr>
+        <td colspan="6" class="py-8 text-center text-slate-500">No documents found.</td>
+      </tr>
+    <?php endif; ?>
+    </tbody>
+    </table>
+    </div>
 
-<td class="py-4 px-4 text-on-surface">Class 3–12</td>
-<td class="py-4 px-4 text-on-surface-variant">All</td>
-<td class="py-4 px-4 text-on-surface-variant">20 Sep 2026</td>
-<td class="py-4 px-4">
-<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</td>
-<td class="py-4 px-6 text-right">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors" onclick="previewDoc('Annual Examination &amp; Assessment Routine 2026')" title="View Document">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerDownload('Annual Examination &amp; Assessment Routine 2026.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 2 -->
-<tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-category="Study Materials" data-class="Class 10" data-medium="CBSE" data-timestamp="20260918" data-title="Class 10 Mathematics Complete Formula Book &amp; Trigonometry Notes">
-<td class="py-4 px-6">
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold">Class 10 Mathematics Complete Formula Book &amp; Trigonometry Notes</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded 18 Sep 2026 • 4.1 MB</span>
-</div>
-</td>
-
-<td class="py-4 px-4 text-on-surface">Class 10</td>
-<td class="py-4 px-4 text-on-surface-variant">CBSE</td>
-<td class="py-4 px-4 text-on-surface-variant">18 Sep 2026</td>
-<td class="py-4 px-4">
-<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</td>
-<td class="py-4 px-6 text-right">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors" onclick="previewDoc('Class 10 Mathematics Formula Book')" title="View Document">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerDownload('Class 10 Mathematics Formula Book.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 3 -->
-<tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-category="Study Materials" data-class="Class 12" data-medium="CBSE Odia Medium" data-timestamp="20260917" data-title="Class 12 Physics Electromagnetism &amp; Optics Question Bank">
-<td class="py-4 px-6">
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold">Class 12 Physics Electromagnetism &amp; Optics Question Bank</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded 17 Sep 2026 • 5.8 MB</span>
-</div>
-</td>
-
-<td class="py-4 px-4 text-on-surface">Class 12</td>
-<td class="py-4 px-4 text-on-surface-variant">CBSE &amp; CHSE</td>
-<td class="py-4 px-4 text-on-surface-variant">17 Sep 2026</td>
-<td class="py-4 px-4">
-<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</td>
-<td class="py-4 px-6 text-right">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors" onclick="previewDoc('Class 12 Physics Question Bank')" title="View Document">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerDownload('Class 12 Physics Question Bank.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 4 -->
-<tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-category="Forms" data-class="General" data-medium="General" data-timestamp="20260915" data-title="Academic Admission Form &amp; Medical Undertaking (2025-26)">
-<td class="py-4 px-6">
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold">Academic Admission Form &amp; Medical Undertaking (2025-26)</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded 15 Sep 2026 • 1.2 MB</span>
-</div>
-</td>
-
-<td class="py-4 px-4 text-on-surface">General</td>
-<td class="py-4 px-4 text-on-surface-variant">All</td>
-<td class="py-4 px-4 text-on-surface-variant">15 Sep 2026</td>
-<td class="py-4 px-4">
-<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</td>
-<td class="py-4 px-6 text-right">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors" onclick="previewDoc('Academic Admission Form 2025-26')" title="View Document">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerDownload('Academic Admission Form 2025-26.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 5 -->
-<tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-category="Question Papers" data-class="Class 8" data-medium="Odia Medium" data-timestamp="20260912" data-title="Class 8 Odia Medium Science Half-Yearly Question Paper 2025">
-<td class="py-4 px-6">
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold">Class 8 Odia Medium Science Half-Yearly Question Paper 2025</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded 12 Sep 2026 • 1.8 MB</span>
-</div>
-</td>
-
-<td class="py-4 px-4 text-on-surface">Class 8</td>
-<td class="py-4 px-4 text-on-surface-variant">Odia Medium</td>
-<td class="py-4 px-4 text-on-surface-variant">12 Sep 2026</td>
-<td class="py-4 px-4">
-<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</td>
-<td class="py-4 px-6 text-right">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors" onclick="previewDoc('Class 8 Odia Science Question Paper 2025')" title="View Document">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerDownload('Class 8 Odia Medium Science Paper 2025.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 6 -->
-<tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-category="Syllabus" data-class="Class 9" data-medium="CBSE" data-timestamp="20260910" data-title="Syllabus Breakdown &amp; Monthly Target Schedule (Class 9 Science)">
-<td class="py-4 px-6">
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold">Syllabus Breakdown &amp; Monthly Target Schedule (Class 9 Science)</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded 10 Sep 2026 • 850 KB</span>
-</div>
-</td>
-
-<td class="py-4 px-4 text-on-surface">Class 9</td>
-<td class="py-4 px-4 text-on-surface-variant">CBSE</td>
-<td class="py-4 px-4 text-on-surface-variant">10 Sep 2026</td>
-<td class="py-4 px-4">
-<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">DOCX</span>
-</td>
-<td class="py-4 px-6 text-right">
-<div class="flex items-center justify-end gap-2">
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerDownload('Class 9 Science Syllabus Breakdown.docx')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 7 -->
-<tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-category="Results" data-class="Class 9 Class 10 Class 11 Class 12" data-medium="General" data-timestamp="20260905" data-title="Monthly Assessment Test Results &amp; Merit Rank List (August 2025)">
-<td class="py-4 px-6">
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold">Monthly Assessment Test Results &amp; Merit Rank List (August 2025)</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded 05 Sep 2026 • 3.2 MB</span>
-</div>
-</td>
-
-<td class="py-4 px-4 text-on-surface">Class 9–12</td>
-<td class="py-4 px-4 text-on-surface-variant">All</td>
-<td class="py-4 px-4 text-on-surface-variant">05 Sep 2026</td>
-<td class="py-4 px-4">
-<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">XLSX</span>
-</td>
-<td class="py-4 px-6 text-right">
-<div class="flex items-center justify-end gap-2">
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerDownload('August 2025 Assessment Results.xlsx')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 8 -->
-<tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-category="Notices" data-class="Class 10 Class 12" data-medium="General" data-timestamp="20260901" data-title="Notice: Special Doubt Clearing &amp; Remedial Classes for Board Batches">
-<td class="py-4 px-6">
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold">Notice: Special Doubt Clearing &amp; Remedial Classes for Board Batches</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded 01 Sep 2026 • 420 KB</span>
-</div>
-</td>
-
-<td class="py-4 px-4 text-on-surface">Class 10 &amp; 12</td>
-<td class="py-4 px-4 text-on-surface-variant">All</td>
-<td class="py-4 px-4 text-on-surface-variant">01 Sep 2026</td>
-<td class="py-4 px-4">
-<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</td>
-<td class="py-4 px-6 text-right">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors" onclick="previewDoc('Notice: Doubt Clearing Schedule')" title="View Document">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerDownload('Notice_Doubt_Clearing_Batches.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 9 -->
-<tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-category="Study Materials" data-class="Class 6 Class 7 Class 8" data-medium="CBSE" data-timestamp="20260828" data-title="Foundation Batch (Class 6-8) Mathematics Practice Sheet &amp; Olympiad Prep">
-<td class="py-4 px-6">
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold">Foundation Batch (Class 6-8) Mathematics Practice Sheet &amp; Olympiad Prep</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded 28 Aug 2026 • 2.1 MB</span>
-</div>
-</td>
-
-<td class="py-4 px-4 text-on-surface">Class 6–8</td>
-<td class="py-4 px-4 text-on-surface-variant">CBSE</td>
-<td class="py-4 px-4 text-on-surface-variant">28 Aug 2026</td>
-<td class="py-4 px-4">
-<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</td>
-<td class="py-4 px-6 text-right">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors" onclick="previewDoc('Foundation Olympiad Practice Sheet')" title="View Document">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerDownload('Foundation_Math_Olympiad_Prep.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 10 -->
-<tr class="doc-row hover:bg-surface-container-low/70 transition-colors" data-category="Study Materials" data-class="Class 10" data-medium="Odia Medium" data-timestamp="20260825" data-title="Class 10 Odia Language (Sahitya &amp; Byakarana) Revision Notes">
-<td class="py-4 px-6">
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary font-semibold">Class 10 Odia Language (Sahitya &amp; Byakarana) Revision Notes</span>
-<span class="text-on-surface-variant font-body-sm text-body-sm mt-0.5">Uploaded 25 Aug 2026 • 3.0 MB</span>
-</div>
-</td>
-
-<td class="py-4 px-4 text-on-surface">Class 10</td>
-<td class="py-4 px-4 text-on-surface-variant">Odia Medium</td>
-<td class="py-4 px-4 text-on-surface-variant">25 Aug 2026</td>
-<td class="py-4 px-4">
-<span class="inline-block px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</td>
-<td class="py-4 px-6 text-right">
-<div class="flex items-center justify-end gap-2">
-<button class="p-2 rounded-lg text-secondary hover:bg-surface-container transition-colors" onclick="previewDoc('Class 10 Odia Language Revision Notes')" title="View Document">
-<span class="material-symbols-outlined text-[20px]">visibility</span>
-</button>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-secondary font-label-md text-label-md transition-colors flex items-center gap-1" onclick="triggerDownload('Class_10_Odia_Sahitya_Revision.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Mobile Document Cards (< lg viewport) -->
-<div class="lg:hidden flex flex-col gap-space-md" id="mobile-cards-container">
-<!-- Mobile Card 1 -->
-<div class="mobile-doc-card bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm" data-category="Examination" data-class="Class 3 Class 4 Class 5 Class 6 Class 7 Class 8 Class 9 Class 10 Class 11 Class 12" data-medium="General" data-timestamp="20260920" data-title="Annual Examination &amp; Assessment Routine 2026">
-<div class="flex items-start justify-between gap-space-xs">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary">Annual Examination &amp; Assessment Routine 2026</span>
-<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</div>
-<div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-0.5 rounded bg-surface-container text-primary font-label-md text-label-md">Examination</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">Class 3–12</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">All Mediums</span>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">20 Sep 2026 • 2.4 MB</span>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1" onclick="triggerDownload('Annual Examination Routine 2026.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</div>
-<!-- Mobile Card 2 -->
-<div class="mobile-doc-card bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm" data-category="Study Materials" data-class="Class 10" data-medium="CBSE" data-timestamp="20260918" data-title="Class 10 Mathematics Complete Formula Book &amp; Trigonometry Notes">
-<div class="flex items-start justify-between gap-space-xs">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary">Class 10 Mathematics Complete Formula Book &amp; Trigonometry Notes</span>
-<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</div>
-<div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md">Study Materials</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">Class 10</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">CBSE</span>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">18 Sep 2026 • 4.1 MB</span>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1" onclick="triggerDownload('Class 10 Mathematics Formula Book.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</div>
-<!-- Mobile Card 3 -->
-<div class="mobile-doc-card bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm" data-category="Study Materials" data-class="Class 12" data-medium="CBSE Odia Medium" data-timestamp="20260917" data-title="Class 12 Physics Electromagnetism &amp; Optics Question Bank">
-<div class="flex items-start justify-between gap-space-xs">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary">Class 12 Physics Electromagnetism &amp; Optics Question Bank</span>
-<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</div>
-<div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-0.5 rounded bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md">Study Materials</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">Class 12</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">CBSE &amp; CHSE</span>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">17 Sep 2026 • 5.8 MB</span>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1" onclick="triggerDownload('Class 12 Physics Question Bank.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</div>
-<!-- Mobile Card 4 -->
-<div class="mobile-doc-card bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm" data-category="Forms" data-class="General" data-medium="General" data-timestamp="20260915" data-title="Academic Admission Form &amp; Medical Undertaking (2025-26)">
-<div class="flex items-start justify-between gap-space-xs">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary">Academic Admission Form &amp; Medical Undertaking (2025-26)</span>
-<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</div>
-<div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md">Forms</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">General</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">All</span>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">15 Sep 2026 • 1.2 MB</span>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1" onclick="triggerDownload('Academic Admission Form 2025-26.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</div>
-<!-- Mobile Card 5 -->
-<div class="mobile-doc-card bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm" data-category="Question Papers" data-class="Class 8" data-medium="Odia Medium" data-timestamp="20260912" data-title="Class 8 Odia Medium Science Half-Yearly Question Paper 2025">
-<div class="flex items-start justify-between gap-space-xs">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary">Class 8 Odia Medium Science Half-Yearly Question Paper 2025</span>
-<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</div>
-<div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-md text-label-md">Question Papers</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">Class 8</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">Odia Medium</span>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">12 Sep 2026 • 1.8 MB</span>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1" onclick="triggerDownload('Class 8 Odia Medium Science Paper 2025.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</div>
-<!-- Mobile Card 6 -->
-<div class="mobile-doc-card bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm" data-category="Syllabus" data-class="Class 9" data-medium="CBSE" data-timestamp="20260910" data-title="Syllabus Breakdown &amp; Monthly Target Schedule (Class 9 Science)">
-<div class="flex items-start justify-between gap-space-xs">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary">Syllabus Breakdown &amp; Monthly Target Schedule (Class 9 Science)</span>
-<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-100 text-blue-800">DOCX</span>
-</div>
-<div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-0.5 rounded bg-surface-container-highest text-primary font-label-md text-label-md">Syllabus</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">Class 9</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">CBSE</span>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">10 Sep 2026 • 850 KB</span>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1" onclick="triggerDownload('Class 9 Science Syllabus Breakdown.docx')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</div>
-<!-- Mobile Card 7 -->
-<div class="mobile-doc-card bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm" data-category="Results" data-class="Class 9 Class 10 Class 11 Class 12" data-medium="General" data-timestamp="20260905" data-title="Monthly Assessment Test Results &amp; Merit Rank List (August 2025)">
-<div class="flex items-start justify-between gap-space-xs">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary">Monthly Assessment Test Results &amp; Merit Rank List (August 2025)</span>
-<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-100 text-emerald-800">XLSX</span>
-</div>
-<div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 font-label-md text-label-md">Results</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">Class 9–12</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">All</span>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">05 Sep 2026 • 3.2 MB</span>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1" onclick="triggerDownload('August 2025 Assessment Results.xlsx')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</div>
-<!-- Mobile Card 8 -->
-<div class="mobile-doc-card bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm" data-category="Notices" data-class="Class 10 Class 12" data-medium="General" data-timestamp="20260901" data-title="Notice: Special Doubt Clearing &amp; Remedial Classes for Board Batches">
-<div class="flex items-start justify-between gap-space-xs">
-<span class="font-headline-sm text-headline-sm text-[16px] text-primary">Notice: Special Doubt Clearing &amp; Remedial Classes for Board Batches</span>
-<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800">PDF</span>
-</div>
-<div class="flex flex-wrap gap-1.5">
-<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-label-md text-label-md">Notices</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">Class 10 &amp; 12</span>
-<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">All</span>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-body-sm text-body-sm text-on-surface-variant">01 Sep 2026 • 420 KB</span>
-<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1" onclick="triggerDownload('Notice_Doubt_Clearing_Batches.pdf')">
-<span class="material-symbols-outlined text-[16px]">download</span>
-<span class="">Download</span>
-</button>
-</div>
-</div>
-</div>
+    <!-- Mobile Document Cards (< lg viewport) -->
+    <div class="lg:hidden flex flex-col gap-space-md" id="mobile-cards-container">
+    <?php if (!empty($db_docs)): ?>
+      <?php foreach ($db_docs as $doc): 
+          $uDate = !empty($doc['created_at']) ? date('d M Y', strtotime($doc['created_at'])) : date('d M Y');
+          $fType = !empty($doc['file_type']) ? strtoupper($doc['file_type']) : 'PDF';
+          $fSize = !empty($doc['file_size']) ? $doc['file_size'] : 'PDF Document';
+          $cName = !empty($doc['class_name']) ? $doc['class_name'] : 'General';
+          $mName = !empty($doc['medium']) ? $doc['medium'] : 'English';
+          $fPath = !empty($doc['file_path']) ? htmlspecialchars($doc['file_path']) : '#';
+      ?>
+      <div class="mobile-doc-card bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col gap-space-sm border border-slate-200/60">
+        <div class="flex items-start justify-between gap-space-xs">
+          <span class="font-headline-sm text-headline-sm text-[16px] text-primary"><?= htmlspecialchars($doc['title']) ?></span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-100 text-rose-800"><?= htmlspecialchars($fType) ?></span>
+        </div>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">Class: <?= htmlspecialchars($cName) ?></span>
+          <span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-label-md text-label-md">Medium: <?= htmlspecialchars($mName) ?></span>
+        </div>
+        <div class="flex items-center justify-between pt-2">
+          <span class="font-body-sm text-body-sm text-on-surface-variant"><?= $uDate ?> • <?= htmlspecialchars($fSize) ?></span>
+          <a href="<?= $fPath ?>" download class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1">
+            <span class="material-symbols-outlined text-[16px]">download</span>
+            <span>Download</span>
+          </a>
+        </div>
+      </div>
+      <?php endforeach; ?>
+    <?php endif; ?>
+    </div>
 <!-- Empty State Fallback -->
 <div class="hidden bg-surface-container-lowest p-12 rounded-2xl shadow-sm text-center flex flex-col items-center justify-center" id="empty-state">
 <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-4">

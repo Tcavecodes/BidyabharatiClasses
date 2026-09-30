@@ -25,116 +25,48 @@
         </div>
 
         <div class="row instruct-main wow fadeInLeft">
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="ins-main-list">
-              <img src="assets/images/team/team-1.jpg" alt="Rahul Sharma" />
-              <div class="ins-names">
-                <h4>Rahul Sharma</h4>
-                <span class="cl-orange font-weight-bold">AIR 12 - JEE Advanced</span>
-                <p class="small text-muted mt-1 mb-0">IIT Bombay - Computer Science</p>
+          <?php
+          $achievers_list = [];
+          try {
+              $stmtAch = $pdo->query("SELECT * FROM achievers WHERE status = 'active' ORDER BY id DESC");
+              $achievers_list = $stmtAch->fetchAll() ?: [];
+          } catch (Exception $e) {
+              $achievers_list = [];
+          }
+          ?>
+          <?php if (!empty($achievers_list)): ?>
+            <?php foreach ($achievers_list as $achiever): ?>
+              <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="faculty-card-modern" style="background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); border: 1px solid #edf2f7; transition: all 0.3s ease; height: 100%; flex-direction: column; display: flex;">
+                  <!-- Full Image Block -->
+                  <div style="width: 100%; height: 320px; overflow: hidden; background: #f8fafc;">
+                    <img src="<?= !empty($achiever['image_path']) ? htmlspecialchars($achiever['image_path']) : 'assets/images/team/team-1.jpg' ?>" 
+                         alt="<?= htmlspecialchars($achiever['student_name']) ?>" 
+                         style="width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.5s ease;" />
+                  </div>
+                  <!-- Content Block below image -->
+                  <div style="padding: 20px 15px; text-align: center; display: flex; flex-direction: column; justify-content: center; flex-grow: 1;">
+                    <h3 style="font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 600; color: #1e293b; margin-bottom: 6px; line-height: 1.2;"><?= htmlspecialchars($achiever['student_name']) ?></h3>
+                    <h4 style="font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 700; color: #ee8c1c; margin-bottom: 6px; line-height: 1.3;"><?= htmlspecialchars($achiever['rank_score']) ?></h4>
+                    <?php if (!empty($achiever['exam_name']) || !empty($achiever['year'])): ?>
+                      <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #64748b; margin-bottom: 0; font-weight: 500; line-height: 1.4;">
+                        <?= htmlspecialchars($achiever['exam_name'] ?? '') ?><?= (!empty($achiever['exam_name']) && !empty($achiever['year'])) ? ' (' . htmlspecialchars($achiever['year']) . ')' : '' ?>
+                      </p>
+                    <?php endif; ?>
+                  </div>
+                </div>
               </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <div class="col-12 text-center py-5">
+              <p class="text-muted fs-5">No achievers found at the moment.</p>
             </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="ins-main-list">
-              <img src="assets/images/team/team-2.jpg" alt="Priya Patel" />
-              <div class="ins-names">
-                <h4>Priya Patel</h4>
-                <span class="cl-orange font-weight-bold">99.6% - State Board Topper</span>
-                <p class="small text-muted mt-1 mb-0">Science Stream Gold Medalist</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="ins-main-list">
-              <img src="assets/images/team/team-3.jpg" alt="Amit Verma" />
-              <div class="ins-names">
-                <h4>Amit Verma</h4>
-                <span class="cl-orange font-weight-bold">AIR 45 - NEET 2026</span>
-                <p class="small text-muted mt-1 mb-0">AIIMS New Delhi Admission</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="ins-main-list">
-              <img src="assets/images/team/team-4.jpg" alt="Ananya Das" />
-              <div class="ins-names">
-                <h4>Ananya Das</h4>
-                <span class="cl-orange font-weight-bold">National Science Olympiad</span>
-                <p class="small text-muted mt-1 mb-0">Gold Medalist & Finalist</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="ins-main-list">
-              <img src="assets/images/team/test-1.jpg" alt="Sneha Mohanty" />
-              <div class="ins-names">
-                <h4>Sneha Mohanty</h4>
-                <span class="cl-orange font-weight-bold">99.2% - CBSE 12th Board</span>
-                <p class="small text-muted mt-1 mb-0">Commerce Stream Topper</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="ins-main-list">
-              <img src="assets/images/team/test-2.jpg" alt="Vikram Singh" />
-              <div class="ins-names">
-                <h4>Vikram Singh</h4>
-                <span class="cl-orange font-weight-bold">AIR 88 - NDA Examination</span>
-                <p class="small text-muted mt-1 mb-0">Officer Cadet Training</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="ins-main-list">
-              <img src="assets/images/team/test-3.jpg" alt="Kavita Rao" />
-              <div class="ins-names">
-                <h4>Kavita Rao</h4>
-                <span class="cl-orange font-weight-bold">AIR 23 - GATE Exam</span>
-                <p class="small text-muted mt-1 mb-0">IISc Bangalore Researcher</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="ins-main-list">
-              <img src="assets/images/team/test-5.jpg" alt="Devendra Nayak" />
-              <div class="ins-names">
-                <h4>Devendra Nayak</h4>
-                <span class="cl-orange font-weight-bold">International Math Olympiad</span>
-                <p class="small text-muted mt-1 mb-0">Distinction Awardee</p>
-              </div>
-            </div>
-          </div>
+          <?php endif; ?>
         </div>
       </div>
     </section>
     <!-- Achievers ends -->
 
-    <!--  Newsletter start -->
-    <section class="newsletter">
-      <div class="container">
-        <div class="news-headding text-center">
-          <h2>SIGN UP TO OUR NEWSLETTER</h2>
-          <p>
-            Subscribe to our newsletter and get many <br />
-            interesting things every week
-          </p>
-          <form>
-            <div class="form-group">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Your Email" />
-              <button class="btn"><i class="fas fa-envelope-open-text"></i> Subscribe</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-    <!--  Newsletter end -->
+
 
 <?php include 'includes/footer.php'; ?>

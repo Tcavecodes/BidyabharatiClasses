@@ -5,9 +5,9 @@
           <!-- Brand Description (Col 1) -->
           <div class="lg:col-span-4 space-y-4">
             <div class="flex items-center gap-3">
-              <img alt="Bidyabharati Classes Logo" class="h-10 w-auto object-contain" src="assets/images/logo.png"/>
+              <img alt="<?= htmlspecialchars($site_info['site_name'] ?? 'Bidyabharati Classes Logo') ?>" class="h-10 w-auto object-contain" src="<?= !empty($site_info['logo_path']) ? htmlspecialchars($site_info['logo_path']) : 'assets/images/logo.png' ?>"/>
               <div>
-                <p class="font-poppins font-extrabold text-lg leading-none tracking-tight text-white uppercase">BIDYABHARATI</p>
+                <p class="font-poppins font-extrabold text-lg leading-none tracking-tight text-white uppercase"><?= htmlspecialchars($site_info['site_name'] ?? 'BIDYABHARATI') ?></p>
                 <p class="font-poppins font-bold text-[10px] tracking-widest text-[#ee8c1c] uppercase mt-0.5">CLASSES • BARIPADA</p>
               </div>
             </div>
@@ -15,10 +15,18 @@
               A trusted academic coaching institute located in Baripada, Odisha. Providing student-centric coaching for Class 3 to 12 across CBSE and Odia Medium curriculums.
             </p>
             <div class="flex items-center gap-2.5 pt-2">
-              <a aria-label="Facebook" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="#"><i class="fa-brands fa-facebook-f text-xs"></i></a>
-              <a aria-label="Instagram" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="#"><i class="fa-brands fa-instagram text-xs"></i></a>
-              <a aria-label="YouTube" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="#"><i class="fa-brands fa-youtube text-xs"></i></a>
-              <a aria-label="WhatsApp" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="https://wa.me/919437380042" target="_blank"><i class="fa-brands fa-whatsapp text-xs"></i></a>
+              <?php if (!empty($site_info['facebook_url'])): ?>
+                <a aria-label="Facebook" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="<?= htmlspecialchars($site_info['facebook_url']) ?>" target="_blank"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+              <?php endif; ?>
+              <?php if (!empty($site_info['instagram_url'])): ?>
+                <a aria-label="Instagram" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="<?= htmlspecialchars($site_info['instagram_url']) ?>" target="_blank"><i class="fa-brands fa-instagram text-xs"></i></a>
+              <?php endif; ?>
+              <?php if (!empty($site_info['twitter_url'])): ?>
+                <a aria-label="Twitter" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="<?= htmlspecialchars($site_info['twitter_url']) ?>" target="_blank"><i class="fa-brands fa-x-twitter text-xs"></i></a>
+              <?php endif; ?>
+              <?php if (!empty($site_info['linkedin_url'])): ?>
+                <a aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-slate-800 hover:bg-[#06bbcc] text-slate-300 hover:text-white flex items-center justify-center transition-all shadow-sm" href="<?= htmlspecialchars($site_info['linkedin_url']) ?>" target="_blank"><i class="fa-brands fa-linkedin-in text-xs"></i></a>
+              <?php endif; ?>
             </div>
           </div>
           <!-- Quick Links (Col 2) -->
@@ -50,19 +58,19 @@
             <div class="space-y-2.5 text-xs text-[#94a3b8]">
               <p class="flex items-start gap-2.5">
                 <i class="fa-solid fa-location-dot text-[#ee8c1c] mt-0.5 text-xs"></i>
-                <span class="text-[#94a3b8]">Baripada, Mayurbhanj, Odisha - 757001</span>
+                <span class="text-[#94a3b8]"><?= !empty($site_info['address']) ? htmlspecialchars($site_info['address']) : 'Baripada, Mayurbhanj, Odisha - 757001' ?></span>
               </p>
               <p class="flex items-center gap-2.5">
                 <i class="fa-solid fa-phone text-[#ee8c1c] text-xs"></i>
-                <a class="text-[#94a3b8] hover:text-white transition-colors" href="tel:+919437380042">+91 94373 80042</a>
+                <a class="text-[#94a3b8] hover:text-white transition-colors" href="tel:<?= htmlspecialchars($site_info['phone'] ?? '+919437380042') ?>"><?= htmlspecialchars($site_info['phone'] ?? '+91 94373 80042') ?></a>
               </p>
               <p class="flex items-center gap-2.5">
                 <i class="fa-solid fa-envelope text-[#ee8c1c] text-xs"></i>
-                <a class="text-[#94a3b8] hover:text-white transition-colors" href="mailto:info@bidyabharaticlasses.com">info@bidyabharaticlasses.com</a>
+                <a class="text-[#94a3b8] hover:text-white transition-colors" href="mailto:<?= htmlspecialchars($site_info['email'] ?? 'info@bidyabharaticlasses.com') ?>"><?= htmlspecialchars($site_info['email'] ?? 'info@bidyabharaticlasses.com') ?></a>
               </p>
               <p class="flex items-center gap-2.5">
                 <i class="fa-solid fa-clock text-[#ee8c1c] text-xs"></i>
-                <span class="text-[#94a3b8]">Mon - Sat: 7:00 AM - 8:00 PM</span>
+                <span class="text-[#94a3b8]"><?= !empty($site_info['working_hours']) ? htmlspecialchars($site_info['working_hours']) : 'Mon - Sat: 7:00 AM - 8:00 PM' ?></span>
               </p>
             </div>
           </div>
@@ -97,6 +105,18 @@
       </div>
     </form>
     <!-- Search form popup end -->
+
+    <!-- Floating WhatsApp Chat Button -->
+    <a href="https://wa.me/919437380042?text=Hello%21%20I%20would%20like%20to%20know%20more%20about%20Bidyabharati%20Classes." 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Chat on WhatsApp"
+       class="fixed bottom-6 left-6 z-50 flex items-center justify-center w-14 h-14 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full shadow-2xl hover:scale-110 transition-all duration-300 group">
+      <i class="fa-brands fa-whatsapp text-3xl"></i>
+      <span class="absolute left-16 bg-slate-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg shadow-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+        Chat with Us
+      </span>
+    </a>
 
     <!-- Back to top start -->
     <div id="back-to-top">

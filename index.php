@@ -1,38 +1,77 @@
-<?php include 'includes/header.php'; ?>
+<?php
+include 'includes/header.php';
+
+// Fetch active hero sliders from DB
+try {
+    $stmtSliders = $pdo->query("SELECT * FROM hero_sliders WHERE status = 'active' ORDER BY id ASC");
+    $heroSliders = $stmtSliders->fetchAll() ?: [];
+} catch (Exception $e) {
+    $heroSliders = [];
+}
+
+// Fallback to 3 default slides if DB is empty
+if (empty($heroSliders)) {
+    $heroSliders = [
+        [
+            'subtitle' => 'LEARN ANYTHING, ANYTIME, ANYWHERE',
+            'title' => 'BEST ONLINE LEARNING FOR YOUR FUTURE',
+            'description' => 'Empowering students from Class 3 to 12 with conceptual clarity, disciplined guidance, and excellence.',
+            'btn1_text' => 'View Course',
+            'btn1_url' => 'course-1.php',
+            'btn2_text' => 'Get Started',
+            'btn2_url' => 'contact.php',
+            'image_path' => 'assets/images/banner/education-2021-04-04-14-25-07-utc.jpg'
+        ],
+        [
+            'subtitle' => 'START YOUR FAVOURITE COURSE',
+            'title' => 'START YOUR FAVOURITE COURSE BRIGHT FUTURE',
+            'description' => 'Over three decades of dedicated teaching experience in Baripada, Odisha.',
+            'btn1_text' => 'Explore Programs',
+            'btn1_url' => 'course-1.php',
+            'btn2_text' => 'Contact Us',
+            'btn2_url' => 'contact.php',
+            'image_path' => 'assets/images/banner/education-PHW33SU.jpg'
+        ],
+        [
+            'subtitle' => 'EXCELLENCE IN EDUCATION',
+            'title' => 'BUILD STRONG CONCEPTS FOR SUCCESS',
+            'description' => 'Specialized academic coaching for CBSE and State Board students with individual attention.',
+            'btn1_text' => 'Our Achievers',
+            'btn1_url' => 'achievers.php',
+            'btn2_text' => 'Enroll Now',
+            'btn2_url' => 'contact.php',
+            'image_path' => 'assets/images/banner/secondsection.jpg'
+        ]
+    ];
+}
+?>
     <!-- banner starts -->
     <section class="banner-main pb-0">
       <div class="banner-content">
         <div class="slider banner-slider">
-          <div class="h2-slider-list sl-overlay" style="background-image: url(assets/images/banner/education-2021-04-04-14-25-07-utc.jpg)">
-            <div class="container">
-              <div class="slide-contain">
-                <h4>LEARN ANYTHING, ANYTIME, ANYWHERE</h4>
-                <h1 class="cl-white mt-4 wow fadeInDown">BEST ONLINE LEARNING FOR YOUR FUTURE</h1>
-                <p class="wow fadeInLeft">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                </p>
-                <div class="slide-btn mt-4 wow fadeInLeft">
-                  <a href="#" class="btn btn-curve mr-2">View Course</a>
-                  <a href="#" class="btn btn-curve btn-white">Get Started</a>
+          <?php foreach ($heroSliders as $slide): ?>
+            <div class="h2-slider-list sl-overlay" style="background-image: url(<?= htmlspecialchars($slide['image_path']) ?>)">
+              <div class="container">
+                <div class="slide-contain">
+                  <?php if (!empty($slide['subtitle'])): ?>
+                    <h4><?= htmlspecialchars($slide['subtitle']) ?></h4>
+                  <?php endif; ?>
+                  <h1 class="cl-white mt-4 wow fadeInDown"><?= htmlspecialchars($slide['title']) ?></h1>
+                  <?php if (!empty($slide['description'])): ?>
+                    <p class="wow fadeInLeft"><?= htmlspecialchars($slide['description']) ?></p>
+                  <?php endif; ?>
+                  <div class="slide-btn mt-4 wow fadeInLeft">
+                    <?php if (!empty($slide['btn1_text'])): ?>
+                      <a href="<?= htmlspecialchars($slide['btn1_url'] ?? '#') ?>" class="btn btn-curve mr-2"><?= htmlspecialchars($slide['btn1_text']) ?></a>
+                    <?php endif; ?>
+                    <?php if (!empty($slide['btn2_text'])): ?>
+                      <a href="<?= htmlspecialchars($slide['btn2_url'] ?? '#') ?>" class="btn btn-curve btn-white"><?= htmlspecialchars($slide['btn2_text']) ?></a>
+                    <?php endif; ?>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="h2-slider-list sl-overlay" style="background-image: url(assets/images/banner/education-PHW33SU.jpg)">
-            <div class="container">
-              <div class="slide-contain">
-                <h4>START YOUR FAVOURITE COURSE</h4>
-                <h1 class="cl-white mt-4 wow fadeInDown">START YOUR FAVOURITE COURSE BRIGHT FUTURE</h1>
-                <p class="wow fadeInLeft">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                </p>
-                <div class="slide-btn mt-4 wow fadeInLeft">
-                  <a href="#" class="btn btn-curve mr-2">View Course</a>
-                  <a href="#" class="btn btn-curve">Get Started</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
       </div>
     </section>
@@ -92,9 +131,12 @@
           </div>
           <div class="col-lg-7 wow fadeInRightBig">
             <div class="about-us-wrap">
-              <div class="about-title">
-                <h4 class="top-title">ABOUT EPATHSALA</h4>
-                <h2 class="mb-3 pb-3">LEARN SOMETHING NEW, AND GROW YOUR <span class="cl-blue">SKILL</span></h2>
+              <div class="about-title mb-4">
+                <span class="text-xs font-poppins font-bold uppercase tracking-widest text-[#ee8c1c] block mb-1">About Bidyabharati Classes</span>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#00254e] tracking-tight uppercase font-['Outfit'] leading-tight mb-2">
+                  Learn Something New, And Grow Your <span class="text-[#06bbcc]">Skill</span>
+                </h2>
+                <div class="w-16 h-1 bg-[#ee8c1c] rounded-full mt-2"></div>
               </div>
               <div class="about-content">
                 <p>
@@ -197,6 +239,15 @@
     <!-- Campus Updates & Why Choose Us end -->
 
     <!-- Events & Notice Board start -->
+    <?php
+    try {
+        $activeEvents = $pdo->query("SELECT * FROM events WHERE status = 'active' ORDER BY event_date DESC LIMIT 6")->fetchAll() ?: [];
+        $activeNotices = $pdo->query("SELECT * FROM notices WHERE status = 'active' ORDER BY notice_date DESC LIMIT 7")->fetchAll() ?: [];
+    } catch (Exception $e) {
+        $activeEvents = [];
+        $activeNotices = [];
+    }
+    ?>
     <section class="events-notice-section">
       <div class="container">
         <div class="row">
@@ -204,131 +255,27 @@
           <div class="col-lg-6 col-md-12 mb-4 mb-lg-0 en-col-wrap">
             <h3 class="en-col-title">LATEST EVENTS</h3>
             <div class="en-events-list">
-              <!-- Event Card 1 -->
-              <div class="en-event-card">
-                <div class="en-date-badge">
-                  <div class="en-date-month">DEC</div>
-                  <div class="en-date-day">26</div>
-                </div>
-                <div class="en-event-content">
-                  <div class="en-event-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+              <?php if (empty($activeEvents)): ?>
+                <p class="text-muted small">No upcoming events posted.</p>
+              <?php else: ?>
+                <?php foreach ($activeEvents as $evt): ?>
+                  <div class="en-event-card">
+                    <div class="en-date-badge">
+                      <div class="en-date-month"><?= strtoupper(date('M', strtotime($evt['event_date']))) ?></div>
+                      <div class="en-date-day"><?= date('d', strtotime($evt['event_date'])) ?></div>
+                    </div>
+                    <div class="en-event-content">
+                      <div class="en-event-rating">
+                        <?= str_repeat('<i class="fas fa-star"></i>', $evt['rating'] ?? 5) ?>
+                      </div>
+                      <h4 class="en-event-title"><a href="event.php"><?= htmlspecialchars($evt['title']) ?></a></h4>
+                      <p class="en-event-desc">
+                        <?= htmlspecialchars($evt['description'] ?? '') ?>
+                      </p>
+                    </div>
                   </div>
-                  <h4 class="en-event-title"><a href="event-detail.php">Student Leadership & Career Workshop</a></h4>
-                  <p class="en-event-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Event Card 2 -->
-              <div class="en-event-card">
-                <div class="en-date-badge">
-                  <div class="en-date-month">DEC</div>
-                  <div class="en-date-day">28</div>
-                </div>
-                <div class="en-event-content">
-                  <div class="en-event-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <h4 class="en-event-title"><a href="event-detail.php">The Best Coaching & Annual Conference</a></h4>
-                  <p class="en-event-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Event Card 3 -->
-              <div class="en-event-card">
-                <div class="en-date-badge">
-                  <div class="en-date-month">DEC</div>
-                  <div class="en-date-day">21</div>
-                </div>
-                <div class="en-event-content">
-                  <div class="en-event-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <h4 class="en-event-title"><a href="event-detail.php">The Ultimate Future Skills Program</a></h4>
-                  <p class="en-event-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Event Card 4 -->
-              <div class="en-event-card">
-                <div class="en-date-badge">
-                  <div class="en-date-month">DEC</div>
-                  <div class="en-date-day">15</div>
-                </div>
-                <div class="en-event-content">
-                  <div class="en-event-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <h4 class="en-event-title"><a href="event-detail.php">National Science & Technology Innovation Expo</a></h4>
-                  <p class="en-event-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Event Card 5 -->
-              <div class="en-event-card">
-                <div class="en-date-badge">
-                  <div class="en-date-month">DEC</div>
-                  <div class="en-date-day">10</div>
-                </div>
-                <div class="en-event-content">
-                  <div class="en-event-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <h4 class="en-event-title"><a href="event-detail.php">Global Education & Higher Studies Seminar</a></h4>
-                  <p class="en-event-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Event Card 6 -->
-              <div class="en-event-card">
-                <div class="en-date-badge">
-                  <div class="en-date-month">DEC</div>
-                  <div class="en-date-day">04</div>
-                </div>
-                <div class="en-event-content">
-                  <div class="en-event-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <h4 class="en-event-title"><a href="event-detail.php">Digital Coding & Robotics Bootcamp</a></h4>
-                  <p class="en-event-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                </div>
-              </div>
+                <?php endforeach; ?>
+              <?php endif; ?>
             </div>
           </div>
 
@@ -337,54 +284,17 @@
             <h3 class="en-col-title">NOTICE BOARD</h3>
             <div class="en-notice-board-wrap">
               <div class="en-notice-list">
-                <!-- Notice 1 -->
-                <div class="en-notice-item">
-                  <h4 class="en-notice-title"><a href="#">IMPORTANT ANNOUNCEMENT FOR NEW ADMISSION LEARNERS</a></h4>
-                  <span class="en-notice-category">Academic announcement</span>
-                  <span class="en-notice-date">Nov 15, 2026</span>
-                </div>
-
-                <!-- Notice 2 -->
-                <div class="en-notice-item">
-                  <h4 class="en-notice-title"><a href="#">IMPORTANT ANNOUNCEMENT FOR ALL NEW BATCH LEARNING SESSIONS</a></h4>
-                  <span class="en-notice-category">Academic announcement</span>
-                  <span class="en-notice-date">Dec 15, 2026</span>
-                </div>
-
-                <!-- Notice 3 -->
-                <div class="en-notice-item">
-                  <h4 class="en-notice-title"><a href="#">IMPORTANT ANNOUNCEMENT FOR ALL SEMESTER EXAMINATIONS</a></h4>
-                  <span class="en-notice-category">Examination announcement</span>
-                  <span class="en-notice-date">Dec 13, 2026</span>
-                </div>
-
-                <!-- Notice 4 -->
-                <div class="en-notice-item">
-                  <h4 class="en-notice-title"><a href="#">IMPORTANT ANNOUNCEMENT FOR CAMPUS ACADEMIC TRAINING PROGRAM</a></h4>
-                  <span class="en-notice-category">Campus announcement</span>
-                  <span class="en-notice-date">Dec 10, 2026</span>
-                </div>
-
-                <!-- Notice 5 -->
-                <div class="en-notice-item">
-                  <h4 class="en-notice-title"><a href="#">SCHOLARSHIP APPLICATION FOR MERIT STUDENTS OPEN</a></h4>
-                  <span class="en-notice-category">Scholarship announcement</span>
-                  <span class="en-notice-date">Dec 08, 2026</span>
-                </div>
-
-                <!-- Notice 6 -->
-                <div class="en-notice-item">
-                  <h4 class="en-notice-title"><a href="#">ANNUAL SPORTS MEET AND CULTURAL ACTIVITIES SCHEDULE</a></h4>
-                  <span class="en-notice-category">Activity announcement</span>
-                  <span class="en-notice-date">Dec 05, 2026</span>
-                </div>
-
-                <!-- Notice 7 -->
-                <div class="en-notice-item">
-                  <h4 class="en-notice-title"><a href="#">WINTER VACATION AND COLLEGE REOPENING SCHEDULE</a></h4>
-                  <span class="en-notice-category">General notice</span>
-                  <span class="en-notice-date">Dec 01, 2026</span>
-                </div>
+                <?php if (empty($activeNotices)): ?>
+                  <p class="text-muted small">No active notices.</p>
+                <?php else: ?>
+                  <?php foreach ($activeNotices as $not): ?>
+                    <div class="en-notice-item">
+                      <h4 class="en-notice-title"><a href="#"><?= htmlspecialchars($not['title']) ?></a></h4>
+                      <span class="en-notice-category"><?= htmlspecialchars($not['category']) ?></span>
+                      <span class="en-notice-date"><?= date('M d, Y', strtotime($not['notice_date'])) ?></span>
+                    </div>
+                  <?php endforeach; ?>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -415,25 +325,50 @@
                   <p class="enroll-header-subtitle">Fill out your information to reserve your seat for the next batch</p>
                 </div>
                 <div class="enroll-form-body">
-                  <form action="#" method="POST" onsubmit="alert('Thank you for enrolling! Our admissions team will contact you shortly.'); return false;">
+                  <?php
+                  $enrollMsg = '';
+                  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_enrollment'])) {
+                    $sName = trim($_POST['student_name'] ?? '');
+                    $sEmail = trim($_POST['email'] ?? '');
+                    $sPhone = trim($_POST['phone'] ?? '');
+                    $sCourse = trim($_POST['course'] ?? '');
+                    $sMessage = trim($_POST['message'] ?? '');
+
+                    if (!empty($sName) && !empty($sEmail) && !empty($sCourse)) {
+                      try {
+                        $stmtEnroll = $pdo->prepare("INSERT INTO enrollments (student_name, email, phone, course, message, status) VALUES (?, ?, ?, ?, ?, 'pending')");
+                        $stmtEnroll->execute([$sName, $sEmail, $sPhone, $sCourse, $sMessage]);
+                        $enrollMsg = '<div class="alert alert-success p-2 mb-3 text-center" style="font-size: 13px; border-radius: 8px; background-color: #d1e7dd; color: #0f5132;">Thank you for enrolling! Our team will contact you shortly.</div>';
+                      } catch (Exception $e) {
+                        $enrollMsg = '<div class="alert alert-danger p-2 mb-3 text-center" style="font-size: 13px; border-radius: 8px;">An error occurred while submitting. Please try again.</div>';
+                      }
+                    }
+                  }
+                  ?>
+                  <?= $enrollMsg ?>
+                  <form action="index.php#enroll-form" method="POST">
+                    <input type="hidden" name="submit_enrollment" value="1">
                     <div class="form-group mb-3">
-                      <input type="text" class="form-control enroll-field" placeholder="Your Name" required />
+                      <input type="text" name="student_name" class="form-control enroll-field" placeholder="Your Full Name" required />
                     </div>
                     <div class="form-group mb-3">
-                      <input type="email" class="form-control enroll-field" placeholder="Email Address" required />
+                      <input type="email" name="email" class="form-control enroll-field" placeholder="Email Address" required />
                     </div>
                     <div class="form-group mb-3">
-                      <select class="form-control enroll-field enroll-select" required>
-                        <option value="" disabled selected>Choose Course</option>
-                        <option value="engineering">Engineering & Technology</option>
-                        <option value="medical">Medical & Health Sciences</option>
-                        <option value="management">Business & Management</option>
-                        <option value="cs">Computer Science & IT</option>
-                        <option value="arts">Arts & Humanities</option>
+                      <input type="text" name="phone" class="form-control enroll-field" placeholder="Phone Number" required />
+                    </div>
+                    <div class="form-group mb-3">
+                      <select name="course" class="form-control enroll-field enroll-select" required style="color: #495057;">
+                        <option value="" disabled selected>Choose Course / Class</option>
+                        <option value="CBSE Class III - VIII">CBSE Class III - VIII (All Subjects)</option>
+                        <option value="CBSE Class IX - X">CBSE Class IX - X (All Subjects)</option>
+                        <option value="State Board Class III - X">State Board Class III - X (All Subjects)</option>
+                        <option value="Class XI Mathematics">Class XI Mathematics Special Coaching</option>
+                        <option value="Class XII Mathematics">Class XII Mathematics Special Coaching</option>
                       </select>
                     </div>
                     <div class="form-group mb-4">
-                      <input type="text" class="form-control enroll-field" placeholder="Type Message" />
+                      <input type="text" name="message" class="form-control enroll-field" placeholder="Type Additional Note / Query" />
                     </div>
                     <div class="d-flex align-items-center justify-content-between position-relative">
                       <button type="submit" class="btn enroll-submit-btn">
@@ -444,7 +379,7 @@
                           <rect x="8" y="6" width="38" height="48" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
                           <line x1="14" y1="16" x2="38" y2="16" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
                           <line x1="14" y1="24" x2="38" y2="24" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
-                          <line x1="14" y1="32" x2="34" y2="32" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
+                          <line x1="14" y1="32" x2="34" y2="34" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
                           <line x1="14" y1="40" x2="28" y2="40" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"/>
                           <g transform="rotate(-35 44 40)">
                             <rect x="38" y="10" width="8" height="30" rx="2" fill="#1D4ED8"/>
@@ -466,6 +401,45 @@
     <!-- Enrollment CTA Section end -->
 
     <!-- Image Gallery Section start -->
+    <?php
+    // Fetch Active Gallery Items for Homepage
+    $home_gallery_items = [];
+    try {
+        $stmtHomeGal = $pdo->query("SELECT * FROM gallery WHERE status = 'active' ORDER BY id DESC LIMIT 12");
+        $home_gallery_items = $stmtHomeGal->fetchAll() ?: [];
+    } catch (Exception $e) {
+        $home_gallery_items = [];
+    }
+
+    if (!function_exists('getCategorySlug')) {
+        function getCategorySlug($catName) {
+            return strtolower(trim(preg_replace('/[^a-zA-Z0-9]+/', '-', $catName), '-'));
+        }
+    }
+
+    // Dynamic Categories for homepage
+    $home_categories = [];
+    foreach ($home_gallery_items as $hgItem) {
+        $cRaw = trim($hgItem['category'] ?? '');
+        if (!empty($cRaw)) {
+            $cSlug = getCategorySlug($cRaw);
+            if (!isset($home_categories[$cSlug])) {
+                $home_categories[$cSlug] = $cRaw;
+            }
+        }
+    }
+
+    if (empty($home_categories)) {
+        $home_categories = [
+            'classroom' => 'Classroom',
+            'events' => 'Events & Celebrations',
+            'student-activities' => 'Student Activities',
+            'achievements' => 'Achievements',
+            'campus' => 'Campus & Infrastructure',
+            'workshops' => 'Workshops & Seminars',
+        ];
+    }
+    ?>
     <section class="w-full bg-surface-container-lowest py-space-xl" id="image-gallery">
       <div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin flex flex-col gap-space-lg">
         <!-- Section Header -->
@@ -478,37 +452,41 @@
           </div>
         </div>
 
-
         <!-- Category Filter Pills Bar -->
         <div class="w-full overflow-x-auto pb-2 scrollbar-none">
           <div class="inline-flex items-center gap-2" id="image-filter-container">
             <button class="gallery-filter-btn btn btn-curve transition-all shadow-sm !px-5 !py-2.5 text-sm uppercase font-semibold !bg-[#06bbcc] !text-white" data-cat="all">
               All
             </button>
-            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="classroom">
-              Classroom
-            </button>
-            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="events">
-              Events &amp; Celebrations
-            </button>
-            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="student-activities">
-              Student Activities
-            </button>
-            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="achievements">
-              Achievements
-            </button>
-            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="campus">
-              Campus &amp; Infrastructure
-            </button>
-            <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="workshops">
-              Workshops &amp; Seminars
-            </button>
+            <?php foreach ($home_categories as $hSlug => $hLabel): ?>
+              <button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-5 !py-2.5 text-sm uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="<?= htmlspecialchars($hSlug) ?>">
+                <?= htmlspecialchars($hLabel) ?>
+              </button>
+            <?php endforeach; ?>
           </div>
         </div>
 
         <!-- Responsive 4-Column Image Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md" id="image-grid">
-          <!-- Item 1: Classroom -->
+          <?php if (!empty($home_gallery_items)): ?>
+            <?php foreach ($home_gallery_items as $hPhoto): 
+              $hCatSlug = getCategorySlug($hPhoto['category'] ?? 'general');
+            ?>
+            <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="<?= htmlspecialchars($hCatSlug) ?>" data-gallery-item="">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="<?= htmlspecialchars($hPhoto['title']) ?>" src="<?= htmlspecialchars($hPhoto['image_path']) ?>" alt="<?= htmlspecialchars($hPhoto['title']) ?>">
+              <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+                <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+                </div>
+              </div>
+              <div class="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span class="text-[10px] font-bold uppercase tracking-wider bg-[#ee8c1c] px-2 py-0.5 rounded text-white inline-block mb-1"><?= htmlspecialchars($hPhoto['category']) ?></span>
+                <h4 class="text-xs font-semibold truncate"><?= htmlspecialchars($hPhoto['title']) ?></h4>
+              </div>
+            </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+          <!-- Fallback Demo Items if DB is empty -->
           <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="classroom" data-gallery-item="">
             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High school science coaching classroom in Odisha with an instructor explaining physics wave mechanics diagrams on a board to curious young students." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOG8vxBId6x4T57Qld-iHVEQKtyl0E9cDpIO9GdYPpP2c5_sjEUs1MC5F_fIdFoabNrXhfDlfQDDU3KmNKsiXBcH82bieTcsS1nUKh0iXGBR1agpMqZXZu_8TYvxwZlCOlBBdzmQhET3lK49WyPOUj_wqhoYergYA0GUYuBvj1RmCNq49TmZwNJt7dljLO03lUU68NZlHNUGmp1HJ1nkx4BzVnyAshqYNf0F9frLifoaWY2ZbRSCui7w">
             <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
@@ -544,78 +522,7 @@
               </div>
             </div>
           </div>
-          <!-- Item 5: Classroom -->
-          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="classroom" data-gallery-item="">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Small round table tutorial with a male mathematics mentor explaining coordinate geometry formulas to five attentive high school learners." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP3NvGZcA91JZzi6PRcBu3Nb7dVEZZTKEioerG70ewIGq4DuS0Zfr23t6vZQmU7wl1sKgrTuj8ikXMG5BREI6HHNjxEfyNd0nHZtO6hgNuSdAIT9lsBB3TWQnirKW5bxdRiYcruHSyMeIlnu87tnz8wyG_v5r2t0H9KdqzBqNRFMlhm-wCtDuoi5g1VT0V25gokVyRLmiaM52vI8KUnQmvdikA8Z2FcOGPWxheqiWKZivqppHgv-9dqA">
-            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
-              </div>
-            </div>
-          </div>
-          <!-- Item 6: Campus & Infrastructure -->
-          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="campus" data-gallery-item="">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Spacious modern coaching library and self-study reading hall in Baripada with organized educational book stacks and quiet individual study desks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiZ5CobCBfPlnszGaEs-n3097O84SF4tj4TaSxaCWZ8A6bwQZlIuOOrONv1YmgtZTdVsp1wfhvSY_mSSiCPYE3i6gvqmY6OOGrhZO8x_ooqmkVCOctq1trENDlu6wBJ41sylF4kwWzGZiGHvjlK67DCIJc00hdWGA6Ukqcx7u0NJyVsuuM6yC69Cz8fqxmusSqfo2q3glITO34H5S42bA5g63NMpuACEOrHmQVPWKyXLrUBYzxSYMfhA">
-            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
-              </div>
-            </div>
-          </div>
-          <!-- Item 7: Workshops & Seminars -->
-          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="workshops" data-gallery-item="">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Guest educator addressing an auditorium packed with high school students and parents projecting board exam timeline and preparation strategies." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf6UPiUEPYLMvzA1cs2By3CVy7PnKsLN0WKGTRzSqSTSGK_Hmc81vJd0Ib-kO6MQzFcova524peVgzc_uTxziDlFONJaW6Tt2lLr-J191Ne_kvwNCo-ibFFGF-g0QbAqCteZsI0gntEmIPwm4_iqHOecaUNq04Ti8YHFF89EN1uarVztKpsV7Rp0Q8026Zs4kJ3NgB15Z9_socszvfWRlS6g-P1tPjpF-RhW8eku-Yb7iil55PsO47-g">
-            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
-              </div>
-            </div>
-          </div>
-          <!-- Item 8: Student Activities -->
-          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="student-activities" data-gallery-item="">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Competitive student study circle huddled over mock test question papers enthusiastically solving olympiad mathematical puzzles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADcJwq73SdBWppn8WsWFoDcZ1GLGsZaISzPVBRr5DQqCuapq-7IazAV7JtPI7gERQbfkxbeKtpSB3JTVsBYPsWMr_ESf3Si4M4Rn3uxafJ2drVa9gY4H56PPMGg4u5h4exgkpLN6_wmNRHu8Wi5Zex4Ch8oDv7YSpXYMUrEj46oTwVsSwYKWPXMfWeLTEl33B3E4grOBMvp2iP29HxpvPah2wsZ2lVy9AIK0drIwUp_FmVXXVeHmEgTQ">
-            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
-              </div>
-            </div>
-          </div>
-          <!-- Item 9: Events & Celebrations -->
-          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="events" data-gallery-item="">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Traditional Indian Teacher Day celebration in an educational institute with students offering flower garlands and cards to revered faculty members." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMiwUql7JCtq1DHlpQzDufYAApIm2bLjtG45XiNNqUlUp1ZAnBUVnNRt8eAviYn-Y3lBmmiVbXHXZArjIT2G-oSt7s26svhTyz1WyNfUJthn9SDdsGc5cWC8TaQa4ZfibwdFzzRTeTt7KjVik0f55ZK2iOgf-iqA6VBfSS9VWF2zGcmvWfsd2JRHI_HSr2raGfCPh_MhxuF2hTJK63SOTUdTHOiGAlWhI4g7Ge6-YdvdmSre-12RvEaw">
-            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
-              </div>
-            </div>
-          </div>
-          <!-- Item 10: Achievements -->
-          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="achievements" data-gallery-item="">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Scholarship award ceremony with meritorious students receiving certificates and educational scholarships from senior academic directors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc3JDkvOLZWOUoz1BEGRy7tkAmomKuwfDQogiJxHyD7Ywa_zIhWG5iJ052pSPdhUqvcOluX3lcp1-fkIpce3BXQziw4fUBljjHE0m8bxnjk3hI_HDaMZ0pdooehDGtcCTy7g9Yaa3QYJjfGtVXxnyN1Wew2rHpuP5yZzDRs7q8-8znjWJl4wGlEHf47BJbS0Y9Vn1l_c2URsMfPDFTwj8k1xZB8RGr4bFzM2Z5gs5l5c2gEnnI84jvvA">
-            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
-              </div>
-            </div>
-          </div>
-          <!-- Item 11: Classroom -->
-          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="classroom" data-gallery-item="">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Primary and middle school junior foundation students working with colorful educational geometry blocks and math workbooks guided by an affectionate teacher." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxw1IUeAI6t7WvzCWf8GDT6c_OiH8m18qQRZOSikmC0cONjsEcVJoO1g5PHoMPOjROLnLjlfTBY1fDdsTSYgowcUqkJEjlDxY_n7qkLzD0eQn0Hvo57z9DgLaIuU7Hqs3fKsKgIECegoKqst6DkoovmOObzYn7NPvVrd08pPxq5-ocK7nMIGvgo7hkdz6GyiE5gCYfgvkQIkWin4i6zydm8dKMaCtcIky2rK2Xj7RJ52HBpd67CmRclg">
-            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
-              </div>
-            </div>
-          </div>
-          <!-- Item 12: Workshops & Seminars -->
-          <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="workshops" data-gallery-item="">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Parents seated in an academic auditorium conversing with subject faculty during a detailed parent teacher review meeting in Baripada." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEd5XbMDRvJLku-EuPJ36waNX_AmC0NwHmcFtkb5WsLKC3SvNr0OVe09TxDrhOo-GC8T10wFaKVMUrdurF7ayb_XJShNGQbKga1Cuv_vGDeatYOPozJtt-w-96F63Y-YLi1Un4NmOj3pDE7ht-RehZ12VL2RtgRPucir8rLx22ocwrNaALmpdc6dwB1Snl8Ateb7urmC__WOr9j-iH1rPAEUcd5xfx7vby7s7_iweyvWLTrA_co79u5Q">
-            <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-              <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-                <span class="material-symbols-outlined text-[24px]">zoom_in</span>
-              </div>
-            </div>
-          </div>
+          <?php endif; ?>
         </div>
 
         <!-- Empty State Container (Hidden by default) -->
@@ -808,56 +715,7 @@
     </section>
     <!-- End Counter main -->
 
-    <!-- Instructors start -->
-    <section class="instructors py-5">
-      <div class="container">
-        <div class="section-title sc-center justify-content-center text-center borderline mb-5 wow fadeInDown">
-          <div class="title-top">
-            <span class="campus-update-tag">Meet Our Instructors</span>
-            <h2 class="campus-update-heading">LEARN FROM EXPERT <span class="cl-blue">INSTRUCTORS</span></h2>
-          </div>
-        </div>
-        <div class="row instruct-main wow fadeInLeft">
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="ins-main-list">
-              <img src="assets/images/team/team-1.jpg" alt="" />
-              <div class="ins-names">
-                <h4>William Smith</h4>
-                <span class="cl-orange">CEO / Founder</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="ins-main-list">
-              <img src="assets/images/team/team-2.jpg" alt="" />
-              <div class="ins-names">
-                <h4>Nicole Kiyl</h4>
-                <span class="cl-orange">Project Manager</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="ins-main-list">
-              <img src="assets/images/team/team-3.jpg" alt="" />
-              <div class="ins-names">
-                <h4>John Melton</h4>
-                <span class="cl-orange">Instructor</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12">
-            <div class="ins-main-list">
-              <img src="assets/images/team/team-4.jpg" alt="" />
-              <div class="ins-names">
-                <h4>Ketti Helson</h4>
-                <span class="cl-orange">Business Analyst</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Instructors ends -->
+
 
 
     <!-- Testimonial feedback -->
@@ -1069,25 +927,7 @@
     </section>
     <!-- FAQ Section end -->
 
-    <!--  Newsletter start -->
-    <section class="newsletter pt-0">
-      <div class="container">
-        <div class="news-headding text-center">
-          <h2>SIGN UP TO OUR NEWSLETTER</h2>
-          <p>
-            Subscribe to our newsletter and get many <br />
-            interesting things every week
-          </p>
-          <form>
-            <div class="form-group">
-              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Your Email" />
-              <button class="btn"><i class="fas fa-envelope-open-text"></i> Subscribe</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-    <!--  Newsletter end -->
+
 
 <?php
 include 'includes/footer.php';

@@ -31,16 +31,15 @@ jQuery(document).ready(function () {
       label:"" 
     });
 
-    var $slicknav_label;
     $('#responsive-menu').slicknav({
-      duration: 500,
+      duration: 350,
       easingOpen: 'easeInExpo',
       easingClose: 'easeOutExpo',
-      closedSymbol: '<i class="fa fa-angle-down"></i>',
-      openedSymbol: '<i class="fa fa-angle-up"></i>',
+      closedSymbol: '<i class="fa-solid fa-chevron-down"></i>',
+      openedSymbol: '<i class="fa-solid fa-chevron-up"></i>',
       prependTo: '#slicknav-mobile',
       allowParentLinks: true,
-      label:"" 
+      label: '<span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span>'
     });
 
     

@@ -1,6 +1,44 @@
 <?php
 $page_title = "Gallery | Bidyabharati Classes - Baripada, Odisha";
 include 'includes/header.php';
+
+// Fetch Active Gallery Items from DB
+$db_gallery_items = [];
+try {
+    $stmtGal = $pdo->query("SELECT * FROM gallery WHERE status = 'active' ORDER BY id DESC");
+    $db_gallery_items = $stmtGal->fetchAll() ?: [];
+} catch (Exception $e) {
+    $db_gallery_items = [];
+}
+
+// Helper to convert Category Name to slug
+function getCategorySlug($catName) {
+    return strtolower(trim(preg_replace('/[^a-zA-Z0-9]+/', '-', $catName), '-'));
+}
+
+// Extract unique categories from DB items
+$dynamic_categories = [];
+foreach ($db_gallery_items as $gItem) {
+    $catRaw = trim($gItem['category'] ?? '');
+    if (!empty($catRaw)) {
+        $slug = getCategorySlug($catRaw);
+        if (!isset($dynamic_categories[$slug])) {
+            $dynamic_categories[$slug] = $catRaw;
+        }
+    }
+}
+
+// Default fallback categories if no DB items yet
+if (empty($dynamic_categories)) {
+    $dynamic_categories = [
+        'classroom' => 'Classroom',
+        'events' => 'Events & Celebrations',
+        'student-activities' => 'Student Activities',
+        'achievements' => 'Achievements',
+        'campus' => 'Campus & Infrastructure',
+        'workshops' => 'Workshops & Seminars',
+    ];
+}
 ?>
 <main>
 <!-- Top Notification Ribbon -->
@@ -44,7 +82,7 @@ include 'includes/header.php';
   <div class="counter-wrap !p-4 !bg-transparent !shadow-none !border-0">
     <div class="content flex justify-between gap-6">
       <div class="value-pin !p-2">
-        <span class="value !text-3xl !mb-1 text-[#06bbcc] font-extrabold">450+</span>
+        <span class="value !text-3xl !mb-1 text-[#06bbcc] font-extrabold"><?= count($db_gallery_items) > 0 ? (count($db_gallery_items) . '+') : '450+' ?></span>
         <h5 class="!text-xs text-gray-700 font-bold uppercase">Memories Captured</h5>
       </div>
       <div class="value-pin !p-2">
@@ -115,7 +153,7 @@ include 'includes/header.php';
 <!-- Counter Indicator -->
 <div class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-container-low text-primary font-label-md text-label-md">
 <span class="material-symbols-outlined text-[18px] text-secondary">image</span>
-<span class="font-semibold" id="gallery-count-pill">Showing 12 Photos</span>
+<span class="font-semibold" id="gallery-count-pill">Showing <?= count($db_gallery_items) > 0 ? count($db_gallery_items) : '12' ?> Photos</span>
 </div>
 </div>
 <!-- Category Filter Pills Bar -->
@@ -124,28 +162,34 @@ include 'includes/header.php';
 <button class="gallery-filter-btn btn btn-curve transition-all shadow-sm !px-4 !py-2 text-xs uppercase font-semibold !bg-[#06bbcc] !text-white" data-cat="all">
             All
           </button>
-<button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-4 !py-2 text-xs uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="classroom">
-            Classroom
+<?php foreach ($dynamic_categories as $catSlug => $catLabel): ?>
+<button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-4 !py-2 text-xs uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="<?= htmlspecialchars($catSlug) ?>">
+            <?= htmlspecialchars($catLabel) ?>
           </button>
-<button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-4 !py-2 text-xs uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="events">
-            Events &amp; Celebrations
-          </button>
-<button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-4 !py-2 text-xs uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="student-activities">
-            Student Activities
-          </button>
-<button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-4 !py-2 text-xs uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="achievements">
-            Achievements
-          </button>
-<button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-4 !py-2 text-xs uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="campus">
-            Campus &amp; Infrastructure
-          </button>
-<button class="gallery-filter-btn btn btn-curve btn-white transition-all border border-gray-200 !px-4 !py-2 text-xs uppercase font-semibold text-gray-700 hover:!bg-[#06bbcc] hover:!text-white" data-cat="workshops">
-            Workshops &amp; Seminars
-          </button>
+<?php endforeach; ?>
 </div>
 </div>
 <!-- Responsive 4-Column Image Grid -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md" id="image-grid"><!-- Item 1: Classroom -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md" id="image-grid">
+<?php if (!empty($db_gallery_items)): ?>
+  <?php foreach ($db_gallery_items as $gPhoto): 
+    $cSlug = getCategorySlug($gPhoto['category'] ?? 'general');
+  ?>
+  <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="<?= htmlspecialchars($cSlug) ?>" data-category-label="<?= htmlspecialchars($gPhoto['category'] ?? 'General') ?>" data-gallery-item="">
+    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="<?= htmlspecialchars($gPhoto['title']) ?>" src="<?= htmlspecialchars($gPhoto['image_path']) ?>" alt="<?= htmlspecialchars($gPhoto['title']) ?>">
+    <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
+      <div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
+        <span class="material-symbols-outlined text-[24px]">zoom_in</span>
+      </div>
+    </div>
+    <div class="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <span class="text-[10px] font-bold uppercase tracking-wider bg-[#ee8c1c] px-2 py-0.5 rounded text-white inline-block mb-1"><?= htmlspecialchars($gPhoto['category']) ?></span>
+      <h4 class="text-xs font-semibold truncate"><?= htmlspecialchars($gPhoto['title']) ?></h4>
+    </div>
+  </div>
+  <?php endforeach; ?>
+<?php else: ?>
+<!-- Fallback Demo Items if DB is empty -->
 <div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="classroom" data-gallery-item="">
 <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High school science coaching classroom in Odisha with an instructor explaining physics wave mechanics diagrams on a board to curious young students." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOG8vxBId6x4T57Qld-iHVEQKtyl0E9cDpIO9GdYPpP2c5_sjEUs1MC5F_fIdFoabNrXhfDlfQDDU3KmNKsiXBcH82bieTcsS1nUKh0iXGBR1agpMqZXZu_8TYvxwZlCOlBBdzmQhET3lK49WyPOUj_wqhoYergYA0GUYuBvj1RmCNq49TmZwNJt7dljLO03lUU68NZlHNUGmp1HJ1nkx4BzVnyAshqYNf0F9frLifoaWY2ZbRSCui7w">
 <div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
@@ -181,78 +225,8 @@ include 'includes/header.php';
 </div>
 </div>
 </div>
-<!-- Item 5: Classroom -->
-<div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="classroom" data-gallery-item="">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Small round table tutorial with a male mathematics mentor explaining coordinate geometry formulas to five attentive high school learners." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP3NvGZcA91JZzi6PRcBu3Nb7dVEZZTKEioerG70ewIGq4DuS0Zfr23t6vZQmU7wl1sKgrTuj8ikXMG5BREI6HHNjxEfyNd0nHZtO6hgNuSdAIT9lsBB3TWQnirKW5bxdRiYcruHSyMeIlnu87tnz8wyG_v5r2t0H9KdqzBqNRFMlhm-wCtDuoi5g1VT0V25gokVyRLmiaM52vI8KUnQmvdikA8Z2FcOGPWxheqiWKZivqppHgv-9dqA">
-<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-<div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">zoom_in</span>
+<?php endif; ?>
 </div>
-</div>
-</div>
-<!-- Item 6: Campus & Infrastructure -->
-<div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="campus" data-gallery-item="">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Spacious modern coaching library and self-study reading hall in Baripada with organized educational book stacks and quiet individual study desks." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiZ5CobCBfPlnszGaEs-n3097O84SF4tj4TaSxaCWZ8A6bwQZlIuOOrONv1YmgtZTdVsp1wfhvSY_mSSiCPYE3i6gvqmY6OOGrhZO8x_ooqmkVCOctq1trENDlu6wBJ41sylF4kwWzGZiGHvjlK67DCIJc00hdWGA6Ukqcx7u0NJyVsuuM6yC69Cz8fqxmusSqfo2q3glITO34H5S42bA5g63NMpuACEOrHmQVPWKyXLrUBYzxSYMfhA">
-<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-<div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">zoom_in</span>
-</div>
-</div>
-</div>
-<!-- Item 7: Workshops & Seminars -->
-<div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="workshops" data-gallery-item="">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Guest educator addressing an auditorium packed with high school students and parents projecting board exam timeline and preparation strategies." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf6UPiUEPYLMvzA1cs2By3CVy7PnKsLN0WKGTRzSqSTSGK_Hmc81vJd0Ib-kO6MQzFcova524peVgzc_uTxziDlFONJaW6Tt2lLr-J191Ne_kvwNCo-ibFFGF-g0QbAqCteZsI0gntEmIPwm4_iqHOecaUNq04Ti8YHFF89EN1uarVztKpsV7Rp0Q8026Zs4kJ3NgB15Z9_socszvfWRlS6g-P1tPjpF-RhW8eku-Yb7iil55PsO47-g">
-<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-<div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">zoom_in</span>
-</div>
-</div>
-</div>
-<!-- Item 8: Student Activities -->
-<div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="student-activities" data-gallery-item="">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Competitive student study circle huddled over mock test question papers enthusiastically solving olympiad mathematical puzzles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADcJwq73SdBWppn8WsWFoDcZ1GLGsZaISzPVBRr5DQqCuapq-7IazAV7JtPI7gERQbfkxbeKtpSB3JTVsBYPsWMr_ESf3Si4M4Rn3uxafJ2drVa9gY4H56PPMGg4u5h4exgkpLN6_wmNRHu8Wi5Zex4Ch8oDv7YSpXYMUrEj46oTwVsSwYKWPXMfWeLTEl33B3E4grOBMvp2iP29HxpvPah2wsZ2lVy9AIK0drIwUp_FmVXXVeHmEgTQ">
-<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-<div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">zoom_in</span>
-</div>
-</div>
-</div>
-<!-- Item 9: Events & Celebrations -->
-<div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="events" data-gallery-item="">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Traditional Indian Teacher Day celebration in an educational institute with students offering flower garlands and cards to revered faculty members." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMiwUql7JCtq1DHlpQzDufYAApIm2bLjtG45XiNNqUlUp1ZAnBUVnNRt8eAviYn-Y3lBmmiVbXHXZArjIT2G-oSt7s26svhTyz1WyNfUJthn9SDdsGc5cWC8TaQa4ZfibwdFzzRTeTt7KjVik0f55ZK2iOgf-iqA6VBfSS9VWF2zGcmvWfsd2JRHI_HSr2raGfCPh_MhxuF2hTJK63SOTUdTHOiGAlWhI4g7Ge6-YdvdmSre-12RvEaw">
-<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-<div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">zoom_in</span>
-</div>
-</div>
-</div>
-<!-- Item 10: Achievements -->
-<div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="achievements" data-gallery-item="">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Scholarship award ceremony with meritorious students receiving certificates and educational scholarships from senior academic directors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc3JDkvOLZWOUoz1BEGRy7tkAmomKuwfDQogiJxHyD7Ywa_zIhWG5iJ052pSPdhUqvcOluX3lcp1-fkIpce3BXQziw4fUBljjHE0m8bxnjk3hI_HDaMZ0pdooehDGtcCTy7g9Yaa3QYJjfGtVXxnyN1Wew2rHpuP5yZzDRs7q8-8znjWJl4wGlEHf47BJbS0Y9Vn1l_c2URsMfPDFTwj8k1xZB8RGr4bFzM2Z5gs5l5c2gEnnI84jvvA">
-<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-<div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">zoom_in</span>
-</div>
-</div>
-</div>
-<!-- Item 11: Classroom -->
-<div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="classroom" data-gallery-item="">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Primary and middle school junior foundation students working with colorful educational geometry blocks and math workbooks guided by an affectionate teacher." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxw1IUeAI6t7WvzCWf8GDT6c_OiH8m18qQRZOSikmC0cONjsEcVJoO1g5PHoMPOjROLnLjlfTBY1fDdsTSYgowcUqkJEjlDxY_n7qkLzD0eQn0Hvo57z9DgLaIuU7Hqs3fKsKgIECegoKqst6DkoovmOObzYn7NPvVrd08pPxq5-ocK7nMIGvgo7hkdz6GyiE5gCYfgvkQIkWin4i6zydm8dKMaCtcIky2rK2Xj7RJ52HBpd67CmRclg">
-<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-<div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">zoom_in</span>
-</div>
-</div>
-</div>
-<!-- Item 12: Workshops & Seminars -->
-<div class="gallery-card group relative h-72 rounded-2xl overflow-hidden bg-surface-container cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300" data-category="workshops" data-gallery-item="">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Parents seated in an academic auditorium conversing with subject faculty during a detailed parent teacher review meeting in Baripada." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEd5XbMDRvJLku-EuPJ36waNX_AmC0NwHmcFtkb5WsLKC3SvNr0OVe09TxDrhOo-GC8T10wFaKVMUrdurF7ayb_XJShNGQbKga1Cuv_vGDeatYOPozJtt-w-96F63Y-YLi1Un4NmOj3pDE7ht-RehZ12VL2RtgRPucir8rLx22ocwrNaALmpdc6dwB1Snl8Ateb7urmC__WOr9j-iH1rPAEUcd5xfx7vby7s7_iweyvWLTrA_co79u5Q">
-<div class="absolute inset-0 bg-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-on-primary">
-<div class="w-12 h-12 rounded-full bg-surface-container-lowest/30 backdrop-blur-md flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">zoom_in</span>
-</div>
-</div>
-</div></div>
 <!-- Empty State Container (Hidden by default) -->
 <div class="hidden flex-col items-center justify-center text-center py-16 px-4 bg-surface-container-low rounded-2xl" id="gallery-empty-state">
 <div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-outline mb-3">
@@ -272,6 +246,16 @@ include 'includes/header.php';
 </div>
 </section>
 <!-- Video Gallery Section -->
+<?php
+// Fetch Active YouTube Videos from DB
+$db_videos = [];
+try {
+    $stmtVids = $pdo->query("SELECT * FROM video_gallery WHERE status = 'active' ORDER BY id DESC");
+    $db_videos = $stmtVids->fetchAll() ?: [];
+} catch (Exception $e) {
+    $db_videos = [];
+}
+?>
 <section class="w-full bg-surface-container-low py-space-xl" id="video-gallery">
 <div class="max-w-[1240px] mx-auto px-margin-mobile lg:px-margin flex flex-col gap-space-lg">
 <!-- Section Header -->
@@ -288,113 +272,51 @@ include 'includes/header.php';
 <!-- Video badge counter -->
 <div class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm">
 <span class="material-symbols-outlined text-[18px] text-error">play_circle</span>
-<span class="font-semibold" id="video-count-pill">Featured Class Footage</span>
+<span class="font-semibold" id="video-count-pill"><?= count($db_videos) > 0 ? (count($db_videos) . ' YouTube Videos') : 'Featured Class Footage' ?></span>
 </div>
 </div>
-<!-- Video Category Filter -->
 
 <!-- Responsive YouTube Video Grid (4 columns) -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md" id="video-grid">
-<!-- Video Card 1 -->
-<div class="flex flex-col rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-vcat="events" data-video-item="">
-<div class="relative w-full aspect-video bg-primary-container">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=1&amp;rel=0&amp;modestbranding=1" title="Annual Function Highlights"></iframe>
-
+<?php if (!empty($db_videos)): ?>
+  <?php foreach ($db_videos as $vid): ?>
+  <div class="flex flex-col rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-video-item="">
+    <div class="relative w-full aspect-video bg-primary-container">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full object-cover border-0" src="<?= htmlspecialchars($vid['youtube_url']) ?>" title="<?= htmlspecialchars($vid['title']) ?>"></iframe>
+    </div>
+    <div class="flex flex-col p-4 flex-grow justify-between gap-3">
+      <div>
+        <div class="flex items-center justify-between text-xs mb-1">
+          <?php if (!empty($vid['duration'])): ?>
+            <span class="text-slate-500 font-medium"><i class="fa-regular fa-clock mr-1"></i><?= htmlspecialchars($vid['duration']) ?></span>
+          <?php endif; ?>
+        </div>
+        <h3 class="font-headline-sm text-headline-sm text-primary leading-snug line-clamp-2 font-bold font-['Poppins']">
+          <?= htmlspecialchars($vid['title']) ?>
+        </h3>
+        <?php if (!empty($vid['description'])): ?>
+          <p class="font-body-sm text-body-sm text-slate-600 mt-1 line-clamp-2 font-['Inter']">
+            <?= htmlspecialchars($vid['description']) ?>
+          </p>
+        <?php endif; ?>
+      </div>
+      <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+        <span class="text-xs text-[#06bbcc] font-semibold">Bidyabharati Channel</span>
+        <i class="fa-brands fa-youtube text-red-600 text-lg"></i>
+      </div>
+    </div>
+  </div>
+  <?php endforeach; ?>
+<?php else: ?>
+<!-- Empty State Container when no videos added by admin -->
+<div class="col-span-full flex flex-col items-center justify-center text-center py-12 px-4 bg-white rounded-2xl border border-slate-100 shadow-sm w-full">
+  <div class="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center text-red-500 mb-3">
+    <i class="fa-brands fa-youtube text-2xl"></i>
+  </div>
+  <h4 class="font-bold text-lg text-slate-800 font-['Poppins']">No Videos Added Yet</h4>
+  <p class="text-xs text-slate-500 max-w-md mt-1 font-['Inter']">We are currently curating new classroom highlights and video lectures. Please check back soon or visit our admin panel to add YouTube video links!</p>
 </div>
-<div class="flex flex-col p-4 flex-grow justify-between gap-3">
-<div>
-<div class="flex items-center gap-1.5 text-outline text-label-md font-label-md mb-1">
-<span class="material-symbols-outlined text-[14px]">schedule</span>
-<span class="">8:45 mins • Annual Meet</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-primary leading-snug line-clamp-2">
-                Annual Function &amp; Prize Distribution Highlights
-              </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
-                Watch the key addresses, student cultural performances, and academic award recognitions from our Baripada campus.
-              </p>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-label-md text-label-md text-secondary font-semibold">Bidyabharati Channel</span>
-<span class="material-symbols-outlined text-secondary text-[18px]">play_arrow</span>
-</div>
-</div>
-</div>
-<!-- Video Card 2 -->
-<div class="flex flex-col rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-vcat="educational" data-video-item="">
-<div class="relative w-full aspect-video bg-primary-container">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=1&amp;rel=0&amp;modestbranding=1" title="Classroom Dynamics"></iframe>
-
-</div>
-<div class="flex flex-col p-4 flex-grow justify-between gap-3">
-<div>
-<div class="flex items-center gap-1.5 text-outline text-label-md font-label-md mb-1">
-<span class="material-symbols-outlined text-[14px]">schedule</span>
-<span class="">14:20 mins • Physics Class</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-primary leading-snug line-clamp-2">
-                Classroom Dynamics: Making Science Intuitive
-              </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
-                A live demonstration by our senior faculty demystifying Newton’s laws of motion with real-world prototypes.
-              </p>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-label-md text-label-md text-secondary font-semibold">Bidyabharati Channel</span>
-<span class="material-symbols-outlined text-secondary text-[18px]">play_arrow</span>
-</div>
-</div>
-</div>
-<!-- Video Card 3 -->
-<div class="flex flex-col rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-vcat="achievements" data-video-item="">
-<div class="relative w-full aspect-video bg-primary-container">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=1&amp;rel=0&amp;modestbranding=1" title="Toppers Journey"></iframe>
-
-</div>
-<div class="flex flex-col p-4 flex-grow justify-between gap-3">
-<div>
-<div class="flex items-center gap-1.5 text-outline text-label-md font-label-md mb-1">
-<span class="material-symbols-outlined text-[14px]">schedule</span>
-<span class="">6:10 mins • Student Talk</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-primary leading-snug line-clamp-2">
-                Inspiring Student Journey - From Baripada to Rank 1
-              </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
-                Hear from Subham Mohapatra on how consistent test series and daily doubt resolution transformed his performance.
-              </p>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-label-md text-label-md text-secondary font-semibold">Bidyabharati Channel</span>
-<span class="material-symbols-outlined text-secondary text-[18px]">play_arrow</span>
-</div>
-</div>
-</div>
-<!-- Video Card 4 -->
-<div class="flex flex-col rounded-2xl bg-surface-container-lowest shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden" data-vcat="workshops" data-video-item="">
-<div class="relative w-full aspect-video bg-primary-container">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full object-cover" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?controls=1&amp;rel=0&amp;modestbranding=1" title="Parent Teacher Meet"></iframe>
-
-</div>
-<div class="flex flex-col p-4 flex-grow justify-between gap-3">
-<div>
-<div class="flex items-center gap-1.5 text-outline text-label-md font-label-md mb-1">
-<span class="material-symbols-outlined text-[14px]">schedule</span>
-<span class="">11:30 mins • Orientation</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-primary leading-snug line-clamp-2">
-                Parent-Teacher Interaction &amp; Guidance Meet
-              </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-2">
-                Key excerpts on home study schedules, emotional wellness, and balanced exam prep strategies for Class 10 &amp; 12.
-              </p>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="font-label-md text-label-md text-secondary font-semibold">Bidyabharati Channel</span>
-<span class="material-symbols-outlined text-secondary text-[18px]">play_arrow</span>
-</div>
-</div>
-</div>
+<?php endif; ?>
 </div>
 </div>
 </section>

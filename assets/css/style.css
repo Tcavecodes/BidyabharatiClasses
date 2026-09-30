@@ -608,21 +608,33 @@ h4.top-title {
 }
 #preloader #status {
   position: fixed;
-  content: "";
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 50%;
   left: 50%;
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   margin: 0 auto;
-  background: url(../images/loader.gif);
-  background-size: cover;
-  background-position: center;
+  background: url(../images/bclogo.png) no-repeat center center;
+  background-size: contain;
   opacity: 1;
   transform: translate(-50%, -50%);
   visibility: visible;
   transition: all ease-in-out 0.5s;
   z-index: 9999999999;
+  animation: logoPulse 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes logoPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.88);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
 }
 
 /* End Preloader */
@@ -1375,12 +1387,16 @@ nav.navbar.navbar-default.navbar-sticky-in .logo-black {
   }
   .main_header_area .navbar > .container {
     max-width: 100%;
-    padding: 0;
+    padding: 0 15px;
   }
-  .main_header_area .header_menu.fixed-top {
-    position: relative;
-    background: transparent;
-    box-shadow: none;
+  .header_menu.fixed-top {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    background: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12) !important;
   }
 }
 /*          Breadcrumb  CSS        */
@@ -4628,9 +4644,13 @@ footer .footer-upper .col-md-4 {
 
 .faq-body {
   padding: 0 26px 22px 26px;
-  color: #64748b;
+  color: #475569 !important;
   font-size: 15px;
   line-height: 1.75;
+  background-color: #ffffff !important;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 @media (max-width: 767px) {
@@ -4650,5 +4670,114 @@ footer .footer-upper .col-md-4 {
   .faq-body {
     padding: 0 20px 18px 20px;
     font-size: 14px;
+  }
+}
+
+/* ========================================= */
+/*      Mobile Navigation & Hamburger       */
+/* ========================================= */
+.slicknav_menu {
+  display: none;
+  background: transparent;
+  padding: 0;
+}
+
+@media (max-width: 991px) {
+  #bs-example-navbar-collapse-1 {
+    display: none !important;
+  }
+  
+  .slicknav_menu {
+    display: block;
+  }
+
+  .slicknav_btn {
+    position: relative;
+    display: block;
+    vertical-align: middle;
+    float: right;
+    padding: 10px 14px;
+    margin: 5px 0;
+    border-radius: 8px;
+    background-color: #00254e !important;
+    text-decoration: none;
+    cursor: pointer;
+    z-index: 999;
+  }
+
+  .slicknav_btn .slicknav_icon {
+    float: left;
+    width: 20px;
+    height: 14px;
+    margin: 4px 0 0 6px;
+    position: relative;
+  }
+
+  .slicknav_btn .slicknav_icon-bar {
+    display: block;
+    width: 20px;
+    height: 2.5px;
+    background-color: #ffffff !important;
+    border-radius: 2px;
+    margin-bottom: 3.5px;
+  }
+
+  .slicknav_btn .slicknav_icon-bar:last-child {
+    margin-bottom: 0;
+  }
+
+  .slicknav_btn.slicknav_open .slicknav_icon-bar:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+  }
+
+  .slicknav_btn.slicknav_open .slicknav_icon-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .slicknav_btn.slicknav_open .slicknav_icon-bar:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+  }
+
+  .slicknav_nav {
+    clear: both;
+    color: #fff;
+    margin: 0;
+    padding: 10px 0;
+    font-size: 15px;
+    background: #001b3c;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    margin-top: 15px;
+  }
+
+  .slicknav_nav ul {
+    padding: 0;
+    margin: 0 0 0 15px;
+  }
+
+  .slicknav_nav li {
+    display: block;
+    list-style: none;
+  }
+
+  .slicknav_nav a {
+    padding: 10px 20px;
+    margin: 2px 5px;
+    display: block;
+    color: #e2e8f0;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+
+  .slicknav_nav a:hover,
+  .slicknav_nav .slicknav_row:hover {
+    background: #123b6d;
+    color: #38bdf8;
+  }
+
+  .slicknav_nav .slicknav_arrow {
+    font-size: 12px;
+    margin-left: 8px;
   }
 }

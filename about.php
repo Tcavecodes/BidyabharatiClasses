@@ -156,10 +156,19 @@
 <div class="w-16 h-1 bg-brand-gold rounded-full mt-2"></div>
 </div>
 <p class="text-slate-600 text-base leading-relaxed">
-              At <strong>Bidyabharati Classes</strong>, we believe that every student has unique potential waiting to be unlocked. Our aim is not simply to help students memorize formulas or score temporary marks, but to develop deep academic fundamentals, conceptual clarity, disciplined study habits, and a genuine lifelong love for learning.
+              <strong>BIDYABHARATI CLASSES</strong>, formerly known as <strong>A STAR ONE TUTORIAL</strong>, Baghraroad, Baripada, is a trusted centre for quality education, dedicated to nurturing students through strong concepts, disciplined learning, and individual attention.
             </p>
 <p class="text-slate-600 text-base leading-relaxed">
-              Serving the student community of Baripada and surrounding areas, we provide robust and caring academic support for students of both <strong>CBSE and Odia Medium</strong>, covering all foundational and core subjects from <strong>Class 3 through Class 12</strong>.
+              With a rich teaching experience of <strong>more than three decades</strong>, the institute has been committed to helping students develop a strong academic foundation and achieve their educational goals.
+            </p>
+<p class="text-slate-600 text-base leading-relaxed">
+              We provide academic support for <strong>CBSE and State Board students from Classes III to X in all subjects</strong>, along with <strong>specialized Mathematics coaching for Classes XI and XII</strong>.
+            </p>
+<p class="text-slate-600 text-base leading-relaxed">
+              At BIDYABHARATI CLASSES, we believe that every student has the potential to succeed. Our approach focuses on conceptual clarity, regular practice, problem-solving skills, confidence building, and consistent academic progress.
+            </p>
+<p class="text-slate-600 text-base leading-relaxed">
+              Our aim is not merely to prepare students for examinations, but to develop independent thinkers, confident learners, and responsible individuals.
             </p>
 <!-- Motto Quote Bar -->
 <div class="p-4 rounded-2xl bg-gradient-to-r from-[rgba(6,187,204,0.08)] to-[rgba(238,140,28,0.08)] border-l-4 border-[#06bbcc] flex flex-wrap items-center justify-between gap-3 shadow-sm">
@@ -490,20 +499,28 @@
 <!-- Sub-label -->
 <h3 class="text-xs tracking-widest font-bold text-[#2474C6] uppercase mb-2 font-['Poppins']">OUR VISION</h3>
 <!-- Headline -->
-<h3 class="text-2xl font-bold text-[#123B6D] font-['Poppins'] leading-snug mb-4">
-              Inspiring Confident Learners. Building Stronger Foundations.
+<h3 class="text-xl sm:text-2xl font-bold text-[#123B6D] font-['Poppins'] leading-snug mb-4">
+              Shaping Confident and Successful Students for a Brighter Future.
             </h3>
 <!-- Body Paragraph -->
-<p class="text-[#172033]/85 text-[15px] leading-[1.65] font-['Inter']">
-              At Bidyabharati Classes, our vision is to create a learning environment where every student gets the right guidance, encouragement, and academic support to discover their potential. We aspire to become a trusted educational partner for students and parents in Baripada, nurturing learners who are confident, curious, disciplined, and prepared for the challenges ahead.
-            </p>
+<div class="text-[#172033]/85 text-[14px] sm:text-[15px] leading-[1.65] font-['Inter'] space-y-3.5">
+<p class="font-medium text-[#123B6D]">
+                To become a centre of excellence in education where strong concepts, innovative learning, discipline, and values come together to shape confident and successful students.
+              </p>
+<p>
+                We envision creating a learning environment where every student is encouraged to think, explore, question, learn, and achieve their full potential.
+              </p>
+<div class="p-3.5 rounded-xl bg-[#EFF6FF] border-l-4 border-[#2474C6] text-[#123B6D] font-bold text-xs sm:text-sm tracking-wide">
+                <i class="fa-solid fa-sparkles text-[#2474C6] mr-1.5"></i>
+                Education Redefined — empowering young minds for a brighter future.
+              </div>
+</div>
 </div>
 <!-- Card Footer Highlights -->
 <div class="mt-8 pt-6 border-t border-[#2474C6]/15 flex flex-wrap gap-2">
-<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#2474C6]/25 text-[#123B6D]">Confidence</span>
-<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#2474C6]/25 text-[#123B6D]">Curiosity</span>
-<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#2474C6]/25 text-[#123B6D]">Discipline</span>
-<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#2474C6]/25 text-[#123B6D]">Purposeful Growth</span>
+<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#2474C6]/25 text-[#123B6D]">Centre of Excellence</span>
+<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#2474C6]/25 text-[#123B6D]">Innovative Learning</span>
+<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#2474C6]/25 text-[#123B6D]">Education Redefined</span>
 </div>
 </div>
 <!-- RIGHT CARD — MISSION -->
@@ -524,24 +541,56 @@
 <!-- Sub-label -->
 <h3 class="text-xs tracking-widest font-bold text-[#B87D0E] uppercase mb-2 font-['Poppins']">OUR MISSION</h3>
 <!-- Headline -->
-<h3 class="text-2xl font-bold text-[#123B6D] font-['Poppins'] leading-snug mb-4">
-              Making Quality Education More Meaningful and Student-Focused.
+<h3 class="text-xl sm:text-2xl font-bold text-[#123B6D] font-['Poppins'] leading-snug mb-4">
+              Providing Quality, Affordable, and Result-Oriented Education.
             </h3>
 <!-- Body Paragraph -->
-<div class="text-[#172033]/85 text-[15px] leading-[1.65] font-['Inter'] space-y-3">
-<p>
-                Our mission is to provide structured and comprehensive academic coaching for students from Class 3 to Class 12 across CBSE and Odia Medium. Through concept-based teaching, personal attention, regular practice, assessments, and continuous doubt-solving, we strive to make learning easier to understand and more effective.
+<div class="text-[#172033]/85 text-[14px] sm:text-[15px] leading-[1.65] font-['Inter'] space-y-3">
+<p class="font-medium text-[#123B6D]">
+                Our mission is to provide quality, affordable, and result-oriented education in a supportive and disciplined learning environment.
               </p>
-<p>
-                We are committed to helping students understand concepts, strengthen fundamentals, improve consistently, and develop the confidence to achieve their academic goals.
-              </p>
+<p class="font-bold text-[#B87D0E] text-xs uppercase tracking-wider pt-1">We are committed to:</p>
+<ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+<li class="flex items-start gap-2">
+<i class="fa-solid fa-circle-check text-[#D99818] mt-1 shrink-0 text-xs"></i>
+<span>Building strong fundamental concepts from an early stage.</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fa-solid fa-circle-check text-[#D99818] mt-1 shrink-0 text-xs"></i>
+<span>Making Mathematics simple, logical, and interesting.</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fa-solid fa-circle-check text-[#D99818] mt-1 shrink-0 text-xs"></i>
+<span>Providing individual attention and continuous academic guidance.</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fa-solid fa-circle-check text-[#D99818] mt-1 shrink-0 text-xs"></i>
+<span>Developing students' problem-solving, analytical, and critical-thinking skills.</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fa-solid fa-circle-check text-[#D99818] mt-1 shrink-0 text-xs"></i>
+<span>Encouraging regular practice, discipline, and self-learning.</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fa-solid fa-circle-check text-[#D99818] mt-1 shrink-0 text-xs"></i>
+<span>Using modern teaching methods and technology to make learning more effective.</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fa-solid fa-circle-check text-[#D99818] mt-1 shrink-0 text-xs"></i>
+<span>Preparing students not only for examinations but also for future academic challenges.</span>
+</li>
+<li class="flex items-start gap-2">
+<i class="fa-solid fa-circle-check text-[#D99818] mt-1 shrink-0 text-xs"></i>
+<span>Helping every learner grow with confidence, knowledge, character, and responsibility.</span>
+</li>
+</ul>
 </div>
 </div>
 <!-- Card Footer Highlights -->
 <div class="mt-8 pt-6 border-t border-[#F4B942]/20 flex flex-wrap gap-2">
-<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#F4B942]/35 text-[#123B6D]">Class 3–12</span>
-<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#F4B942]/35 text-[#123B6D]">CBSE &amp; Odia Medium</span>
-<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#F4B942]/35 text-[#123B6D]">Conceptual Mastery</span>
+<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#F4B942]/35 text-[#123B6D]">Fundamental Mastery</span>
+<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#F4B942]/35 text-[#123B6D]">Logical Math</span>
+<span class="px-3 py-1 rounded-full text-xs font-semibold bg-white border border-[#F4B942]/35 text-[#123B6D]">Character &amp; Confidence</span>
 </div>
 </div>
 </div>
