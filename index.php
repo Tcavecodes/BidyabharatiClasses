@@ -47,7 +47,7 @@ if (empty($heroSliders)) {
 
 // Fetch active testimonials from DB
 try {
-    $stmtTestimonials = $pdo->query("SELECT * FROM testimonials WHERE status = 'active' ORDER BY id DESC");
+    $stmtTestimonials = $pdo->query("SELECT * FROM testimonials WHERE LOWER(status) = 'active' ORDER BY id DESC");
     $testimonials = $stmtTestimonials->fetchAll() ?: [];
 } catch (Exception $e) {
     $testimonials = [];
@@ -71,6 +71,11 @@ if (empty($testimonials)) {
             'image_path' => 'assets/images/team/user-2.jpg'
         ]
     ];
+}
+
+// If only 1 testimonial exists, duplicate it so Slick Slider (slidesToShow: 2) displays properly without breaking
+if (count($testimonials) === 1) {
+    $testimonials[] = $testimonials[0];
 }
 ?>
     <!-- banner starts -->
