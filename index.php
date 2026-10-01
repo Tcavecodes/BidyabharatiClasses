@@ -44,6 +44,34 @@ if (empty($heroSliders)) {
         ]
     ];
 }
+
+// Fetch active testimonials from DB
+try {
+    $stmtTestimonials = $pdo->query("SELECT * FROM testimonials WHERE status = 'active' ORDER BY id DESC");
+    $testimonials = $stmtTestimonials->fetchAll() ?: [];
+} catch (Exception $e) {
+    $testimonials = [];
+}
+
+// Fallback to default testimonials if DB has no entries
+if (empty($testimonials)) {
+    $testimonials = [
+        [
+            'name' => 'Adam Cheis',
+            'designation' => 'Graphic Designer',
+            'rating' => 5,
+            'message' => 'Bidyabharati Classes provides exceptional academic guidance with personal attention and clear concepts.',
+            'image_path' => 'assets/images/team/user-1.jpg'
+        ],
+        [
+            'name' => 'Amanda Lee',
+            'designation' => 'Student',
+            'rating' => 5,
+            'message' => 'The teachers here are very experienced and supportive. My marks improved significantly after joining.',
+            'image_path' => 'assets/images/team/user-2.jpg'
+        ]
+    ];
+}
 ?>
     <!-- banner starts -->
     <section class="banner-main pb-0">
@@ -701,105 +729,30 @@ if (empty($heroSliders)) {
           </div>
         </div>
         <div class="row review-slider feedback-main wow fadeInUp">
-          <div class="col-md-6">
-            <div class="feedback-inner">
-              <div class="consult-content">
-                <ul class="mb-2">
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star-half-alt"></i></li>
-                </ul>
-                <p class="mb-0">
-                  I am slide content. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
-                  ullamcorper mattis, pulvinar dapibus leo.
-                </p>
-              </div>
-              <div class="consult-title d-flex justify-content-start">
-                <img src="assets/images/team/user-1.jpg" alt="" />
-                <div class="ps-name">
-                  <h5 class="mb-0">Adam Cheis</h5>
-                  <span class="cl-orange">Graphic Designer</span>
+          <?php foreach ($testimonials as $t): ?>
+            <div class="col-md-6">
+              <div class="feedback-inner">
+                <div class="consult-content">
+                  <ul class="mb-2">
+                    <?php 
+                      $r = intval($t['rating'] ?? 5);
+                      for ($s = 1; $s <= 5; $s++): 
+                    ?>
+                      <li><i class="<?= $s <= $r ? 'fas fa-star' : 'far fa-star' ?>"></i></li>
+                    <?php endfor; ?>
+                  </ul>
+                  <p class="mb-0"><?= nl2br(htmlspecialchars($t['message'])) ?></p>
+                </div>
+                <div class="consult-title d-flex justify-content-start">
+                  <img src="<?= htmlspecialchars(!empty($t['image_path']) ? $t['image_path'] : 'assets/images/team/user-1.jpg') ?>" alt="<?= htmlspecialchars($t['name']) ?>" />
+                  <div class="ps-name">
+                    <h5 class="mb-0"><?= htmlspecialchars($t['name']) ?></h5>
+                    <span class="cl-orange"><?= htmlspecialchars($t['designation'] ?: 'Student') ?></span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="feedback-inner">
-              <div class="consult-content">
-                <ul class="mb-2">
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star-half-alt"></i></li>
-                </ul>
-                <p class="mb-0">
-                  I am slide content. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
-                  ullamcorper mattis, pulvinar dapibus leo.
-                </p>
-              </div>
-              <div class="consult-title d-flex justify-content-start">
-                <img src="assets/images/team/user-2.jpg" alt="" />
-                <div class="ps-name">
-                  <h5 class="mb-0">Amanda Lee</h5>
-                  <span class="cl-orange">CEO & Founder Crix</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="feedback-inner">
-              <div class="consult-content">
-                <ul class="mb-2">
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star-half-alt"></i></li>
-                </ul>
-                <p class="mb-0">
-                  I am slide content. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
-                  ullamcorper mattis, pulvinar dapibus leo.
-                </p>
-              </div>
-              <div class="consult-title d-flex justify-content-start">
-                <img src="assets/images/team/user-1.jpg" alt="" />
-                <div class="ps-name">
-                  <h5 class="mb-0">Adam Cheis</h5>
-                  <span class="cl-orange">Graphic Designer</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="feedback-inner">
-              <div class="consult-content">
-                <ul class="mb-2">
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star"></i></li>
-                  <li><i class="fas fa-star-half-alt"></i></li>
-                </ul>
-                <p class="mb-0">
-                  I am slide content. Click edit button to change this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
-                  ullamcorper mattis, pulvinar dapibus leo.
-                </p>
-              </div>
-              <div class="consult-title d-flex justify-content-start">
-                <img src="assets/images/team/user-2.jpg" alt="" />
-                <div class="ps-name">
-                  <h5 class="mb-0">Amanda Lee</h5>
-                  <span class="cl-orange">CEO & Founder Crix</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <?php endforeach; ?>
         </div>
       </div>
     </section>

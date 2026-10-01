@@ -34,11 +34,14 @@
             <h4 class="font-poppins font-bold text-xs text-[#ee8c1c] uppercase tracking-wider">QUICK LINKS</h4>
             <ul class="space-y-2.5 text-xs text-[#94a3b8]">
               <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="index.php">Home</a></li>
-              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="about.php">About Us</a></li>
-              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="course-1.php">Academic Classes</a></li>
-              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="about.php#subjects">Subjects Offered</a></li>
-              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="about.php#why-us">Why Choose Us</a></li>
-              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="gallery.php">Notice Board</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="about.php">About</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="course-1.php">Programs</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="gallery.php">Gallery</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="event.php">Events</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="instructors.php">Faculties</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="achievers.php">Achievers</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="download.php">Downloads</a></li>
+              <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="contact.php">Contact Us</a></li>
             </ul>
           </div>
           <!-- Academic Classes (Col 3) -->

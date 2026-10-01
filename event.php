@@ -80,22 +80,60 @@
     </section>
     <!-- News/Events news start -->
 
-    <!--  Call to action start -->
-    <section class="call-action p-0 wow fadeInUp">
-      <div class="container">
-        <div class="call-wrap">
-          <div class="call-main">
-            <h3 class="mb-4">JOIN THE COMMUNITY COURSE AND <span class="cl-blue"> UPGRADE YOUR SKILL</span></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+
+    <!-- Conversion CTA Section -->
+    <section class="py-16 lg:py-20 bg-gradient-to-r from-[#0c2340] via-[#123B6D] to-[#0c2340] relative overflow-hidden" data-purpose="conversion-cta" id="contact">
+      <!-- Ambient glow backgrounds -->
+      <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-[#06bbcc]/20 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-[#ee8c1c]/15 blur-3xl pointer-events-none"></div>
+
+      <div class="container mx-auto px-4 text-center relative z-10 space-y-6">
+        <span class="campus-update-tag !text-[#ee8c1c] block text-center">Admissions Open 2025–26</span>
+
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight font-['Poppins']">
+          Find the Right Program for <span class="text-[#ee8c1c]">Your Child</span>
+        </h2>
+
+        <p class="text-slate-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-['Inter']">
+          Have questions about classes, subjects, curriculum, or the right program for your child? Get in touch with Bidyabharati Classes and let us help you choose the appropriate academic support.
+        </p>
+
+        <!-- Location Badge -->
+        <div class="inline-flex items-center gap-2 text-white/90 bg-white/10 border border-white/15 px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm">
+          <i class="fa-solid fa-location-dot text-[#ee8c1c]"></i>
+          <span>Baripada, Mayurbhanj, Odisha</span>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="pt-4 flex flex-wrap justify-center gap-4">
+          <a class="btn btn-curve !px-8 !py-3.5 !bg-[#ee8c1c] !text-white hover:!bg-[#e5893e] shadow-lg flex items-center gap-2 font-bold" href="contact.php">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Enquire Now</span>
+          </a>
+          <a class="btn btn-curve btn-white border border-white/20 !px-8 !py-3.5 !bg-emerald-600 !text-white hover:!bg-emerald-700 shadow-lg flex items-center gap-2 font-bold" href="tel:+919437380042">
+            <i class="fa-solid fa-phone"></i>
+            <span>Call Admissions Office</span>
+          </a>
+        </div>
+
+        <!-- Bottom Trust Checklist -->
+        <div class="flex flex-wrap items-center justify-center gap-6 text-slate-300 text-xs sm:text-sm font-medium pt-2">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-[#ee8c1c]"></i>
+            <span>Class 3 to 12</span>
           </div>
-          <div class="call-btn">
-            <a href="contact.php" class="btn">Join Now</a>
+          <span class="text-slate-500">•</span>
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-[#ee8c1c]"></i>
+            <span>CBSE &amp; Odia Medium</span>
+          </div>
+          <span class="text-slate-500">•</span>
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-circle-check text-[#ee8c1c]"></i>
+            <span>Dedicated Mentors in Baripada</span>
           </div>
         </div>
       </div>
     </section>
-    <!--  Call to action end -->
-
-
 
     <?php include 'includes/footer.php'; ?>
