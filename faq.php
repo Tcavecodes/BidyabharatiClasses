@@ -1,5 +1,38 @@
-<?php include 'includes/header.php'; ?>
+<?php 
+include 'includes/header.php'; 
 
+try {
+    $stmtFaqs = $pdo->query("SELECT * FROM faqs WHERE LOWER(status) = 'active' ORDER BY sort_order ASC, id ASC");
+    $allFaqs = $stmtFaqs->fetchAll() ?: [];
+} catch (Exception $e) {
+    $allFaqs = [];
+}
+
+if (empty($allFaqs)) {
+    $allFaqs = [
+        [
+            'question' => 'What courses are offered at Bidyabharati Classes?',
+            'answer' => 'We offer a comprehensive range of coaching programs including Foundation batches for Classes 8 to 10, Medical Entrance (NEET-UG), Engineering Entrance (JEE Main & Advanced), Board Exam preparations (CBSE/ICSE/State Board), and specialized Crash Courses with extensive problem-solving drills.'
+        ],
+        [
+            'question' => 'How to enroll in Bidyabharati Classes?',
+            'answer' => 'Enrolling is straightforward! You can apply directly through our online enrollment form, visit our admissions desk at the campus, or contact our academic counselors. Our team will guide you through batch timings, documentation, and the enrollment process.'
+        ],
+        [
+            'question' => 'What is the fee structure and scholarship options?',
+            'answer' => 'Our fee structure is transparent, affordable, and tailored to the program duration and grade level. We also offer merit-based scholarship fee waivers up to 100% based on our admission & scholarship test, along with flexible installment payment plans.'
+        ],
+        [
+            'question' => 'What is the online coaching course format?',
+            'answer' => 'Our online coaching course combines live interactive virtual lectures with top faculties, recorded class archives for round-the-clock revision, digital study modules, live doubt-clearing sessions, and national-level online mock tests with real-time performance analytics.'
+        ]
+    ];
+}
+
+$half = ceil(count($allFaqs) / 2);
+$col1Faqs = array_slice($allFaqs, 0, $half);
+$col2Faqs = array_slice($allFaqs, $half);
+?>
 
     <!-- Breadcrumb starts -->
     <section class="breadcrumb-main">
@@ -17,307 +50,66 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12">
-            <!--Accordion wrapper-->
+            <!--Accordion wrapper 1-->
             <div class="accordion md-accordion mb-3" id="accordionEx1" role="tablist" aria-multiselectable="true">
-              <!-- Accordion card -->
-              <div class="card">
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingTwo1">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordionEx1"
-                    href="#collapseTwo1"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo1"
-                  >
-                    <h5 class="mb-0">How to Change my Photo from Admin Dashboard? <i class="fas fa-plus"></i></h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseTwo1" class="collapse show" role="tabpanel" aria-labelledby="headingTwo1" data-parent="#accordionEx1">
-                  <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                    <p>
-                      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                      in Bookmarksgrove right at the coast
-                    </p>
+              <?php foreach ($col1Faqs as $idx => $f): ?>
+                <?php 
+                  $cId = "collapseCol1_" . ($idx + 1);
+                  $hId = "headingCol1_" . ($idx + 1);
+                  $isFirst = ($idx === 0);
+                ?>
+                <div class="card">
+                  <div class="card-header" role="tab" id="<?= $hId ?>">
+                    <a
+                      class="<?= $isFirst ? '' : 'collapsed' ?>"
+                      data-toggle="collapse"
+                      data-parent="#accordionEx1"
+                      href="#<?= $cId ?>"
+                      aria-expanded="<?= $isFirst ? 'true' : 'false' ?>"
+                      aria-controls="<?= $cId ?>"
+                    >
+                      <h5 class="mb-0"><?= htmlspecialchars($f['question']) ?> <i class="fas fa-plus"></i></h5>
+                    </a>
+                  </div>
+                  <div id="<?= $cId ?>" class="collapse <?= $isFirst ? 'show' : '' ?>" role="tabpanel" aria-labelledby="<?= $hId ?>" data-parent="#accordionEx1">
+                    <div class="card-body">
+                      <p><?= nl2br(htmlspecialchars($f['answer'])) ?></p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!-- Accordion card -->
-
-              <!-- Accordion card -->
-              <div class="card">
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingTwo21">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordionEx1"
-                    href="#collapseTwo21"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo21"
-                  >
-                    <h5 class="mb-0">How to Change my Subscription Plan using PayPal <i class="fas fa-plus"></i></h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseTwo21" class="collapse" role="tabpanel" aria-labelledby="headingTwo21" data-parent="#accordionEx1">
-                  <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                    <p>
-                      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                      in Bookmarksgrove right at the coast
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
-
-              <!-- Accordion card -->
-              <div class="card">
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingThree31">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordionEx1"
-                    href="#collapseThree31"
-                    aria-expanded="false"
-                    aria-controls="collapseThree31"
-                  >
-                    <h5 class="mb-0">How to Change my Password easily? <i class="fas fa-plus"></i></h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseThree31" class="collapse" role="tabpanel" aria-labelledby="headingThree31" data-parent="#accordionEx1">
-                  <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                    <p>
-                      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                      in Bookmarksgrove right at the coast
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
-
-              <!-- Accordion card -->
-              <div class="card">
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingThree41">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordionEx1"
-                    href="#collapseThree41"
-                    aria-expanded="false"
-                    aria-controls="collapseThree41"
-                  >
-                    <h5 class="mb-0">Why My Card Payment Is Failing? <i class="fas fa-plus"></i></h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseThree41" class="collapse" role="tabpanel" aria-labelledby="headingThree41" data-parent="#accordionEx1">
-                  <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                    <p>
-                      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                      in Bookmarksgrove right at the coast
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
-
-              <!-- Accordion card -->
-              <div class="card">
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingThree5">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordionEx1"
-                    href="#collapseThree5"
-                    aria-expanded="false"
-                    aria-controls="collapseThree5"
-                  >
-                    <h5 class="mb-0">Can I Create A Profile Page For Business? <i class="fas fa-plus"></i></h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseThree5" class="collapse" role="tabpanel" aria-labelledby="headingThree5" data-parent="#accordionEx1">
-                  <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                    <p>
-                      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                      in Bookmarksgrove right at the coast
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
+              <?php endforeach; ?>
             </div>
-            <!-- Accordion wrapper -->
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12">
-            <!--Accordion wrapper-->
+            <!--Accordion wrapper 2-->
             <div class="accordion acc-dark md-accordion mb-3" id="accordionEx2" role="tablist" aria-multiselectable="true">
-              <!-- Accordion card -->
-              <div class="card">
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingTwo61">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordionEx2"
-                    href="#collapseTwo6"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo6"
-                  >
-                    <h5 class="mb-0">What Is The Price Of Posting? <i class="fas fa-plus"></i></h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseTwo6" class="collapse show" role="tabpanel" aria-labelledby="headingTwo61" data-parent="#accordionEx2">
-                  <div class="card-body">
-                    <p>
-                      Ut enim ad minim veniamLorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar
-                      dapibus leo.
-                    </p>
-                    <p>
-                      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                      in Bookmarksgrove right at the coast
-                    </p>
+              <?php foreach ($col2Faqs as $idx => $f): ?>
+                <?php 
+                  $cId = "collapseCol2_" . ($idx + 1);
+                  $hId = "headingCol2_" . ($idx + 1);
+                  $isFirst = ($idx === 0);
+                ?>
+                <div class="card">
+                  <div class="card-header" role="tab" id="<?= $hId ?>">
+                    <a
+                      class="<?= $isFirst ? '' : 'collapsed' ?>"
+                      data-toggle="collapse"
+                      data-parent="#accordionEx2"
+                      href="#<?= $cId ?>"
+                      aria-expanded="<?= $isFirst ? 'true' : 'false' ?>"
+                      aria-controls="<?= $cId ?>"
+                    >
+                      <h5 class="mb-0"><?= htmlspecialchars($f['question']) ?> <i class="fas fa-plus"></i></h5>
+                    </a>
+                  </div>
+                  <div id="<?= $cId ?>" class="collapse <?= $isFirst ? 'show' : '' ?>" role="tabpanel" aria-labelledby="<?= $hId ?>" data-parent="#accordionEx2">
+                    <div class="card-body">
+                      <p><?= nl2br(htmlspecialchars($f['answer'])) ?></p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!-- Accordion card -->
-
-              <!-- Accordion card -->
-              <div class="card">
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingTwo7">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordionEx2"
-                    href="#collapseTwo7"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo7"
-                  >
-                    <h5 class="mb-0">How Do I Post My Listing? <i class="fas fa-plus"></i></h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseTwo7" class="collapse" role="tabpanel" aria-labelledby="headingTwo7" data-parent="#accordionEx2">
-                  <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                    <p>
-                      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                      in Bookmarksgrove right at the coast
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
-
-              <!-- Accordion card -->
-              <div class="card">
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingThree8">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordionEx2"
-                    href="#collapseThree8"
-                    aria-expanded="false"
-                    aria-controls="collapseThree8"
-                  >
-                    <h5 class="mb-0">Check Your Status <i class="fas fa-plus"></i></h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseThree8" class="collapse" role="tabpanel" aria-labelledby="headingThree8" data-parent="#accordionEx2">
-                  <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                    <p>
-                      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                      in Bookmarksgrove right at the coast
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
-
-              <!-- Accordion card -->
-              <div class="card">
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingThree9">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordionEx2"
-                    href="#collapseThree9"
-                    aria-expanded="false"
-                    aria-controls="collapseThree9"
-                  >
-                    <h5 class="mb-0">Who We Are? <i class="fas fa-plus"></i></h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseThree9" class="collapse" role="tabpanel" aria-labelledby="headingThree9" data-parent="#accordionEx2">
-                  <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                    <p>
-                      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                      in Bookmarksgrove right at the coast
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
-
-              <!-- Accordion card -->
-              <div class="card">
-                <!-- Card header -->
-                <div class="card-header" role="tab" id="headingThree10">
-                  <a
-                    class="collapsed"
-                    data-toggle="collapse"
-                    data-parent="#accordionEx2"
-                    href="#collapseThree10"
-                    aria-expanded="false"
-                    aria-controls="collapseThree10"
-                  >
-                    <h5 class="mb-0">Wanna Know Our Special Features? <i class="fas fa-plus"></i></h5>
-                  </a>
-                </div>
-
-                <!-- Card body -->
-                <div id="collapseThree10" class="collapse" role="tabpanel" aria-labelledby="headingThree10" data-parent="#accordionEx2">
-                  <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
-                    <p>
-                      Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live
-                      in Bookmarksgrove right at the coast
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- Accordion card -->
+              <?php endforeach; ?>
             </div>
-            <!-- Accordion wrapper -->
           </div>
         </div>
       </div>
@@ -330,7 +122,7 @@
         <div class="call-wrap">
           <div class="call-main">
             <h3 class="mb-4">JOIN THE COMMUNITY COURSE AND <span class="cl-blue"> UPGRADE YOUR SKILL</span></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+            <p>Empowering students with conceptual clarity, interactive sessions, and competitive exam preparation.</p>
           </div>
           <div class="call-btn">
             <a href="contact.php" class="btn">Join Now</a>
@@ -346,8 +138,8 @@
         <div class="news-headding text-center">
           <h2>SIGN UP TO OUR NEWSLETTER</h2>
           <p>
-            Subscribe to our newsletter and get many <br />
-            interesting things every week
+            Subscribe to our newsletter and get updates <br />
+            about new batches and announcements.
           </p>
           <form>
             <div class="form-group">

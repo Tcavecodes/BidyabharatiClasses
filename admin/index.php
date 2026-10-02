@@ -8,6 +8,11 @@ $countTestimonials = $pdo->query("SELECT COUNT(*) FROM testimonials")->fetchColu
 $countFaculties = $pdo->query("SELECT COUNT(*) FROM faculties")->fetchColumn();
 $countAchievers = $pdo->query("SELECT COUNT(*) FROM achievers")->fetchColumn();
 $countDocuments = $pdo->query("SELECT COUNT(*) FROM documents")->fetchColumn();
+try {
+    $countFaqs = $pdo->query("SELECT COUNT(*) FROM faqs")->fetchColumn();
+} catch (Exception $e) {
+    $countFaqs = 0;
+}
 ?>
 
 <!-- Welcome Banner -->
@@ -106,6 +111,10 @@ $countDocuments = $pdo->query("SELECT COUNT(*) FROM documents")->fetchColumn();
             <a href="documents.php" class="p-4 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/50 flex items-center gap-3 transition-colors">
                 <i class="fa-solid fa-file-circle-plus text-rose-400"></i>
                 <span class="text-sm text-slate-200 font-medium">Upload Document</span>
+            </a>
+            <a href="faqs.php" class="p-4 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/50 flex items-center gap-3 transition-colors">
+                <i class="fa-solid fa-circle-question text-purple-400"></i>
+                <span class="text-sm text-slate-200 font-medium">Manage FAQs (<?= $countFaqs ?>)</span>
             </a>
         </div>
     </div>

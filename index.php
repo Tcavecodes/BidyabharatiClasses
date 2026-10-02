@@ -77,6 +77,35 @@ if (empty($testimonials)) {
 if (count($testimonials) === 1) {
     $testimonials[] = $testimonials[0];
 }
+
+// Fetch active FAQs from DB
+try {
+    $stmtFaqs = $pdo->query("SELECT * FROM faqs WHERE LOWER(status) = 'active' ORDER BY sort_order ASC, id ASC");
+    $faqs = $stmtFaqs->fetchAll() ?: [];
+} catch (Exception $e) {
+    $faqs = [];
+}
+
+if (empty($faqs)) {
+    $faqs = [
+        [
+            'question' => 'What courses are offered?',
+            'answer' => 'We offer a comprehensive range of coaching programs including Foundation batches for Classes 8 to 10, Medical Entrance (NEET-UG), Engineering Entrance (JEE Main & Advanced), Board Exam preparations (CBSE/ICSE/State Board), and specialized Crash Courses with extensive problem-solving drills.'
+        ],
+        [
+            'question' => 'How to enroll?',
+            'answer' => 'Enrolling is straightforward! You can apply directly through our online enrollment form, visit our admissions desk at the campus, or contact our academic counselors. Our team will guide you through batch timings, documentation, and the enrollment process.'
+        ],
+        [
+            'question' => 'Fee structure?',
+            'answer' => 'Our fee structure is transparent, affordable, and tailored to the program duration and grade level. We also offer merit-based scholarship fee waivers up to 100% based on our admission & scholarship test, along with flexible installment payment plans.'
+        ],
+        [
+            'question' => 'What is online coaching course?',
+            'answer' => 'Our online coaching course combines live interactive virtual lectures with top faculties, recorded class archives for round-the-clock revision, digital study modules, live doubt-clearing sessions, and national-level online mock tests with real-time performance analytics.'
+        ]
+    ];
+}
 ?>
     <!-- banner starts -->
     <section class="banner-main pb-0">
@@ -777,81 +806,29 @@ if (count($testimonials) === 1) {
         <!-- FAQ Accordion -->
         <div class="faq-accordion-wrap wow fadeInUp">
           <div class="accordion" id="homeFaqAccordion">
-            <!-- FAQ 1 -->
-            <div class="faq-item-card">
-              <button
-                class="faq-btn"
-                type="button"
-                data-toggle="collapse"
-                data-target="#faqCollapse1"
-                aria-expanded="true"
-                aria-controls="faqCollapse1"
-              >
-                <h4 class="faq-question">What courses are offered?</h4>
-              </button>
-              <div id="faqCollapse1" class="collapse show" data-parent="#homeFaqAccordion">
-                <div class="faq-body">
-                  We offer a comprehensive range of coaching programs including Foundation batches for Classes 8 to 10, Medical Entrance (NEET-UG), Engineering Entrance (JEE Main & Advanced), Board Exam preparations (CBSE/ICSE/State Board), and specialized Crash Courses with extensive problem-solving drills.
+            <?php foreach ($faqs as $index => $faq): ?>
+              <?php 
+                $faqId = 'faqCollapse' . ($index + 1);
+                $isFirst = ($index === 0);
+              ?>
+              <div class="faq-item-card">
+                <button
+                  class="faq-btn <?= $isFirst ? '' : 'collapsed' ?>"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#<?= $faqId ?>"
+                  aria-expanded="<?= $isFirst ? 'true' : 'false' ?>"
+                  aria-controls="<?= $faqId ?>"
+                >
+                  <h4 class="faq-question"><?= htmlspecialchars($faq['question']) ?></h4>
+                </button>
+                <div id="<?= $faqId ?>" class="collapse <?= $isFirst ? 'show' : '' ?>" data-parent="#homeFaqAccordion">
+                  <div class="faq-body">
+                    <?= nl2br(htmlspecialchars($faq['answer'])) ?>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <!-- FAQ 2 -->
-            <div class="faq-item-card">
-              <button
-                class="faq-btn collapsed"
-                type="button"
-                data-toggle="collapse"
-                data-target="#faqCollapse2"
-                aria-expanded="false"
-                aria-controls="faqCollapse2"
-              >
-                <h4 class="faq-question">How to enroll?</h4>
-              </button>
-              <div id="faqCollapse2" class="collapse" data-parent="#homeFaqAccordion">
-                <div class="faq-body">
-                  Enrolling is straightforward! You can apply directly through our online enrollment form, visit our admissions desk at the campus, or contact our academic counselors. Our team will guide you through batch timings, documentation, and the enrollment process.
-                </div>
-              </div>
-            </div>
-
-            <!-- FAQ 3 -->
-            <div class="faq-item-card">
-              <button
-                class="faq-btn collapsed"
-                type="button"
-                data-toggle="collapse"
-                data-target="#faqCollapse3"
-                aria-expanded="false"
-                aria-controls="faqCollapse3"
-              >
-                <h4 class="faq-question">Fee structure?</h4>
-              </button>
-              <div id="faqCollapse3" class="collapse" data-parent="#homeFaqAccordion">
-                <div class="faq-body">
-                  Our fee structure is transparent, affordable, and tailored to the program duration and grade level. We also offer merit-based scholarship fee waivers up to 100% based on our admission & scholarship test, along with flexible installment payment plans.
-                </div>
-              </div>
-            </div>
-
-            <!-- FAQ 4 -->
-            <div class="faq-item-card">
-              <button
-                class="faq-btn collapsed"
-                type="button"
-                data-toggle="collapse"
-                data-target="#faqCollapse4"
-                aria-expanded="false"
-                aria-controls="faqCollapse4"
-              >
-                <h4 class="faq-question">What is online coaching course?</h4>
-              </button>
-              <div id="faqCollapse4" class="collapse" data-parent="#homeFaqAccordion">
-                <div class="faq-body">
-                  Our online coaching course combines live interactive virtual lectures with top faculties, recorded class archives for round-the-clock revision, digital study modules, live doubt-clearing sessions, and national-level online mock tests with real-time performance analytics.
-                </div>
-              </div>
-            </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
