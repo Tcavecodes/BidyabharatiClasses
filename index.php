@@ -268,7 +268,7 @@ if (empty($homeBlogs)) {
         <div class="row align-items-center">
           <div class="col-lg-5 col-md-12 text-center wow fadeInLeft">
             <div class="director-img-container">
-              <img src="assets/images/team/director.jpeg" alt="Director" class="img-fluid director-photo" />
+              <img src="assets/images/team/director.png" alt="Director" class="img-fluid director-photo" />
             </div>
           </div>
           <div class="col-lg-7 col-md-12 wow fadeInRight">
