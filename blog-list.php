@@ -72,7 +72,10 @@ if (empty($blogs)) {
                         <span class="blog-tag"> <?= htmlspecialchars($b['category'] ?? 'Education') ?> </span>
                       </div>
                       <div class="article-content">
-                        <img src="assets/images/team/director.jpeg" alt="Author" class="article-avatar" />
+                        <?php 
+                          $authorImg = (!empty($b['author_image']) && file_exists(__DIR__ . '/' . $b['author_image'])) ? $b['author_image'] : 'assets/images/team/director.jpeg';
+                        ?>
+                        <img src="<?= htmlspecialchars($authorImg) ?>" onerror="this.onerror=null;this.src='assets/images/team/director.jpeg';" alt="Author" class="article-avatar" />
                         <div class="artl-detail">
                           <a href="blog-detail.php?id=<?= $b['id'] ?>">
                             <h4><?= htmlspecialchars($b['title']) ?></h4>
@@ -137,9 +140,18 @@ if (empty($blogs)) {
               </div>
               <div class="side-contact-wp text-center mb-4">
                 <ul class="sidebar-social mb-3">
-                  <li><a href="#" class="bg-fb"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                  <li><a href="#" class="bg-twitter"><i class="fab fa-twitter"></i> Twitter</a></li>
-                  <li><a href="#" class="bg-linkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                  <?php if (!empty($site_info['facebook_url'])): ?>
+                    <li><a href="<?= htmlspecialchars($site_info['facebook_url']) ?>" target="_blank" class="bg-fb"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                  <?php endif; ?>
+                  <?php if (!empty($site_info['twitter_url'])): ?>
+                    <li><a href="<?= htmlspecialchars($site_info['twitter_url']) ?>" target="_blank" class="bg-twitter"><i class="fab fa-twitter"></i> Twitter</a></li>
+                  <?php endif; ?>
+                  <?php if (!empty($site_info['instagram_url'])): ?>
+                    <li><a href="<?= htmlspecialchars($site_info['instagram_url']) ?>" target="_blank" style="background:#e1306c; color:#fff;"><i class="fab fa-instagram"></i> Instagram</a></li>
+                  <?php endif; ?>
+                  <?php if (!empty($site_info['linkedin_url'])): ?>
+                    <li><a href="<?= htmlspecialchars($site_info['linkedin_url']) ?>" target="_blank" class="bg-linkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</a></li>
+                  <?php endif; ?>
                 </ul>
               </div>
             </div>

@@ -106,6 +106,49 @@ if (empty($faqs)) {
         ]
     ];
 }
+
+// Fetch active Blogs for home page
+try {
+    $stmtHomeBlogs = $pdo->query("SELECT * FROM blogs WHERE LOWER(status) = 'active' ORDER BY id DESC LIMIT 3");
+    $homeBlogs = $stmtHomeBlogs->fetchAll() ?: [];
+} catch (Exception $e) {
+    $homeBlogs = [];
+}
+
+if (empty($homeBlogs)) {
+    $homeBlogs = [
+        [
+            'id' => 1,
+            'title' => 'Effective Preparation Strategies for Board & Entrance Examinations',
+            'category' => 'Exam Guidance',
+            'author_name' => 'TIKAM BEHERA',
+            'author_role' => 'Director & Physics Faculty',
+            'image_path' => 'assets/images/blog/blog-1.jpg',
+            'summary' => 'Discover key study habits, time management tips, and problem-solving techniques to excel in Board and Competitive Exams.',
+            'created_at' => date('Y-m-d H:i:s')
+        ],
+        [
+            'id' => 2,
+            'title' => 'The Role of Physics and Problem Solving in Future Careers',
+            'category' => 'Science & Innovation',
+            'author_name' => 'TIKAM BEHERA',
+            'author_role' => 'M. Sc. Physics',
+            'image_path' => 'assets/images/blog/blog-2.jpg',
+            'summary' => 'Why analytical thinking and strong fundamentals in Physics open doors to modern engineering, technology, and research careers.',
+            'created_at' => date('Y-m-d H:i:s')
+        ],
+        [
+            'id' => 3,
+            'title' => 'Building Academic Excellence: Guidance for Class 8 to 10 Foundation Batches',
+            'category' => 'Academic Insights',
+            'author_name' => 'Academic Team',
+            'author_role' => 'Senior Faculty',
+            'image_path' => 'assets/images/blog/blog-3.jpg',
+            'summary' => 'Starting early with foundation courses builds competitive confidence and conceptual strength for senior secondary challenges.',
+            'created_at' => date('Y-m-d H:i:s')
+        ]
+    ];
+}
 ?>
     <!-- banner starts -->
     <section class="banner-main pb-0">
@@ -835,7 +878,56 @@ if (empty($faqs)) {
     </section>
     <!-- FAQ Section end -->
 
-
+    <!-- Blog Section start -->
+    <section class="home-2 blog-article py-5" style="background:#f8fafc;">
+      <div class="container">
+        <div class="section-title sc-center justify-content-center text-center borderline mb-5 wow fadeInDown">
+          <div class="title-top">
+            <span class="campus-update-tag">LATEST NEWS & ARTICLES</span>
+            <h2 class="campus-update-heading">OUR RECENT <span class="cl-blue">BLOG POSTS</span></h2>
+          </div>
+        </div>
+        <div class="row">
+          <?php foreach ($homeBlogs as $b): ?>
+            <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp">
+              <div class="article-list h-100 d-flex flex-column" style="background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.05);">
+                <div class="at-thumbnail">
+                  <a href="blog-detail.php?id=<?= $b['id'] ?>">
+                    <img src="<?= htmlspecialchars(!empty($b['image_path']) ? $b['image_path'] : 'assets/images/blog/blog-1.jpg') ?>" alt="<?= htmlspecialchars($b['title']) ?>" />
+                  </a>
+                  <span class="blog-tag"> <?= htmlspecialchars($b['category'] ?? 'Education') ?> </span>
+                </div>
+                <div class="article-content flex-grow-1 d-flex flex-column">
+                  <?php 
+                    $authorImg = (!empty($b['author_image']) && file_exists(__DIR__ . '/' . $b['author_image'])) ? $b['author_image'] : 'assets/images/team/director.jpeg';
+                  ?>
+                  <img src="<?= htmlspecialchars($authorImg) ?>" onerror="this.onerror=null;this.src='assets/images/team/director.jpeg';" alt="Author" class="article-avatar" />
+                  <div class="artl-detail flex-grow-1">
+                    <a href="blog-detail.php?id=<?= $b['id'] ?>">
+                      <h4><?= htmlspecialchars($b['title']) ?></h4>
+                    </a>
+                    <p><?= htmlspecialchars($b['summary'] ?: substr(strip_tags($b['content'] ?? ''), 0, 90) . '...') ?></p>
+                    <a href="blog-detail.php?id=<?= $b['id'] ?>" class="bl-link">Read More <i class="fas fa-angle-double-right"></i></a>
+                  </div>
+                  <div class="artl-bottom mt-auto">
+                    <ul class="d-flex justify-content-between align-items-center">
+                      <li><i class="far fa-calendar-alt mr-1"></i> <?= date('M d, Y', strtotime($b['created_at'])) ?></li>
+                      <li><span class="text-primary font-weight-bold" style="font-size:12px;"><?= htmlspecialchars($b['author_name'] ?? 'Admin') ?></span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php endforeach; ?>
+        </div>
+        <div class="text-center mt-4">
+          <a href="blog-list.php" class="btn text-white px-4 py-2 font-weight-bold" style="background:#4f46e5; border-radius:30px; font-size:14px;">
+            View All Blogs <i class="fas fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- Blog Section end -->
 
 <?php
 include 'includes/footer.php';
