@@ -39,7 +39,7 @@
                   </div>
                   <div class="customize-ct m-0">
                     <h4>
-                      <a href="course-detail.php">EPATHSHALA’S ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
+                      <a href="course-detail.php">BIDYABHARATI CLASSES’ ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
                     </h4>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -53,7 +53,7 @@
                   </div>
                   <div class="customize-ct m-0">
                     <h4>
-                      <a href="course-detail.php">EPATHSHALA’S ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
+                      <a href="course-detail.php">BIDYABHARATI CLASSES’ ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
                     </h4>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -67,7 +67,7 @@
                   </div>
                   <div class="customize-ct m-0">
                     <h4>
-                      <a href="course-detail.php">REUNION EVENT: EPATHSHALA’S ALUMNI GOLF TOUR</a>
+                      <a href="course-detail.php">REUNION EVENT: BIDYABHARATI CLASSES’ ALUMNI GOLF TOUR</a>
                     </h4>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -95,7 +95,7 @@
                   </div>
                   <div class="customize-ct m-0">
                     <h4>
-                      <a href="course-detail.php">EPATHSHALA’S ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
+                      <a href="course-detail.php">BIDYABHARATI CLASSES’ ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
                     </h4>
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -127,7 +127,7 @@
                   </div>
                   <div class="customize-ct m-0">
                     <h6 class="mb-0">
-                      <a href="course-detail.php">EPATHSHALA’S ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
+                      <a href="course-detail.php">BIDYABHARATI CLASSES’ ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
                     </h6>
                     <span class="cust-meta"> August 20, 2021</span>
                   </div>
@@ -149,7 +149,7 @@
                   </div>
                   <div class="customize-ct m-0">
                     <h6 class="mb-0">
-                      <a href="course-detail.php">REUNION EVENT: EPATHSHALA’S ALUMNI GOLF TOUR</a>
+                      <a href="course-detail.php">REUNION EVENT: BIDYABHARATI CLASSES’ ALUMNI GOLF TOUR</a>
                     </h6>
                     <span class="cust-meta"> August 20, 2021</span>
                   </div>
@@ -160,7 +160,7 @@
                   </div>
                   <div class="customize-ct m-0">
                     <h6 class="mb-0">
-                      <a href="course-detail.php">EPATHSHALA’S ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
+                      <a href="course-detail.php">BIDYABHARATI CLASSES’ ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
                     </h6>
                     <span class="cust-meta"> August 20, 2021</span>
                   </div>

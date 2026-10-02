@@ -208,7 +208,7 @@ if (count($testimonials) === 1) {
               </div>
               <div class="director-content">
                 <p>
-                  Welcome to ePathshala, where academic excellence meets innovation. We are dedicated to providing students with high-quality education, modern learning resources, and the guidance required to achieve their career goals and excel in a rapidly evolving world.
+                  Welcome to Bidyabharati Classes, where academic excellence meets innovation. We are dedicated to providing students with high-quality education, modern learning resources, and the guidance required to achieve their career goals and excel in a rapidly evolving world.
                 </p>
                 <p>
                   We believe in fostering holistic development through practical learning, dedicated mentorship, and comprehensive academic experiences. Our mission is to empower every learner with knowledge, confidence, and real-world skills.
@@ -218,7 +218,7 @@ if (count($testimonials) === 1) {
                 </p>
                 <div class="director-signature mt-4">
                   <p class="sign-greeting mb-1">Sincerely,</p>
-                  <h4 class="director-name mb-0">ePathshala</h4>
+                  <h4 class="director-name mb-0">Bidyabharati Classes</h4>
                   <span class="director-designation">Institute Director</span>
                 </div>
               </div>

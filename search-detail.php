@@ -196,7 +196,7 @@
                 </div>
                 <div class="customize-ct m-0">
                   <h6 class="mb-0">
-                    <a href="#">EPATHSHALA’S ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
+                    <a href="#">BIDYABHARATI CLASSES’ ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
                   </h6>
                   <span class="cust-meta"> August 20, 2021</span>
                 </div>
@@ -218,7 +218,7 @@
                 </div>
                 <div class="customize-ct m-0">
                   <h6 class="mb-0">
-                    <a href="#">REUNION EVENT: EPATHSHALA’S ALUMNI GOLF TOUR</a>
+                    <a href="#">REUNION EVENT: BIDYABHARATI CLASSES’ ALUMNI GOLF TOUR</a>
                   </h6>
                   <span class="cust-meta"> August 20, 2021</span>
                 </div>
@@ -229,7 +229,7 @@
                 </div>
                 <div class="customize-ct m-0">
                   <h6 class="mb-0">
-                    <a href="#">EPATHSHALA’S ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
+                    <a href="#">BIDYABHARATI CLASSES’ ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
                   </h6>
                   <span class="cust-meta"> August 20, 2021</span>
                 </div>

@@ -36,7 +36,7 @@
           <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="search_lists text-center mb-4">
               <h4 class="mb-0">
-                <a href="#">EPATHSHALA’S ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
+                <a href="#">BIDYABHARATI CLASSES’ ALUMNI HOT AIR BALLON TRIP IN TURKEY</a>
               </h4>
               <ul class="mb-3">
                 <li>html_design</li>
@@ -50,7 +50,7 @@
           <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="search_lists text-center mb-4">
               <h4 class="mb-0">
-                <a href="search-detail.php">REUNION EVENT: EPATHSHALA’S ALUMNI GOLF TOUR</a>
+                <a href="search-detail.php">REUNION EVENT: BIDYABHARATI CLASSES’ ALUMNI GOLF TOUR</a>
               </h4>
               <ul class="mb-3">
                 <li>html_design</li>
