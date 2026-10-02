@@ -196,7 +196,7 @@ if (count($testimonials) === 1) {
         <div class="row align-items-center">
           <div class="col-lg-5 col-md-12 text-center wow fadeInLeft">
             <div class="director-img-container">
-              <img src="assets/images/team/director.png" alt="Director" class="img-fluid director-photo" />
+              <img src="assets/images/team/director.jpeg" alt="Director" class="img-fluid director-photo" />
             </div>
           </div>
           <div class="col-lg-7 col-md-12 wow fadeInRight">
@@ -218,8 +218,8 @@ if (count($testimonials) === 1) {
                 </p>
                 <div class="director-signature mt-4">
                   <p class="sign-greeting mb-1">Sincerely,</p>
-                  <h4 class="director-name mb-0">Bidyabharati Classes</h4>
-                  <span class="director-designation">Institute Director</span>
+                  <h4 class="director-name mb-0">TIKAM BEHERA</h4>
+                  <span class="director-designation">M. SC. PHYSICS</span>
                 </div>
               </div>
             </div>
@@ -748,11 +748,8 @@ if (count($testimonials) === 1) {
                   </ul>
                   <p class="mb-0"><?= nl2br(htmlspecialchars($t['message'])) ?></p>
                 </div>
-                <div class="consult-title d-flex justify-content-start align-items-center">
-                  <?php 
-                    $userImg = (!empty($t['image_path']) && file_exists(__DIR__ . '/' . $t['image_path'])) ? $t['image_path'] : 'assets/images/team/user-1.jpg';
-                  ?>
-                  <img src="<?= htmlspecialchars($userImg) ?>" onerror="this.onerror=null;this.src='assets/images/team/user-1.jpg';" alt="<?= htmlspecialchars($t['name']) ?>" />
+                <div class="consult-title d-flex justify-content-start">
+                  <img src="<?= htmlspecialchars(!empty($t['image_path']) ? $t['image_path'] : 'assets/images/team/user-1.jpg') ?>" alt="<?= htmlspecialchars($t['name']) ?>" />
                   <div class="ps-name">
                     <h5 class="mb-0"><?= htmlspecialchars($t['name']) ?></h5>
                     <span class="cl-orange"><?= htmlspecialchars($t['designation'] ?: 'Student') ?></span>
