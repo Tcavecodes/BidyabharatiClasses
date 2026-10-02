@@ -13,6 +13,11 @@ try {
 } catch (Exception $e) {
     $countFaqs = 0;
 }
+try {
+    $countBlogs = $pdo->query("SELECT COUNT(*) FROM blogs")->fetchColumn();
+} catch (Exception $e) {
+    $countBlogs = 0;
+}
 ?>
 
 <!-- Welcome Banner -->
@@ -115,6 +120,10 @@ try {
             <a href="faqs.php" class="p-4 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/50 flex items-center gap-3 transition-colors">
                 <i class="fa-solid fa-circle-question text-purple-400"></i>
                 <span class="text-sm text-slate-200 font-medium">Manage FAQs (<?= $countFaqs ?>)</span>
+            </a>
+            <a href="blogs.php" class="p-4 rounded-xl bg-slate-800/60 hover:bg-slate-800 border border-slate-700/50 flex items-center gap-3 transition-colors">
+                <i class="fa-solid fa-newspaper text-emerald-400"></i>
+                <span class="text-sm text-slate-200 font-medium">Blogs & Articles (<?= $countBlogs ?>)</span>
             </a>
         </div>
     </div>

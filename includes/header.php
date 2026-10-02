@@ -215,6 +215,9 @@ try {
                   <li class="<?= (in_array($currentPage, ['event.php', 'event-detail.php'])) ? 'active' : '' ?>">
                     <a href="event.php">Events</a>
                   </li>
+                  <li class="<?= (in_array($currentPage, ['blog-list.php', 'blog-detail.php'])) ? 'active' : '' ?>">
+                    <a href="blog-list.php">Blog</a>
+                  </li>
                   <li class="dropdown submenu <?= (in_array($currentPage, ['instructors.php', 'achievers.php', 'download.php'])) ? 'active' : '' ?>">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       Academics <i class="fas fa-chevron-down"></i>
@@ -268,6 +271,9 @@ try {
               </li>
               <li class="<?= (in_array($currentPage, ['event.php', 'event-detail.php'])) ? 'active' : '' ?>">
                 <a href="event.php"><i class="fa-solid fa-calendar-days"></i> Events</a>
+              </li>
+              <li class="<?= (in_array($currentPage, ['blog-list.php', 'blog-detail.php'])) ? 'active' : '' ?>">
+                <a href="blog-list.php"><i class="fa-solid fa-newspaper"></i> Blog</a>
               </li>
               <li class="custom-mobile-dropdown <?= (in_array($currentPage, ['instructors.php', 'achievers.php', 'download.php'])) ? 'active' : '' ?>">
                 <a href="javascript:void(0)" onclick="toggleMobileSubmenu(this)">

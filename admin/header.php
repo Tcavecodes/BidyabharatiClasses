@@ -107,6 +107,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <span class="sidebar-text">Notice Board</span>
             </a>
 
+            <a href="blogs.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'blogs.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
+                <i class="fa-solid fa-newspaper w-5 text-center"></i>
+                <span class="sidebar-text">Blogs & Articles</span>
+            </a>
+
             <a href="faqs.php" class="flex items-center gap-3 px-3.5 py-2.5 rounded-lg font-medium text-sm transition-all <?= $current_page == 'faqs.php' ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60' ?>">
                 <i class="fa-solid fa-circle-question w-5 text-center"></i>
                 <span class="sidebar-text">FAQ Management</span>
@@ -157,6 +162,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         case 'documents.php': echo '<i class="fa-solid fa-file-pdf text-indigo-400 text-sm"></i> Download Documents'; break;
                         case 'events.php': echo '<i class="fa-solid fa-calendar-days text-indigo-400 text-sm"></i> Campus Events Management'; break;
                         case 'notices.php': echo '<i class="fa-solid fa-bullhorn text-indigo-400 text-sm"></i> Notice Board & Announcements'; break;
+                        case 'blogs.php': echo '<i class="fa-solid fa-newspaper text-indigo-400 text-sm"></i> Blogs & Articles Management'; break;
                         case 'faqs.php': echo '<i class="fa-solid fa-circle-question text-indigo-400 text-sm"></i> FAQ Management'; break;
                         case 'enrollments.php': echo '<i class="fa-solid fa-user-graduate text-indigo-400 text-sm"></i> Student Enrollment Applications'; break;
                         case 'contact_messages.php': echo '<i class="fa-solid fa-envelope text-indigo-400 text-sm"></i> Contact Form Messages'; break;
