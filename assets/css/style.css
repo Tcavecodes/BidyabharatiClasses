@@ -2046,8 +2046,11 @@ nav.navbar.navbar-default.navbar-sticky-in .logo-black {
   padding: 10px 60px;
 }
 .testimonial .feedback-main .feedback-inner .consult-title img {
-  width: 15%;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 .testimonial .feedback-main .feedback-inner .consult-title .ps-name {
   padding-left: 15px;

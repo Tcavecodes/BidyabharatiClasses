@@ -748,8 +748,11 @@ if (count($testimonials) === 1) {
                   </ul>
                   <p class="mb-0"><?= nl2br(htmlspecialchars($t['message'])) ?></p>
                 </div>
-                <div class="consult-title d-flex justify-content-start">
-                  <img src="<?= htmlspecialchars(!empty($t['image_path']) ? $t['image_path'] : 'assets/images/team/user-1.jpg') ?>" alt="<?= htmlspecialchars($t['name']) ?>" />
+                <div class="consult-title d-flex justify-content-start align-items-center">
+                  <?php 
+                    $userImg = (!empty($t['image_path']) && file_exists(__DIR__ . '/' . $t['image_path'])) ? $t['image_path'] : 'assets/images/team/user-1.jpg';
+                  ?>
+                  <img src="<?= htmlspecialchars($userImg) ?>" onerror="this.onerror=null;this.src='assets/images/team/user-1.jpg';" alt="<?= htmlspecialchars($t['name']) ?>" />
                   <div class="ps-name">
                     <h5 class="mb-0"><?= htmlspecialchars($t['name']) ?></h5>
                     <span class="cl-orange"><?= htmlspecialchars($t['designation'] ?: 'Student') ?></span>
