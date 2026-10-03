@@ -7,7 +7,7 @@
 
     <title>ePathsala - Online Education Template</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/bidyarthilogo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/bclogo.png" />
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!--Custom CSS-->

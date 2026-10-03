@@ -116,8 +116,8 @@
               <div class="space-y-2">
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Your Name <span class="text-rose-500">*</span></label>
                 <div class="relative">
-                  <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400"><i class="fa-solid fa-user text-sm"></i></span>
-                  <input type="text" name="name" id="form6Example1" class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:border-[#06bbcc] focus:ring-2 focus:ring-[#06bbcc]/20 focus:outline-none transition-all" placeholder="Enter your full name" required />
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400 z-10"><i class="fa-solid fa-user text-sm"></i></span>
+                  <input type="text" name="name" id="form6Example1" class="w-full !pl-11 !pr-4 !py-3.5 !h-auto bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:border-[#06bbcc] focus:ring-2 focus:ring-[#06bbcc]/20 focus:outline-none transition-all" placeholder="Enter your full name" required />
                 </div>
               </div>
 
@@ -125,8 +125,8 @@
               <div class="space-y-2">
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Email Address <span class="text-rose-500">*</span></label>
                 <div class="relative">
-                  <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400"><i class="fa-solid fa-envelope text-sm"></i></span>
-                  <input type="email" name="email" id="form6Example5" class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:border-[#06bbcc] focus:ring-2 focus:ring-[#06bbcc]/20 focus:outline-none transition-all" placeholder="name@example.com" required />
+                  <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400 z-10"><i class="fa-solid fa-envelope text-sm"></i></span>
+                  <input type="email" name="email" id="form6Example5" class="w-full !pl-11 !pr-4 !py-3.5 !h-auto bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:border-[#06bbcc] focus:ring-2 focus:ring-[#06bbcc]/20 focus:outline-none transition-all" placeholder="name@example.com" required />
                 </div>
               </div>
             </div>
@@ -135,8 +135,8 @@
             <div class="space-y-2">
               <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Phone Number</label>
               <div class="relative">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400"><i class="fa-solid fa-phone text-sm"></i></span>
-                <input type="text" name="phone" id="form6Example6" class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:border-[#06bbcc] focus:ring-2 focus:ring-[#06bbcc]/20 focus:outline-none transition-all" placeholder="+91 98765 43210" />
+                <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400 z-10"><i class="fa-solid fa-phone text-sm"></i></span>
+                <input type="text" name="phone" id="form6Example6" class="w-full !pl-11 !pr-4 !py-3.5 !h-auto bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:border-[#06bbcc] focus:ring-2 focus:ring-[#06bbcc]/20 focus:outline-none transition-all" placeholder="+91 98765 43210" />
               </div>
             </div>
 
@@ -144,8 +144,8 @@
             <div class="space-y-2">
               <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Your Message <span class="text-rose-500">*</span></label>
               <div class="relative">
-                <span class="absolute top-4 left-0 flex items-center pl-4 pointer-events-none text-slate-400"><i class="fa-solid fa-comment-dots text-sm"></i></span>
-                <textarea name="message" class="w-full pl-11 pr-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:border-[#06bbcc] focus:ring-2 focus:ring-[#06bbcc]/20 focus:outline-none transition-all" id="form6Example7" placeholder="Write your message or inquiry here..." rows="4" required></textarea>
+                <span class="absolute top-4 left-0 flex items-center pl-4 pointer-events-none text-slate-400 z-10"><i class="fa-solid fa-comment-dots text-sm"></i></span>
+                <textarea name="message" class="w-full !pl-11 !pr-4 !py-3.5 !h-auto bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:bg-white focus:border-[#06bbcc] focus:ring-2 focus:ring-[#06bbcc]/20 focus:outline-none transition-all" id="form6Example7" placeholder="Write your message or inquiry here..." rows="4" required></textarea>
               </div>
             </div>
 

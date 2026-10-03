@@ -42,7 +42,6 @@
               <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="achievers.php">Achievers</a></li>
               <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="download.php">Downloads</a></li>
               <li><a class="text-[#94a3b8] hover:text-white transition-colors" href="contact.php">Contact Us</a></li>
-              <li class="pt-1"><a class="text-[#ee8c1c] hover:text-white font-semibold transition-colors flex items-center gap-1.5" href="admin/login.php"><i class="fa-solid fa-lock text-[10px]"></i> Admin Login</a></li>
             </ul>
           </div>
           <!-- Academic Classes (Col 3) -->
