@@ -115,7 +115,11 @@
     <!-- Search form popup end -->
 
     <!-- Floating WhatsApp Chat Button -->
-    <a href="https://wa.me/919437380042?text=Hello%21%20I%20would%20like%20to%20know%20more%20about%20Bidyabharati%20Classes." 
+    <?php 
+      $rawWaNum = !empty($site_info['whatsapp']) ? $site_info['whatsapp'] : (!empty($site_info['phone']) ? $site_info['phone'] : '919437380042');
+      $cleanWaNum = preg_replace('/[^0-9]/', '', $rawWaNum);
+    ?>
+    <a href="https://wa.me/<?= htmlspecialchars($cleanWaNum) ?>?text=Hello%21%20I%20would%20like%20to%20know%20more%20about%20Bidyabharati%20Classes." 
        target="_blank" 
        rel="noopener noreferrer"
        aria-label="Chat on WhatsApp"

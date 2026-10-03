@@ -5,10 +5,16 @@ include 'header.php';
 $message = '';
 $error = '';
 
+// Ensure whatsapp column exists in site_settings
+try {
+    $pdo->exec("ALTER TABLE site_settings ADD COLUMN whatsapp VARCHAR(50) DEFAULT '919437380042'");
+} catch (Exception $e) {}
+
 // Handle Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $site_name = trim($_POST['site_name'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
+    $whatsapp = trim($_POST['whatsapp'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $address = trim($_POST['address'] ?? '');
     $working_hours = trim($_POST['working_hours'] ?? '');
@@ -49,12 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         $stmt = $pdo->prepare("UPDATE site_settings SET 
-            site_name = ?, logo_path = ?, favicon_path = ?, phone = ?, email = ?, 
+            site_name = ?, logo_path = ?, favicon_path = ?, phone = ?, whatsapp = ?, email = ?, 
             address = ?, working_hours = ?, map_iframe = ?, facebook_url = ?, 
             twitter_url = ?, instagram_url = ?, linkedin_url = ? WHERE id = 1");
         
         $stmt->execute([
-            $site_name, $logo_path, $favicon_path, $phone, $email, 
+            $site_name, $logo_path, $favicon_path, $phone, $whatsapp, $email, 
             $address, $working_hours, $map_iframe, $facebook_url, 
             $twitter_url, $instagram_url, $linkedin_url
         ]);
@@ -152,6 +158,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Phone Number(s)</label>
                     <input type="text" name="phone" value="<?= htmlspecialchars($siteSettings['phone'] ?? '') ?>" required
+                        class="w-full px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2"><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i> Floating WhatsApp Number (with country code, e.g. 919437380042)</label>
+                    <input type="text" name="whatsapp" value="<?= htmlspecialchars($siteSettings['whatsapp'] ?? '919437380042') ?>" placeholder="e.g. 919437380042"
                         class="w-full px-4 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700 text-white text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                 </div>
 
