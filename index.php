@@ -440,7 +440,7 @@ if (empty($homeBlogs)) {
                     $sCourse = trim($_POST['course'] ?? '');
                     $sMessage = trim($_POST['message'] ?? '');
 
-                    if (!empty($sName) && !empty($sEmail) && !empty($sCourse)) {
+                    if (!empty($sName) && !empty($sPhone) && !empty($sCourse)) {
                       try {
                         $stmtEnroll = $pdo->prepare("INSERT INTO enrollments (student_name, email, phone, course, message, status) VALUES (?, ?, ?, ?, ?, 'pending')");
                         $stmtEnroll->execute([$sName, $sEmail, $sPhone, $sCourse, $sMessage]);
@@ -448,6 +448,8 @@ if (empty($homeBlogs)) {
                       } catch (Exception $e) {
                         $enrollMsg = '<div class="alert alert-danger p-2 mb-3 text-center" style="font-size: 13px; border-radius: 8px;">An error occurred while submitting. Please try again.</div>';
                       }
+                    } else {
+                      $enrollMsg = '<div class="alert alert-warning p-2 mb-3 text-center" style="font-size: 13px; border-radius: 8px;">Please fill in all mandatory fields (Full Name, Phone No., and Course).</div>';
                     }
                   }
                   ?>
@@ -455,13 +457,13 @@ if (empty($homeBlogs)) {
                   <form action="index.php#enroll-form" method="POST">
                     <input type="hidden" name="submit_enrollment" value="1">
                     <div class="form-group mb-3">
-                      <input type="text" name="student_name" class="form-control enroll-field" placeholder="Your Full Name" required />
+                      <input type="text" name="student_name" class="form-control enroll-field" placeholder="Full Name (Mandatory)" required />
                     </div>
                     <div class="form-group mb-3">
-                      <input type="email" name="email" class="form-control enroll-field" placeholder="Email Address" required />
+                      <input type="email" name="email" class="form-control enroll-field" placeholder="Email (Optional)" />
                     </div>
                     <div class="form-group mb-3">
-                      <input type="text" name="phone" class="form-control enroll-field" placeholder="Phone Number" required />
+                      <input type="text" name="phone" class="form-control enroll-field" placeholder="Phone No. (Mandatory)" required />
                     </div>
                     <div class="form-group mb-3">
                       <select name="course" class="form-control enroll-field enroll-select" required style="color: #495057;">
@@ -471,10 +473,11 @@ if (empty($homeBlogs)) {
                         <option value="State Board Class III - X">State Board Class III - X (All Subjects)</option>
                         <option value="Class XI Mathematics">Class XI Mathematics Special Coaching</option>
                         <option value="Class XII Mathematics">Class XII Mathematics Special Coaching</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                     <div class="form-group mb-4">
-                      <input type="text" name="message" class="form-control enroll-field" placeholder="Type Additional Note / Query" />
+                      <input type="text" name="message" class="form-control enroll-field" placeholder="Additional Note or Query" />
                     </div>
                     <div class="d-flex align-items-center justify-content-between position-relative">
                       <button type="submit" class="btn enroll-submit-btn">
