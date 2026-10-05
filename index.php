@@ -239,20 +239,21 @@ if (empty($homeBlogs)) {
               <div class="about-title mb-4">
                 <span class="text-xs font-poppins font-bold uppercase tracking-widest text-[#ee8c1c] block mb-1">About Bidyabharati Classes</span>
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#00254e] tracking-tight uppercase font-['Outfit'] leading-tight mb-2">
-                  Learn Something New, And Grow Your <span class="text-[#06bbcc]">Skill</span>
+                  Building Strong Foundations for <span class="text-[#06bbcc]">Academic Success</span>
                 </h2>
                 <div class="w-16 h-1 bg-[#ee8c1c] rounded-full mt-2"></div>
               </div>
               <div class="about-content">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dignissimos, deleniti adipisci ut inventore commodi iure explicabo excepturi
-                  cumque laudantium quis praesentium id nesciunt! Soluta sunt obcaecati aspernatur nostrum ab.
+                <p class="mb-3">
+                  <strong>BIDYABHARATI CLASSES</strong>, formerly known as <strong>A STAR ONE TUTORIAL</strong>, Baghraroad, Baripada, is a trusted centre for quality education, dedicated to nurturing students through strong concepts, disciplined learning, and individual attention. With a rich teaching experience of more than three decades, the institute has been committed to helping students develop a strong academic foundation and achieve their educational goals.
+                </p>
+                <p class="mb-3">
+                  We provide academic support for CBSE and State Board students from Classes III to X in all subjects, along with specialized Mathematics coaching for Classes XI and XII.
                 </p>
                 <p class="mb-4">
-                  Using our single innovative platform you can remove all your communication dependencies and the messy ratâ€™s nest of email, calls, texts,
-                  wikis, and apps you currently have.
+                  At <strong>BIDYABHARATI CLASSES</strong>, we believe that every student has the potential to succeed. Our approach focuses on conceptual clarity, regular practice, problem-solving skills, confidence building, and consistent academic progress. Our aim is not merely to prepare students for examinations, but to develop independent thinkers, confident learners, and responsible individuals.
                 </p>
-                <a href="#" class="btn">View Course</a>
+                <a href="about.php" class="btn">Read More</a>
               </div>
             </div>
           </div>
