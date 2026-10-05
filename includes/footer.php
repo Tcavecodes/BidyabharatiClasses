@@ -82,7 +82,7 @@
         <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-[#94a3b8] gap-4">
           <p class="text-[#94a3b8]">© 2026 Bidyabharati Classes. All Rights Reserved.</p>
           <div class="flex items-center gap-4 flex-wrap justify-center">
-            <a href="admin/login.php" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-indigo-600 text-slate-300 hover:text-white text-[11px] font-medium transition-all border border-slate-700/60 shadow-sm">
+            <a href="admin/login.php" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-indigo-600 text-slate-300 hover:text-white text-[11px] font-medium transition-all border border-slate-700/60 shadow-sm">
               <i class="fa-solid fa-user-shield text-[#ee8c1c] text-[11px]"></i> Admin Portal
             </a>
             <p class="text-[#94a3b8]">Designed &amp; Developed by <span class="text-[#94a3b8] font-bold">ThinkersCave Technologies</span></p>
