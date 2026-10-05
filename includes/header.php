@@ -15,7 +15,7 @@ try {
 
     <title><?= isset($page_title) ? htmlspecialchars($page_title) : (htmlspecialchars($site_info['site_name'] ?? 'Bidyabharati Classes')) ?></title>
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="<?= (!empty($site_info['favicon_path']) && $site_info['favicon_path'] !== 'assets/images/bidyarthilogo.png') ? htmlspecialchars($site_info['favicon_path']) : 'assets/images/bclogo.png' ?>" />
+    <link rel="shortcut icon" type="image/png" href="assets/images/bclogo.png" />
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!--Custom CSS-->
