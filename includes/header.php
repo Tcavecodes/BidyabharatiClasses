@@ -135,6 +135,16 @@ try {
       }
     };
     </script>
+    <style>
+      a.navbar-brand.text-center {
+        display: inline-flex;
+        align-items: center;
+        color: #691850;
+        font-family: cursive;
+        font-size: 22px;
+        gap: 8px;
+      }
+    </style>
   </head>
   <body class="home-2">
     <!-- Preloader -->
@@ -192,9 +202,9 @@ try {
             <div class="navbar-flex d-flex align-items-center justify-content-between w-100">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
-                <a class="navbar-brand text-center" href="index.php">
-                  <img src="<?= !empty($site_info['logo_path']) ? htmlspecialchars($site_info['logo_path']) : 'assets/images/logo.png' ?>" alt="<?= htmlspecialchars($site_info['site_name'] ?? 'Logo') ?>" style="max-height: 50px;" />
-                </a>
+                 <a class="navbar-brand text-center" href="index.php">
+                    <img src="<?= !empty($site_info['logo_path']) ? htmlspecialchars($site_info['logo_path']) : 'assets/images/logo.png' ?>" alt="<?= htmlspecialchars($site_info['site_name'] ?? 'Bidyabharati Classes') ?>" style="max-height: 50px;"> <span><?= htmlspecialchars($site_info['site_name'] ?? 'Bidyabharati Classes') ?></span>
+                 </a>
               </div>
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="navbar-collapse1" id="bs-example-navbar-collapse-1">
