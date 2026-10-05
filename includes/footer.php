@@ -85,7 +85,7 @@
             <a href="admin/login.php" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-indigo-600 text-slate-300 hover:text-white text-[11px] font-medium transition-all border border-slate-700/60 shadow-sm">
               <i class="fa-solid fa-user-shield text-[#ee8c1c] text-[11px]"></i> Admin Portal
             </a>
-            <p class="text-[#94a3b8]">Designed &amp; Developed by <span class="text-[#94a3b8] font-bold">ThinkersCave Technologies</span></p>
+            <p class="text-[#94a3b8]">Designed &amp; Developed by <a href="https://www.thinkerscave.com/" target="_blank" rel="noopener noreferrer" class="text-[#94a3b8] hover:text-white font-bold transition-colors">ThinkersCave Technologies</a></p>
           </div>
         </div>
       </div>
