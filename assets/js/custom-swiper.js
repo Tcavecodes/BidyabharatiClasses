@@ -20,4 +20,6 @@ var interleaveOffset = 0.5;
         }
     };
 
+if (typeof Swiper !== 'undefined' && document.querySelector('.swiper-container')) {
     var swiper = new Swiper(".swiper-container", swiperOptions);
+}

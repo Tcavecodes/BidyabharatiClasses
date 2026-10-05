@@ -19,7 +19,7 @@ jQuery(document).ready(function () {
     /**
      * Slicknav - Mobile Menu Initialization
      */
-    if ($('#responsive-menu').length) {
+    if (typeof $.fn.slicknav === 'function' && $('#responsive-menu').length) {
       $('#responsive-menu').slicknav({
         duration: 300,
         easingOpen: 'easeInExpo',

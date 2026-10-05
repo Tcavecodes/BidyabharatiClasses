@@ -141,6 +141,7 @@
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/plugin.js"></script>
     <script src="assets/js/main.js?v=<?= time() ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="assets/js/custom-swiper.js"></script>
     <script src="assets/js/custom-nav.js"></script>
   </body>
