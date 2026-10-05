@@ -192,29 +192,29 @@ if (empty($homeBlogs)) {
                 <div class="col-lg-3 col-md-6 p-0">
                   <div class="service-ct-list bg-scblue mb-4">
                     <i class="far fa-user"></i>
-                    <h4 class="cl-white">SKILLED LECTURERS</h4>
-                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                    <h4 class="cl-white">EXPERIENCED FACULTY</h4>
+                    <p class="m-0">Dedicated teachers focused on clear concepts and student progress.</p>
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-6 p-0">
                   <div class="service-ct-list bg-scgreen mb-4">
-                    <i class="fas fa-book-open"></i>
-                    <h4 class="cl-white">BOOK LIBRARY</h4>
-                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                    <i class="fas fa-graduation-cap"></i>
+                    <h4 class="cl-white">CBSE & STATE BOARD</h4>
+                    <p class="m-0">Coaching designed for both CBSE and State Board students.</p>
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-6 p-0">
                   <div class="service-ct-list bg-sc-lblue mb-4">
-                    <i class="fas fa-globe-americas"></i>
-                    <h4 class="cl-white">ONLINE CLASSES</h4>
-                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                    <i class="fas fa-clipboard-check"></i>
+                    <h4 class="cl-white">REGULAR ASSESSMENTS</h4>
+                    <p class="m-0">Tests and practice sessions to track progress and strengthen preparation.</p>
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-6 p-0">
                   <div class="service-ct-list bg-sc-dblue mb-4">
-                    <i class="fas fa-book"></i>
-                    <h4 class="cl-white">HOME PROJECTS</h4>
-                    <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>
+                    <i class="fas fa-user-check"></i>
+                    <h4 class="cl-white">PERSONALIZED ATTENTION</h4>
+                    <p class="m-0">Individual guidance to help every student learn with confidence.</p>
                   </div>
                 </div>
               </div>
