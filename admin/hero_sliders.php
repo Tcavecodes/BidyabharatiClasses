@@ -70,26 +70,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image_path = $stmt->fetchColumn() ?: '';
     }
 
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        $fileName = 'slide_' . time() . '_' . rand(100, 999) . '.' . $ext;
-        $targetFile = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-            $image_path = 'uploads/sliders/' . $fileName;
+    if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $imgCheck = validate_uploaded_file($_FILES['image'], '2 MB', MAX_IMAGE_SIZE_BYTES, ALLOWED_IMAGE_EXTENSIONS);
+        if (!$imgCheck['valid']) {
+            $error = $imgCheck['error'];
+        } else {
+            $ext = $imgCheck['ext'];
+            $fileName = 'slide_' . time() . '_' . rand(100, 999) . '.' . $ext;
+            $targetFile = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $image_path = 'uploads/sliders/' . $fileName;
+            }
         }
     }
 
-    if ($edit_id > 0) {
-        $stmt = $pdo->prepare("UPDATE hero_sliders SET subtitle = ?, title = ?, description = ?, btn1_text = ?, btn1_url = ?, btn2_text = ?, btn2_url = ?, status = ?, image_path = ? WHERE id = ?");
-        $stmt->execute([$subtitle, $title, $description, $btn1_text, $btn1_url, $btn2_text, $btn2_url, $status, $image_path, $edit_id]);
-        $message = "Slider updated successfully!";
-    } else {
-        if (empty($image_path)) {
-            $error = "Please choose a banner image for the slider.";
+    if (empty($error)) {
+        if ($edit_id > 0) {
+            $stmt = $pdo->prepare("UPDATE hero_sliders SET subtitle = ?, title = ?, description = ?, btn1_text = ?, btn1_url = ?, btn2_text = ?, btn2_url = ?, status = ?, image_path = ? WHERE id = ?");
+            $stmt->execute([$subtitle, $title, $description, $btn1_text, $btn1_url, $btn2_text, $btn2_url, $status, $image_path, $edit_id]);
+            $message = "Slider updated successfully!";
         } else {
-            $stmt = $pdo->prepare("INSERT INTO hero_sliders (subtitle, title, description, btn1_text, btn1_url, btn2_text, btn2_url, status, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$subtitle, $title, $description, $btn1_text, $btn1_url, $btn2_text, $btn2_url, $status, $image_path]);
-            $message = "New slider slide added!";
+            if (empty($image_path)) {
+                $error = "Please choose a banner image for the slider.";
+            } else {
+                $stmt = $pdo->prepare("INSERT INTO hero_sliders (subtitle, title, description, btn1_text, btn1_url, btn2_text, btn2_url, status, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$subtitle, $title, $description, $btn1_text, $btn1_url, $btn2_text, $btn2_url, $status, $image_path]);
+                $message = "New slider slide added!";
+            }
         }
     }
 }

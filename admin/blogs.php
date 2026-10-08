@@ -69,29 +69,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image_path = $stmt->fetchColumn() ?: 'assets/images/blog/blog-1.jpg';
     }
 
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        $fileName = 'blog_' . time() . '_' . rand(100, 999) . '.' . $ext;
-        $targetFile = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-            $image_path = 'uploads/blogs/' . $fileName;
+    if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $imgCheck = validate_uploaded_file($_FILES['image'], '2 MB', MAX_IMAGE_SIZE_BYTES, ALLOWED_IMAGE_EXTENSIONS);
+        if (!$imgCheck['valid']) {
+            $error = $imgCheck['error'];
+        } else {
+            $ext = $imgCheck['ext'];
+            $fileName = 'blog_' . time() . '_' . rand(100, 999) . '.' . $ext;
+            $targetFile = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $image_path = 'uploads/blogs/' . $fileName;
+            }
         }
     }
 
-    if (!empty($title) && !empty($content)) {
-        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
+    if (empty($error)) {
+        if (!empty($title) && !empty($content)) {
+            $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title)));
 
-        if ($edit_id > 0) {
-            $stmt = $pdo->prepare("UPDATE blogs SET title = ?, slug = ?, category = ?, author_name = ?, author_role = ?, summary = ?, content = ?, status = ?, image_path = ? WHERE id = ?");
-            $stmt->execute([$title, $slug, $category, $author_name, $author_role, $summary, $content, $status, $image_path, $edit_id]);
-            $message = "Blog post updated successfully!";
+            if ($edit_id > 0) {
+                $stmt = $pdo->prepare("UPDATE blogs SET title = ?, slug = ?, category = ?, author_name = ?, author_role = ?, summary = ?, content = ?, status = ?, image_path = ? WHERE id = ?");
+                $stmt->execute([$title, $slug, $category, $author_name, $author_role, $summary, $content, $status, $image_path, $edit_id]);
+                $message = "Blog post updated successfully!";
+            } else {
+                $stmt = $pdo->prepare("INSERT INTO blogs (title, slug, category, author_name, author_role, summary, content, status, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$title, $slug, $category, $author_name, $author_role, $summary, $content, $status, $image_path]);
+                $message = "New blog post published successfully!";
+            }
         } else {
-            $stmt = $pdo->prepare("INSERT INTO blogs (title, slug, category, author_name, author_role, summary, content, status, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$title, $slug, $category, $author_name, $author_role, $summary, $content, $status, $image_path]);
-            $message = "New blog post published successfully!";
+            $error = "Title and Content fields are required.";
         }
-    } else {
-        $error = "Title and Content fields are required.";
     }
 }
 

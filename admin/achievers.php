@@ -41,23 +41,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image_path = $stmt->fetchColumn() ?: '';
     }
 
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        $fileName = 'ach_' . time() . '_' . rand(100, 999) . '.' . $ext;
-        $targetFile = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-            $image_path = 'uploads/achievers/' . $fileName;
+    if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $imgCheck = validate_uploaded_file($_FILES['image'], '2 MB', MAX_IMAGE_SIZE_BYTES, ALLOWED_IMAGE_EXTENSIONS);
+        if (!$imgCheck['valid']) {
+            $error = $imgCheck['error'];
+        } else {
+            $ext = $imgCheck['ext'];
+            $fileName = 'ach_' . time() . '_' . rand(100, 999) . '.' . $ext;
+            $targetFile = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $image_path = 'uploads/achievers/' . $fileName;
+            }
         }
     }
 
-    if ($edit_id > 0) {
-        $stmt = $pdo->prepare("UPDATE achievers SET student_name = ?, exam_name = ?, rank_score = ?, year = ?, status = ?, image_path = ? WHERE id = ?");
-        $stmt->execute([$student_name, $exam_name, $rank_score, $year, $status, $image_path, $edit_id]);
-        $message = "Achiever details updated!";
-    } else {
-        $stmt = $pdo->prepare("INSERT INTO achievers (student_name, exam_name, rank_score, year, status, image_path) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$student_name, $exam_name, $rank_score, $year, $status, $image_path]);
-        $message = "New achiever added!";
+    if (empty($error)) {
+        if ($edit_id > 0) {
+            $stmt = $pdo->prepare("UPDATE achievers SET student_name = ?, exam_name = ?, rank_score = ?, year = ?, status = ?, image_path = ? WHERE id = ?");
+            $stmt->execute([$student_name, $exam_name, $rank_score, $year, $status, $image_path, $edit_id]);
+            $message = "Achiever details updated!";
+        } else {
+            $stmt = $pdo->prepare("INSERT INTO achievers (student_name, exam_name, rank_score, year, status, image_path) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$student_name, $exam_name, $rank_score, $year, $status, $image_path]);
+            $message = "New achiever added!";
+        }
     }
 }
 
@@ -75,6 +82,13 @@ $items = $pdo->query("SELECT * FROM achievers ORDER BY id DESC")->fetchAll();
     <div class="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm flex items-center gap-3">
         <i class="fa-solid fa-circle-check"></i>
         <span><?= htmlspecialchars($message) ?></span>
+    </div>
+<?php endif; ?>
+
+<?php if ($error): ?>
+    <div class="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm flex items-center gap-3">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span><?= htmlspecialchars($error) ?></span>
     </div>
 <?php endif; ?>
 

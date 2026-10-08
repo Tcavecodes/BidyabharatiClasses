@@ -49,36 +49,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    if (isset($_FILES['doc_file']) && $_FILES['doc_file']['error'] === UPLOAD_ERR_OK) {
-        $ext = strtolower(pathinfo($_FILES['doc_file']['name'], PATHINFO_EXTENSION));
-        $fileName = 'doc_' . time() . '_' . rand(100, 999) . '.' . $ext;
-        $targetFile = $uploadDir . $fileName;
-
-        $bytes = $_FILES['doc_file']['size'];
-        if ($bytes >= 1048576) {
-            $formattedSize = number_format($bytes / 1048576, 2) . ' MB';
+    if (isset($_FILES['doc_file']) && $_FILES['doc_file']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $allowedDocExts = ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'zip', 'jpg', 'jpeg', 'png'];
+        $docCheck = validate_uploaded_file($_FILES['doc_file'], '5 MB', 5 * 1024 * 1024, $allowedDocExts);
+        if (!$docCheck['valid']) {
+            $error = $docCheck['error'];
         } else {
-            $formattedSize = number_format($bytes / 1024, 2) . ' KB';
-        }
+            $ext = $docCheck['ext'];
+            $fileName = 'doc_' . time() . '_' . rand(100, 999) . '.' . $ext;
+            $targetFile = $uploadDir . $fileName;
 
-        if (move_uploaded_file($_FILES['doc_file']['tmp_name'], $targetFile)) {
-            $file_path = 'uploads/documents/' . $fileName;
-            $file_size = $formattedSize;
-            $file_type = $ext;
+            $bytes = $_FILES['doc_file']['size'];
+            if ($bytes >= 1048576) {
+                $formattedSize = number_format($bytes / 1048576, 2) . ' MB';
+            } else {
+                $formattedSize = number_format($bytes / 1024, 2) . ' KB';
+            }
+
+            if (move_uploaded_file($_FILES['doc_file']['tmp_name'], $targetFile)) {
+                $file_path = 'uploads/documents/' . $fileName;
+                $file_size = $formattedSize;
+                $file_type = $ext;
+            }
         }
     }
 
-    if ($edit_id > 0) {
-        $stmt = $pdo->prepare("UPDATE documents SET title = ?, class_name = ?, medium = ?, category = ?, status = ?, file_path = ?, file_size = ?, file_type = ? WHERE id = ?");
-        $stmt->execute([$title, $class_name, $medium, $category, $status, $file_path, $file_size, $file_type, $edit_id]);
-        $message = "Document updated!";
-    } else {
-        if (empty($file_path)) {
-            $error = "Please choose a PDF or document file to upload.";
+    if (empty($error)) {
+        if ($edit_id > 0) {
+            $stmt = $pdo->prepare("UPDATE documents SET title = ?, class_name = ?, medium = ?, category = ?, status = ?, file_path = ?, file_size = ?, file_type = ? WHERE id = ?");
+            $stmt->execute([$title, $class_name, $medium, $category, $status, $file_path, $file_size, $file_type, $edit_id]);
+            $message = "Document updated!";
         } else {
-            $stmt = $pdo->prepare("INSERT INTO documents (title, class_name, medium, category, status, file_path, file_size, file_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$title, $class_name, $medium, $category, $status, $file_path, $file_size, $file_type]);
-            $message = "New document uploaded!";
+            if (empty($file_path)) {
+                $error = "Please choose a PDF or document file to upload.";
+            } else {
+                $stmt = $pdo->prepare("INSERT INTO documents (title, class_name, medium, category, status, file_path, file_size, file_type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$title, $class_name, $medium, $category, $status, $file_path, $file_size, $file_type]);
+                $message = "New document uploaded!";
+            }
         }
     }
 }

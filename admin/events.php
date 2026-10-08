@@ -68,23 +68,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image_path = $stmt->fetchColumn() ?: '';
     }
 
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        $fileName = 'evt_' . time() . '_' . rand(100, 999) . '.' . $ext;
-        $targetFile = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-            $image_path = 'uploads/events/' . $fileName;
+    if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $imgCheck = validate_uploaded_file($_FILES['image'], '2 MB', MAX_IMAGE_SIZE_BYTES, ALLOWED_IMAGE_EXTENSIONS);
+        if (!$imgCheck['valid']) {
+            $error = $imgCheck['error'];
+        } else {
+            $ext = $imgCheck['ext'];
+            $fileName = 'evt_' . time() . '_' . rand(100, 999) . '.' . $ext;
+            $targetFile = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $image_path = 'uploads/events/' . $fileName;
+            }
         }
     }
 
-    if ($edit_id > 0) {
-        $stmt = $pdo->prepare("UPDATE events SET title = ?, event_date = ?, event_time = ?, location = ?, description = ?, rating = ?, status = ?, image_path = ? WHERE id = ?");
-        $stmt->execute([$title, $event_date, $event_time, $location, $description, $rating, $status, $image_path, $edit_id]);
-        $message = "Event updated successfully!";
-    } else {
-        $stmt = $pdo->prepare("INSERT INTO events (title, event_date, event_time, location, description, rating, status, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$title, $event_date, $event_time, $location, $description, $rating, $status, $image_path]);
-        $message = "New event created!";
+    if (empty($error)) {
+        if ($edit_id > 0) {
+            $stmt = $pdo->prepare("UPDATE events SET title = ?, event_date = ?, event_time = ?, location = ?, description = ?, rating = ?, status = ?, image_path = ? WHERE id = ?");
+            $stmt->execute([$title, $event_date, $event_time, $location, $description, $rating, $status, $image_path, $edit_id]);
+            $message = "Event updated successfully!";
+        } else {
+            $stmt = $pdo->prepare("INSERT INTO events (title, event_date, event_time, location, description, rating, status, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$title, $event_date, $event_time, $location, $description, $rating, $status, $image_path]);
+            $message = "New event created!";
+        }
     }
 }
 
@@ -102,6 +109,13 @@ $items = $pdo->query("SELECT * FROM events ORDER BY event_date DESC")->fetchAll(
     <div class="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm flex items-center gap-3">
         <i class="fa-solid fa-circle-check"></i>
         <span><?= htmlspecialchars($message) ?></span>
+    </div>
+<?php endif; ?>
+
+<?php if ($error): ?>
+    <div class="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm flex items-center gap-3">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span><?= htmlspecialchars($error) ?></span>
     </div>
 <?php endif; ?>
 

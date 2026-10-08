@@ -1,6 +1,7 @@
 <?php
 // admin/header.php
 require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/upload_helper.php';
 require_once __DIR__ . '/auth.php';
 check_admin_auth();
 

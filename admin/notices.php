@@ -64,23 +64,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $attachment_path = $stmt->fetchColumn() ?: '';
     }
 
-    if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] === UPLOAD_ERR_OK) {
-        $ext = pathinfo($_FILES['attachment']['name'], PATHINFO_EXTENSION);
-        $fileName = 'notice_' . time() . '_' . rand(100, 999) . '.' . $ext;
-        $targetFile = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['attachment']['tmp_name'], $targetFile)) {
-            $attachment_path = 'uploads/notices/' . $fileName;
+    if (isset($_FILES['attachment']) && $_FILES['attachment']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $allowedNoticeExts = ['pdf', 'doc', 'docx', 'jpg', 'jpeg', 'png', 'webp', 'zip'];
+        $attCheck = validate_uploaded_file($_FILES['attachment'], '5 MB', 5 * 1024 * 1024, $allowedNoticeExts);
+        if (!$attCheck['valid']) {
+            $error = $attCheck['error'];
+        } else {
+            $ext = $attCheck['ext'];
+            $fileName = 'notice_' . time() . '_' . rand(100, 999) . '.' . $ext;
+            $targetFile = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['attachment']['tmp_name'], $targetFile)) {
+                $attachment_path = 'uploads/notices/' . $fileName;
+            }
         }
     }
 
-    if ($edit_id > 0) {
-        $stmt = $pdo->prepare("UPDATE notices SET title = ?, category = ?, notice_date = ?, content = ?, status = ?, attachment_path = ? WHERE id = ?");
-        $stmt->execute([$title, $category, $notice_date, $content, $status, $attachment_path, $edit_id]);
-        $message = "Notice updated!";
-    } else {
-        $stmt = $pdo->prepare("INSERT INTO notices (title, category, notice_date, content, status, attachment_path) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->execute([$title, $category, $notice_date, $content, $status, $attachment_path]);
-        $message = "New notice published!";
+    if (empty($error)) {
+        if ($edit_id > 0) {
+            $stmt = $pdo->prepare("UPDATE notices SET title = ?, category = ?, notice_date = ?, content = ?, status = ?, attachment_path = ? WHERE id = ?");
+            $stmt->execute([$title, $category, $notice_date, $content, $status, $attachment_path, $edit_id]);
+            $message = "Notice updated!";
+        } else {
+            $stmt = $pdo->prepare("INSERT INTO notices (title, category, notice_date, content, status, attachment_path) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$title, $category, $notice_date, $content, $status, $attachment_path]);
+            $message = "New notice published!";
+        }
     }
 }
 
@@ -98,6 +106,13 @@ $items = $pdo->query("SELECT * FROM notices ORDER BY notice_date DESC")->fetchAl
     <div class="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm flex items-center gap-3">
         <i class="fa-solid fa-circle-check"></i>
         <span><?= htmlspecialchars($message) ?></span>
+    </div>
+<?php endif; ?>
+
+<?php if ($error): ?>
+    <div class="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm flex items-center gap-3">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span><?= htmlspecialchars($error) ?></span>
     </div>
 <?php endif; ?>
 

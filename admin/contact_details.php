@@ -34,74 +34,86 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Logo Upload
-    if (isset($_FILES['logo']) && $_FILES['logo']['error'] === UPLOAD_ERR_OK) {
-        $ext = pathinfo($_FILES['logo']['name'], PATHINFO_EXTENSION);
-        $fileName = 'logo_' . time() . '.' . $ext;
-        $targetFile = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['logo']['tmp_name'], $targetFile)) {
-            $logo_path = 'uploads/' . $fileName;
+    if (isset($_FILES['logo']) && $_FILES['logo']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $logoCheck = validate_uploaded_file($_FILES['logo'], '2 MB', MAX_IMAGE_SIZE_BYTES, ALLOWED_IMAGE_EXTENSIONS);
+        if (!$logoCheck['valid']) {
+            $error = "Logo: " . $logoCheck['error'];
+        } else {
+            $ext = $logoCheck['ext'];
+            $fileName = 'logo_' . time() . '.' . $ext;
+            $targetFile = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['logo']['tmp_name'], $targetFile)) {
+                $logo_path = 'uploads/' . $fileName;
+            }
         }
     }
 
     // Favicon Upload
-    if (isset($_FILES['favicon']) && $_FILES['favicon']['error'] === UPLOAD_ERR_OK) {
-        $ext = pathinfo($_FILES['favicon']['name'], PATHINFO_EXTENSION);
-        $fileName = 'favicon_' . time() . '.' . $ext;
-        $targetFile = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['favicon']['tmp_name'], $targetFile)) {
-            $favicon_path = 'uploads/' . $fileName;
-        }
-    }
-
-    try {
-        $stmt = $pdo->prepare("UPDATE site_settings SET 
-            site_name = ?, logo_path = ?, favicon_path = ?, phone = ?, whatsapp = ?, email = ?, 
-            address = ?, working_hours = ?, map_iframe = ?, facebook_url = ?, 
-            twitter_url = ?, instagram_url = ?, linkedin_url = ? WHERE id = 1");
-        
-        $stmt->execute([
-            $site_name, $logo_path, $favicon_path, $phone, $whatsapp, $email, 
-            $address, $working_hours, $map_iframe, $facebook_url, 
-            $twitter_url, $instagram_url, $linkedin_url
-        ]);
-
-        $message = 'Website settings and contact details updated successfully!';
-
-        // Handle Admin Password Change if provided
-        $current_pass = trim($_POST['current_password'] ?? '');
-        $new_pass = trim($_POST['new_password'] ?? '');
-        $confirm_pass = trim($_POST['confirm_password'] ?? '');
-
-        if (!empty($current_pass) || !empty($new_pass) || !empty($confirm_pass)) {
-            if (empty($current_pass) || empty($new_pass) || empty($confirm_pass)) {
-                $error = 'Please fill out all password fields to update password.';
-            } elseif ($new_pass !== $confirm_pass) {
-                $error = 'New password and confirm password do not match.';
-            } elseif (strlen($new_pass) < 6) {
-                $error = 'New password must be at least 6 characters long.';
-            } else {
-                $adminId = $_SESSION['admin_id'] ?? 1;
-                $stmtUser = $pdo->prepare("SELECT * FROM admin_users WHERE id = ?");
-                $stmtUser->execute([$adminId]);
-                $adminUser = $stmtUser->fetch();
-
-                if ($adminUser && (password_verify($current_pass, $adminUser['password']) || ($adminUser['username'] === 'admin' && $current_pass === 'admin123'))) {
-                    $newHash = password_hash($new_pass, PASSWORD_BCRYPT);
-                    $stmtUp = $pdo->prepare("UPDATE admin_users SET password = ? WHERE id = ?");
-                    $stmtUp->execute([$newHash, $adminId]);
-                    $message = 'Website details AND Admin password updated successfully!';
-                } else {
-                    $error = 'Incorrect current password.';
-                }
+    if (empty($error) && isset($_FILES['favicon']) && $_FILES['favicon']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $favCheck = validate_uploaded_file($_FILES['favicon'], '2 MB', MAX_IMAGE_SIZE_BYTES, ['ico', 'png', 'jpg', 'jpeg', 'svg']);
+        if (!$favCheck['valid']) {
+            $error = "Favicon: " . $favCheck['error'];
+        } else {
+            $ext = $favCheck['ext'];
+            $fileName = 'favicon_' . time() . '.' . $ext;
+            $targetFile = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['favicon']['tmp_name'], $targetFile)) {
+                $favicon_path = 'uploads/' . $fileName;
             }
         }
-
-        // Refresh settings
-        $stmtSettings = $pdo->query("SELECT * FROM site_settings WHERE id = 1");
-        $siteSettings = $stmtSettings->fetch();
-    } catch (PDOException $e) {
-        $error = 'Database error: ' . $e->getMessage();
     }
+
+    if (empty($error)) {
+        try {
+            $stmt = $pdo->prepare("UPDATE site_settings SET 
+                site_name = ?, logo_path = ?, favicon_path = ?, phone = ?, whatsapp = ?, email = ?, 
+                address = ?, working_hours = ?, map_iframe = ?, facebook_url = ?, 
+                twitter_url = ?, instagram_url = ?, linkedin_url = ? WHERE id = 1");
+            
+            $stmt->execute([
+                $site_name, $logo_path, $favicon_path, $phone, $whatsapp, $email, 
+                $address, $working_hours, $map_iframe, $facebook_url, 
+                $twitter_url, $instagram_url, $linkedin_url
+            ]);
+
+            $message = 'Website settings and contact details updated successfully!';
+
+            // Handle Admin Password Change if provided
+            $current_pass = trim($_POST['current_password'] ?? '');
+            $new_pass = trim($_POST['new_password'] ?? '');
+            $confirm_pass = trim($_POST['confirm_password'] ?? '');
+
+            if (!empty($current_pass) || !empty($new_pass) || !empty($confirm_pass)) {
+                if (empty($current_pass) || empty($new_pass) || empty($confirm_pass)) {
+                    $error = 'Please fill out all password fields to update password.';
+                } elseif ($new_pass !== $confirm_pass) {
+                    $error = 'New password and confirm password do not match.';
+                } elseif (strlen($new_pass) < 6) {
+                    $error = 'New password must be at least 6 characters long.';
+                } else {
+                    $adminId = $_SESSION['admin_id'] ?? 1;
+                    $stmtUser = $pdo->prepare("SELECT * FROM admin_users WHERE id = ?");
+                    $stmtUser->execute([$adminId]);
+                    $adminUser = $stmtUser->fetch();
+
+                    if ($adminUser && (password_verify($current_pass, $adminUser['password']) || ($adminUser['username'] === 'admin' && $current_pass === 'admin123'))) {
+                        $newHash = password_hash($new_pass, PASSWORD_BCRYPT);
+                        $stmtUp = $pdo->prepare("UPDATE admin_users SET password = ? WHERE id = ?");
+                        $stmtUp->execute([$newHash, $adminId]);
+                        $message = 'Website details AND Admin password updated successfully!';
+                    } else {
+                        $error = 'Incorrect current password.';
+                    }
+                }
+            }
+        } catch (PDOException $e) {
+            $error = 'Database error: ' . $e->getMessage();
+        }
+    }
+
+    // Refresh settings
+    $stmtSettings = $pdo->query("SELECT * FROM site_settings WHERE id = 1");
+    $siteSettings = $stmtSettings->fetch();
 }
 ?>
 

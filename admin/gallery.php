@@ -50,26 +50,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $image_path = $stmt->fetchColumn() ?: '';
     }
 
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-        $fileName = 'gal_' . time() . '_' . rand(100, 999) . '.' . $ext;
-        $targetFile = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-            $image_path = 'uploads/gallery/' . $fileName;
+    if (isset($_FILES['image']) && $_FILES['image']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $imgCheck = validate_uploaded_file($_FILES['image'], '2 MB', MAX_IMAGE_SIZE_BYTES, ALLOWED_IMAGE_EXTENSIONS);
+        if (!$imgCheck['valid']) {
+            $error = $imgCheck['error'];
+        } else {
+            $ext = $imgCheck['ext'];
+            $fileName = 'gal_' . time() . '_' . rand(100, 999) . '.' . $ext;
+            $targetFile = $uploadDir . $fileName;
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+                $image_path = 'uploads/gallery/' . $fileName;
+            }
         }
     }
 
-    if ($edit_id > 0) {
-        $stmt = $pdo->prepare("UPDATE gallery SET title = ?, category = ?, status = ?, image_path = ? WHERE id = ?");
-        $stmt->execute([$title, $category, $status, $image_path, $edit_id]);
-        $message = "Gallery item updated!";
-    } else {
-        if (empty($image_path)) {
-            $error = "Please upload an image for the gallery item.";
+    if (empty($error)) {
+        if ($edit_id > 0) {
+            $stmt = $pdo->prepare("UPDATE gallery SET title = ?, category = ?, status = ?, image_path = ? WHERE id = ?");
+            $stmt->execute([$title, $category, $status, $image_path, $edit_id]);
+            $message = "Gallery item updated!";
         } else {
-            $stmt = $pdo->prepare("INSERT INTO gallery (title, category, status, image_path) VALUES (?, ?, ?, ?)");
-            $stmt->execute([$title, $category, $status, $image_path]);
-            $message = "New gallery image added!";
+            if (empty($image_path)) {
+                $error = "Please upload an image for the gallery item.";
+            } else {
+                $stmt = $pdo->prepare("INSERT INTO gallery (title, category, status, image_path) VALUES (?, ?, ?, ?)");
+                $stmt->execute([$title, $category, $status, $image_path]);
+                $message = "New gallery image added!";
+            }
         }
     }
 }
